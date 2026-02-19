@@ -39,10 +39,11 @@ git push -u origin main
 
 1. In [Cloudflare Dashboard](https://dash.cloudflare.com) → **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → choose **ped4enko/mecanografia**.
 
-2. Build settings:
-   - **Build command:** leave **empty** (no build step).
-   - **Build output directory:** `./` or leave default (root).
-   - Save and deploy. Cloudflare will serve the repo root as the site.
+2. Build settings (static site, no build step):
+   - **Framework preset:** None
+   - **Build command:** leave **empty**, or `npm run build` (no-op in this repo).
+   - **Build output directory:** `.` or root.
+   - Save and deploy. Each push to `main` will trigger a new deploy.
 
 3. Add custom domain **mecanografia.info** in the project’s **Custom domains** and set DNS at your registrar.
 

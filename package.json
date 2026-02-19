@@ -1,0 +1,8 @@
+{
+  "name": "mecanografia",
+  "private": true,
+  "description": "Touch typing (mecanografía) web app for Spanish learners",
+  "scripts": {
+    "build": "echo 'Static site — no build step' && exit 0"
+  }
+}
