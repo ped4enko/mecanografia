@@ -33,20 +33,29 @@ git push -u origin main
 
 ## Deploy to Cloudflare Pages
 
-1. Install [Wrangler](https://developers.cloudflare.com/workers/wrangler/install-and-update/):
+**Important:** This is a **Pages** project. Use `wrangler pages deploy`, not `wrangler deploy`.
+
+### Option A: Deploy from Git (recommended)
+
+1. In [Cloudflare Dashboard](https://dash.cloudflare.com) → **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → choose **ped4enko/mecanografia**.
+
+2. Build settings:
+   - **Build command:** leave **empty** (no build step).
+   - **Build output directory:** `./` or leave default (root).
+   - Save and deploy. Cloudflare will serve the repo root as the site.
+
+3. Add custom domain **mecanografia.info** in the project’s **Custom domains** and set DNS at your registrar.
+
+### Option B: Deploy from CLI
+
+1. Install [Wrangler](https://developers.cloudflare.com/workers/wrangler/install-and-update/): `npm install -g wrangler`
+
+2. From this directory run:
    ```bash
-   npm install -g wrangler
+   npx wrangler pages deploy . --project-name=mecanografia
    ```
 
-2. From this directory, deploy:
-   ```bash
-   cd mecanografia
-   wrangler pages deploy . --project-name=mecanografia
-   ```
-
-3. In Cloudflare Dashboard → Pages → your project → **Custom domains**, add **mecanografia.info**.
-
-4. In your domain registrar, set the DNS for mecanografia.info to the Cloudflare nameservers (or add a CNAME to the Pages URL if already on Cloudflare).
+3. Add **mecanografia.info** in Pages → your project → **Custom domains** and configure DNS.
 
 ## Local preview
 
