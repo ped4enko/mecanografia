@@ -2,6 +2,26 @@
 
 Web app for practicing touch typing (mecanografía) in Spanish at **mecanografia.info**. Built for high readability, clear progress, and a distraction-free interface.
 
+**Repository:** [github.com/ped4enko/mecanografia](https://github.com/ped4enko/mecanografia)
+
+## Version control (GitHub)
+
+If the repo does not exist yet on GitHub, from this directory run:
+
+```bash
+# Log in to GitHub (browser or token)
+gh auth login
+
+# Create the repo and push
+gh repo create ped4enko/mecanografia --public --source=. --remote=origin --push --description "Touch typing (mecanografía) web app for Spanish learners — mecanografia.info"
+```
+
+If the repo already exists, just push:
+
+```bash
+git push -u origin main
+```
+
 ## Features
 
 - **Spanish-focused**: Practice texts include ñ, á, é, í, ó, ú, ü, ¿, ¡, and common vocabulary.
