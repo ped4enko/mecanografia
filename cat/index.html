@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="dark" lang="es">
+<html class="dark" lang="ca">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Practice touch typing in Spanish. Mecanografía for Spanish learners — improve speed and accuracy with ñ, accents, and Spanish punctuation."/>
-  <title>Mecanografía — Práctica de escritura en español | mecanografia.info</title>
+  <meta name="description" content="Practica la mecanografia en català. Mecanografia per a qui aprèn català — velocitat i precisió amb ç, accents, punt volat (l·l) i puntuació."/>
+  <title>Mecanografia — Pràctica d’escriptura en català | mecanografia.info</title>
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -14,76 +14,29 @@
   <link rel="alternate" hreflang="es" href="https://mecanografia.info/" />
   <link rel="alternate" hreflang="ca" href="https://mecanografia.info/cat/" />
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Mecanografía",
-    "description": "Practice touch typing in Spanish. Mecanografía for Spanish learners — improve speed and accuracy with ñ, accents, and Spanish punctuation.",
-    "url": "https://mecanografia.info",
-    "applicationCategory": "EducationalApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "video": {
-      "@type": "VideoObject",
-      "name": "Mecanografía — Cómo usar la herramienta",
-      "description": "Video about the Mecanografía touch typing tool for Spanish learners.",
-      "thumbnailUrl": "https://img.youtube.com/vi/mjEnnXYCoUM/maxresdefault.jpg",
-      "embedUrl": "https://www.youtube.com/embed/mjEnnXYCoUM",
-      "uploadDate": "2026-02-19"
-    }
-  }
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Mecanografia (català)","description":"Practica la mecanografia en català. Velocitat i precisió amb ç, accents i punt volat.","url":"https://mecanografia.info/cat/","applicationCategory":"EducationalApplication","inLanguage":"ca"}
   </script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
   <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "primary": "#135bec",
-            "background-light": "#f6f6f8",
-            "background-dark": "#101622",
-          },
-          fontFamily: {
-            "display": ["Lexend", "sans-serif"],
-            "reading": ["Atkinson Hyperlegible", "sans-serif"]
-          },
-          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
-        },
-      },
-    }
+    tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary": "#135bec", "background-light": "#f6f6f8", "background-dark": "#101622" }, fontFamily: { "display": ["Lexend", "sans-serif"], "reading": ["Atkinson Hyperlegible", "sans-serif"] }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" } } } }
   </script>
   <style>
     .typing-char { position: relative; }
-    .cursor::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background-color: #135bec;
-      animation: cursor-blink 1s step-end infinite;
-    }
+    .cursor::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 3px; background-color: #135bec; animation: cursor-blink 1s step-end infinite; }
     @media (prefers-reduced-motion: reduce) { .cursor::after { animation: none; } }
     @keyframes cursor-blink { 50% { opacity: 0; } }
     .char-correct { color: rgb(34 197 94); }
     .char-wrong { color: rgb(239 68 68); text-decoration: underline; text-decoration-style: wavy; }
-    .key-cap {
-      display: flex; align-items: center; justify-content: center;
-      border: 1px solid rgb(51 65 85); background: rgb(30 41 59);
-      color: rgb(203 213 225); border-radius: 0.5rem;
-      font-family: Lexend, sans-serif; transition: all 0.15s ease;
-    }
+    .key-cap { display: flex; align-items: center; justify-content: center; border: 1px solid rgb(51 65 85); background: rgb(30 41 59); color: rgb(203 213 225); border-radius: 0.5rem; font-family: Lexend, sans-serif; transition: all 0.15s ease; }
     .key-active { border-color: #135bec; background: rgba(19,91,236,0.25); color: #135bec; box-shadow: 0 0 10px rgba(19,91,236,0.3); }
     .key-pressed { transform: scale(0.95); }
     [aria-invalid="true"] { outline: 2px solid rgb(239 68 68); outline-offset: 2px; }
   </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-x-hidden">
-  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-6 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg">Skip to practice</a>
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-6 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg">Salta a la pràctica</a>
 
   <header class="border-b border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
@@ -91,13 +44,13 @@
         <div class="bg-primary p-1.5 rounded-lg text-white" aria-hidden="true">
           <span class="material-symbols-outlined leading-none text-xl sm:text-2xl">keyboard</span>
         </div>
-        <h1 class="text-lg sm:text-xl font-bold tracking-tight">Mecanografía</h1>
+        <h1 class="text-lg sm:text-xl font-bold tracking-tight">Mecanografia</h1>
       </div>
-      <nav class="flex items-center gap-4 sm:gap-6" aria-label="Main">
-        <a class="text-primary font-medium" href="#main">Práctica</a>
-        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#stats">Estadísticas</a>
-        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm" href="/cat/">Català</a>
-        <button type="button" id="theme-toggle" class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full" aria-label="Toggle dark mode">
+      <nav class="flex items-center gap-4 sm:gap-6" aria-label="Principal">
+        <a class="text-primary font-medium" href="#main">Pràctica</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#stats">Estadístiques</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm" href="/">Español</a>
+        <button type="button" id="theme-toggle" class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full" aria-label="Canvia el tema">
           <span class="material-symbols-outlined">dark_mode</span>
         </button>
       </nav>
@@ -105,25 +58,24 @@
   </header>
 
   <main id="main" class="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 max-w-6xl mx-auto w-full gap-8 sm:gap-12" tabindex="-1">
-    <!-- Stats -->
-    <section id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 w-full" aria-live="polite" aria-label="Session statistics">
+    <section id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 w-full" aria-live="polite" aria-label="Estadístiques de la sessió">
       <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-3 sm:p-4 rounded-xl flex flex-col items-center justify-center gap-0.5">
         <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest">PPM</span>
         <span id="stat-ppm" class="text-2xl sm:text-3xl font-bold">0</span>
         <span id="stat-ppm-trend" class="text-xs font-medium text-slate-400" aria-hidden="true"></span>
       </div>
       <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-3 sm:p-4 rounded-xl flex flex-col items-center justify-center gap-0.5">
-        <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest">Precisión</span>
+        <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest">Precisió</span>
         <span id="stat-accuracy" class="text-2xl sm:text-3xl font-bold">—%</span>
         <span id="stat-accuracy-label" class="text-xs font-medium text-slate-400"></span>
       </div>
       <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-3 sm:p-4 rounded-xl flex flex-col items-center justify-center gap-0.5">
-        <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest">Tiempo</span>
+        <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest">Temps</span>
         <span id="stat-time" class="text-2xl sm:text-3xl font-bold">00:00</span>
         <span id="stat-time-meta" class="text-xs font-medium text-slate-400"></span>
       </div>
       <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-3 sm:p-4 rounded-xl flex flex-col items-center justify-center gap-0.5">
-        <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest">Nivel</span>
+        <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest">Nivell</span>
         <span id="stat-level" class="text-2xl sm:text-3xl font-bold">—</span>
         <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full mt-1.5">
           <div id="stat-level-bar" class="bg-primary h-full rounded-full transition-all duration-300" style="width: 0%"></div>
@@ -131,41 +83,29 @@
       </div>
     </section>
 
-    <!-- Practice area -->
     <div class="w-full relative">
       <p class="absolute -top-10 right-0 text-sm text-slate-500 flex items-center gap-4">
-        <span class="hidden sm:inline"><kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-xs">Tab</kbd> reiniciar</span>
+        <span class="hidden sm:inline"><kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-xs">Tab</kbd> reinicia</span>
       </p>
-      <div
-        id="practice-box"
-        class="bg-white/5 dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 md:p-12 shadow-2xl backdrop-blur-sm min-h-[200px] sm:min-h-[240px] flex items-center"
-        role="application"
-        aria-label="Typing practice"
-        aria-describedby="practice-instruction"
-      >
-        <p id="practice-instruction" class="sr-only">Type the text below. Use Tab to restart, or click Reiniciar.</p>
-        <div
-          id="typing-text"
-          class="font-reading text-2xl sm:text-3xl md:text-4xl leading-relaxed tracking-wide text-left select-none break-words"
-          style="color: var(--tw-prose-body);"
-        >
+      <div id="practice-box" class="bg-white/5 dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 md:p-12 shadow-2xl backdrop-blur-sm min-h-[200px] sm:min-h-[240px] flex items-center" role="application" aria-label="Pràctica d’escriptura" aria-describedby="practice-instruction">
+        <p id="practice-instruction" class="sr-only">Escriu el text a sota. Fes servir Tab per reiniciar o clica Reinicia.</p>
+        <div id="typing-text" class="font-reading text-2xl sm:text-3xl md:text-4xl leading-relaxed tracking-wide text-left select-none break-words">
           <span id="typed" aria-hidden="true"></span><span id="current" class="typing-char cursor" aria-hidden="true"></span><span id="remaining" aria-hidden="true"></span>
         </div>
       </div>
       <div class="mt-4 sm:mt-6 flex flex-wrap justify-center gap-3">
         <button type="button" id="btn-restart" class="flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark">
           <span class="material-symbols-outlined" aria-hidden="true">refresh</span>
-          Reiniciar
+          Reinicia
         </button>
         <button type="button" id="btn-new" class="flex items-center gap-2 px-5 py-2.5 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 font-semibold rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-600 focus:ring-offset-2 dark:focus:ring-offset-background-dark">
           <span class="material-symbols-outlined" aria-hidden="true">description</span>
-          Nuevo texto
+          Text nou
         </button>
       </div>
     </div>
 
-    <!-- Virtual keyboard (Spanish ISO) -->
-    <div class="w-full max-w-4xl opacity-90" role="img" aria-label="Spanish keyboard layout">
+    <div class="w-full max-w-4xl opacity-90" role="img" aria-label="Teclat català (ISO)">
       <div class="flex flex-col gap-1.5 sm:gap-2 p-3 sm:p-4 rounded-2xl bg-slate-200/50 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800">
         <div class="flex gap-1 h-10 sm:h-12" data-row="0">
           <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="º">º</div>
@@ -200,7 +140,7 @@
           <div class="key-cap flex-1 text-xs sm:text-sm" data-key="Enter">↵</div>
         </div>
         <div class="flex gap-1 h-10 sm:h-12" data-row="2">
-          <div class="key-cap w-14 sm:w-20 text-xs sm:text-sm" data-key="CapsLock">Bloq Mayús</div>
+          <div class="key-cap w-14 sm:w-20 text-xs sm:text-sm" data-key="CapsLock">Bloq Maj</div>
           <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="a">A</div>
           <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="s">S</div>
           <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="d">D</div>
@@ -210,9 +150,9 @@
           <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="j">J</div>
           <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="k">K</div>
           <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="l">L</div>
-          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="ñ">Ñ</div>
-          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="´">´</div>
           <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="ç">Ç</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="·">·</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="´">´</div>
         </div>
         <div class="flex gap-1 h-10 sm:h-12" data-row="3">
           <div class="key-cap w-10 sm:w-12 text-xs sm:text-sm" data-key="<"><</div>
@@ -233,29 +173,29 @@
           <div class="key-cap w-12 sm:w-16 text-xs" data-key="Control">Ctrl</div>
           <div class="key-cap w-10 sm:w-14 text-xs" data-key="Alt">Opt</div>
           <div class="key-cap w-10 sm:w-14 text-xs" data-key="Meta">Cmd</div>
-          <div class="key-cap flex-[3] min-w-[120px] text-xs" data-key=" ">Espacio</div>
+          <div class="key-cap flex-[3] min-w-[120px] text-xs" data-key=" ">Espai</div>
           <div class="key-cap w-10 sm:w-14 text-xs" data-key="Meta">Cmd</div>
           <div class="key-cap w-10 sm:w-14 text-xs" data-key="Alt">Opt</div>
           <div class="key-cap w-12 sm:w-16 text-xs" data-key="Control">Ctrl</div>
         </div>
       </div>
-      <p class="text-center text-xs text-slate-500 mt-3 uppercase tracking-tighter">Teclado: Español (ISO)</p>
+      <p class="text-center text-xs text-slate-500 mt-3 uppercase tracking-tighter">Teclat: Català (ISO)</p>
     </div>
   </main>
 
   <footer class="py-6 px-4 sm:px-6 border-t border-slate-200 dark:border-slate-800 text-center">
     <div class="flex flex-col sm:flex-row items-center justify-between gap-4 max-w-6xl mx-auto text-sm text-slate-500">
-      <div class="flex items-center gap-4 sm:gap-6">
-        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#main">Práctica</a>
-        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#stats">Estadísticas</a>
-        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/cat/">Català</a>
-        <a class="hover:text-primary transition-colors focus:outline-none focus:underline inline-flex items-center gap-1" href="https://youtu.be/mjEnnXYCoUM" target="_blank" rel="noopener noreferrer" title="Ver vídeo sobre la herramienta">
+      <div class="flex items-center gap-4 sm:gap-6 flex-wrap justify-center">
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#main">Pràctica</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#stats">Estadístiques</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/">Español</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline inline-flex items-center gap-1" href="https://youtu.be/mjEnnXYCoUM" target="_blank" rel="noopener noreferrer" title="Veure el vídeo sobre l’eina">
           <span class="material-symbols-outlined text-lg" aria-hidden="true">play_circle</span>
-          Ver vídeo
+          Veure vídeo
         </a>
         <span>mecanografia.info</span>
       </div>
-      <p>© <span id="year">2025</span> Mecanografía. Práctica de escritura en español.</p>
+      <p>© <span id="year">2025</span> Mecanografia. Pràctica d’escriptura en català.</p>
     </div>
   </footer>
 
@@ -263,40 +203,31 @@
     (function () {
       document.getElementById('year').textContent = new Date().getFullYear();
 
-      // Spanish practice texts (with ñ, accents, ¿¡, punctuation)
       const TEXTS = [
-        "El pingüino comía un pequeño ñandú en la montaña de Montserrat bajo el sol radiante de España. Mañana iré a comprar piñas y uvas ácidas para el banquete.",
-        "¿Qué día es hoy? ¡Qué alegría! La niña tiene una mañana ocupada. José y María viven en España. Necesito café y té.",
-        "Los niños juegan en el jardín. La información es muy importante. ¿Cómo se escribe tu nombre? ¡Excelente trabajo!",
-        "Buenos días. ¿Cómo estás? Me gusta la música y el cine. El año pasado viajé a México y Perú. La ñoña no sabe nadar.",
-        "El español tiene letras especiales: ñ, á, é, í, ó, ú, ü. También usamos ¿ y ¡ al inicio de las preguntas y exclamaciones.",
-        "La cigüeña vive en el campo. El pingüino nada en el océano. Mañana haré paella con arroz y azafrán.",
-        "¿Dónde está la biblioteca? Necesito un lápiz y un cuaderno. El profesor explica la lección con paciencia.",
-        "¡Hola! ¿Qué tal? Me llamo Ana. Estudio español desde hace dos años. Me encanta la cultura española.",
-        "El café de la mañana es necesario. La información correcta es esencial. ¿Cuántos años tienes? ¡Feliz cumpleaños!",
-        "Los pájaros vuelan sobre el río. La niña lee un libro en la habitación. Mañana será un día soleado."
+        "El gat menja peix a la cuina. La lluna brilla sobre el mar. Demà aniré a Barcelona per veure la Sagrada Família.",
+        "El català té lletres especials: à, è, é, í, ï, ó, ò, ú, ü, ç i el punt volat (l·l). Per exemple: col·lecció, paral·lel.",
+        "Bon dia! Com estàs? M’agrada la música i el cinema. L’any passat vaig viatjar a Girona i a Tarragona.",
+        "Els nens juguen al jardí. La informació és molt important. Com es diu el teu nom? Excel·lent feina!",
+        "On és la biblioteca? Necessito un llapis i un quadern. El professor explica la lliçó amb paciència.",
+        "Hola! Què tal? Em dic Anna. Estudio català des fa dos anys. M’encanta la cultura catalana.",
+        "El cafè del matí és necessari. La informació correcta és essencial. Quants anys tens? Feliç aniversari!",
+        "Els ocells volen sobre el riu. La nena llegeix un llibre a l’habitació. Demà serà un dia assolellat.",
+        "La dona treballa a l’oficina. El teatre és obert tot l’any. Volem pa amb tomàquet i oli.",
+        "A Catalunya es parla català. La festa major és al juny. Gràcies per la teva ajuda."
       ];
 
       const LEVELS = [
-        { name: 'Principiante', minWpm: 0, pct: 0 },
-        { name: 'Básico', minWpm: 15, pct: 25 },
-        { name: 'Intermedio', minWpm: 30, pct: 50 },
-        { name: 'Avanzado', minWpm: 45, pct: 75 },
-        { name: 'Experto', minWpm: 60, pct: 100 }
+        { name: 'Principiant', minWpm: 0, pct: 0 },
+        { name: 'Bàsic', minWpm: 15, pct: 25 },
+        { name: 'Intermedi', minWpm: 30, pct: 50 },
+        { name: 'Avançat', minWpm: 45, pct: 75 },
+        { name: 'Expert', minWpm: 60, pct: 100 }
       ];
 
-      const STORAGE_KEY = 'mecanografia-stats';
+      const STORAGE_KEY = 'mecanografia-cat-stats';
+      const ACCURACY_LABELS = { excellent: 'Excel·lent', good: 'Bé', practice: 'Continua practicant' };
 
-      let state = {
-        text: '',
-        index: 0,
-        correct: 0,
-        errors: 0,
-        startTime: null,
-        timerId: null,
-        lastWpm: 0,
-        bestWpm: parseInt(localStorage.getItem(STORAGE_KEY + '-best') || '0', 10)
-      };
+      let state = { text: '', index: 0, correct: 0, errors: 0, startTime: null, timerId: null, lastWpm: 0, bestWpm: parseInt(localStorage.getItem(STORAGE_KEY + '-best') || '0', 10) };
 
       const typedEl = document.getElementById('typed');
       const currentEl = document.getElementById('current');
@@ -311,15 +242,11 @@
       const statLevel = document.getElementById('stat-level');
       const statLevelBar = document.getElementById('stat-level-bar');
 
-      function pickText() {
-        return TEXTS[Math.floor(Math.random() * TEXTS.length)];
-      }
+      function pickText() { return TEXTS[Math.floor(Math.random() * TEXTS.length)]; }
 
       function getLevel(wpm, accuracy) {
         if (accuracy < 0.9) return LEVELS[0];
-        for (let i = LEVELS.length - 1; i >= 0; i--) {
-          if (wpm >= LEVELS[i].minWpm) return LEVELS[i];
-        }
+        for (let i = LEVELS.length - 1; i >= 0; i--) { if (wpm >= LEVELS[i].minWpm) return LEVELS[i]; }
         return LEVELS[0];
       }
 
@@ -334,67 +261,38 @@
         const accuracy = total === 0 ? 0 : (state.correct / total) * 100;
         const elapsed = state.startTime ? (Date.now() - state.startTime) / 1000 : 0;
         const minutes = elapsed / 60;
-        const wpm = minutes > 0 ? Math.round((state.correct / 5) / minutes) : 0; // 5 chars = 1 word
+        const wpm = minutes > 0 ? Math.round((state.correct / 5) / minutes) : 0;
 
         statPpm.textContent = wpm;
-        if (state.lastWpm > 0 && wpm > state.lastWpm) {
-          statPpmTrend.textContent = '↑';
-          statPpmTrend.className = 'text-emerald-500 text-xs font-medium';
-        } else {
-          statPpmTrend.textContent = '';
-        }
+        if (state.lastWpm > 0 && wpm > state.lastWpm) { statPpmTrend.textContent = '↑'; statPpmTrend.className = 'text-emerald-500 text-xs font-medium'; } else { statPpmTrend.textContent = ''; }
 
-        if (total === 0) {
-          statAccuracy.textContent = '—%';
-          statAccuracyLabel.textContent = '';
-        } else {
+        if (total === 0) { statAccuracy.textContent = '—%'; statAccuracyLabel.textContent = ''; }
+        else {
           statAccuracy.textContent = accuracy.toFixed(1) + '%';
-          statAccuracyLabel.textContent = accuracy >= 97 ? 'Excelente' : accuracy >= 90 ? 'Bien' : 'Sigue practicando';
+          statAccuracyLabel.textContent = accuracy >= 97 ? ACCURACY_LABELS.excellent : accuracy >= 90 ? ACCURACY_LABELS.good : ACCURACY_LABELS.practice;
           statAccuracyLabel.className = accuracy >= 97 ? 'text-emerald-500 text-xs font-medium' : accuracy >= 90 ? 'text-slate-500 text-xs font-medium' : 'text-amber-500 text-xs font-medium';
         }
 
         statTime.textContent = formatTime(elapsed);
-
         const level = getLevel(wpm, accuracy / 100);
         statLevel.textContent = level.name;
         statLevelBar.style.width = level.pct + '%';
 
-        if (wpm > state.bestWpm && state.index > 10) {
-          state.bestWpm = wpm;
-          try { localStorage.setItem(STORAGE_KEY + '-best', String(wpm)); } catch (e) {}
-        }
+        if (wpm > state.bestWpm && state.index > 10) { state.bestWpm = wpm; try { localStorage.setItem(STORAGE_KEY + '-best', String(wpm)); } catch (e) {} }
       }
 
       function renderTyping() {
-        const t = state.text;
-        const i = state.index;
-        const typed = t.slice(0, i);
-        const currentChar = t[i] || '';
-        const remaining = t.slice(i + 1);
-
-        // Build typed with correct/wrong styling (we only track current session: all typed are "correct" in display; errors are at current position)
+        const t = state.text, i = state.index, currentChar = t[i] || '', remaining = t.slice(i + 1);
         let typedHtml = '';
-        for (let k = 0; k < i; k++) {
-          typedHtml += '<span class="char-correct">' + escapeHtml(t[k]) + '</span>';
-        }
+        for (let k = 0; k < i; k++) typedHtml += '<span class="char-correct">' + escapeHtml(t[k]) + '</span>';
         typedEl.innerHTML = typedHtml;
         currentEl.textContent = currentChar;
         remainingEl.textContent = remaining;
-
         currentEl.className = 'typing-char cursor text-slate-900 dark:text-slate-100';
-        if (state.errors > 0 && currentChar) {
-          currentEl.classList.add('char-wrong');
-          practiceBox.setAttribute('aria-invalid', 'true');
-        } else {
-          practiceBox.removeAttribute('aria-invalid');
-        }
+        if (state.errors > 0 && currentChar) { currentEl.classList.add('char-wrong'); practiceBox.setAttribute('aria-invalid', 'true'); } else practiceBox.removeAttribute('aria-invalid');
       }
 
-      function escapeHtml(s) {
-        const div = document.createElement('div');
-        div.textContent = s;
-        return div.innerHTML;
-      }
+      function escapeHtml(s) { const div = document.createElement('div'); div.textContent = s; return div.innerHTML; }
 
       function startSession() {
         state.text = pickText();
@@ -411,49 +309,29 @@
       }
 
       function restartSession() {
-        state.lastWpm = state.startTime && state.index > 0
-          ? Math.round((state.correct / 5) / ((Date.now() - state.startTime) / 1000 / 60))
-          : 0;
+        state.lastWpm = state.startTime && state.index > 0 ? Math.round((state.correct / 5) / ((Date.now() - state.startTime) / 1000 / 60)) : 0;
         startSession();
       }
 
       function finishSession() {
-        if (state.timerId) {
-          clearInterval(state.timerId);
-          state.timerId = null;
-        }
+        if (state.timerId) { clearInterval(state.timerId); state.timerId = null; }
         updateStats();
-        startSession(); // new text
+        startSession();
       }
 
       function highlightKey(char) {
-        document.querySelectorAll('.key-cap').forEach(function (el) {
-          el.classList.remove('key-active', 'key-pressed');
-        });
+        document.querySelectorAll('.key-cap').forEach(function (el) { el.classList.remove('key-active', 'key-pressed'); });
         if (!char) return;
-        const key = char.toLowerCase();
-        const map = {
-          ' ': ' ', '\n': 'Enter', '´': '´', '`': '`', 'º': 'º', '¡': '¡', 'ñ': 'ñ', 'ç': 'ç',
-          'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'ü': 'u'
-        };
-        const keyName = map[char] !== undefined ? map[char] : key;
-        const selector = '[data-key="' + keyName + '"]';
-        const el = document.querySelector(selector);
+        const map = { ' ': ' ', '\n': 'Enter', '´': '´', '`': '`', 'º': 'º', '¡': '¡', 'ç': 'ç', '·': '·', 'à': 'a', 'è': 'e', 'é': 'e', 'í': 'i', 'ï': 'i', 'ó': 'o', 'ò': 'o', 'ú': 'u', 'ü': 'u' };
+        const keyName = map[char] !== undefined ? map[char] : char.toLowerCase();
+        const el = document.querySelector('[data-key="' + keyName + '"]');
         if (el) el.classList.add('key-active');
       }
 
       function handleKeydown(e) {
-        if (e.ctrlKey || e.metaKey || e.altKey) {
-          if (e.key === 'r' || e.key === 'Tab') e.preventDefault();
-          return;
-        }
-        if (e.key === 'Tab') {
-          e.preventDefault();
-          restartSession();
-          return;
-        }
+        if (e.ctrlKey || e.metaKey || e.altKey) { if (e.key === 'r' || e.key === 'Tab') e.preventDefault(); return; }
+        if (e.key === 'Tab') { e.preventDefault(); restartSession(); return; }
         if (!state.text || state.index >= state.text.length) return;
-
         const expected = state.text[state.index];
         if (e.key === expected) {
           e.preventDefault();
@@ -461,10 +339,7 @@
           state.correct++;
           state.errors = 0;
           if (state.index >= state.text.length) finishSession();
-          else {
-            renderTyping();
-            highlightKey(state.text[state.index]);
-          }
+          else { renderTyping(); highlightKey(state.text[state.index]); }
           updateStats();
         } else if (e.key.length === 1 && !e.repeat) {
           e.preventDefault();
@@ -475,11 +350,7 @@
         }
       }
 
-      function handleKeyup() {
-        document.querySelectorAll('.key-cap').forEach(function (el) {
-          el.classList.remove('key-pressed');
-        });
-      }
+      function handleKeyup() { document.querySelectorAll('.key-cap').forEach(function (el) { el.classList.remove('key-pressed'); }); }
 
       document.getElementById('btn-restart').addEventListener('click', restartSession);
       document.getElementById('btn-new').addEventListener('click', finishSession);
@@ -487,31 +358,17 @@
       practiceBox.setAttribute('tabindex', '0');
       practiceBox.addEventListener('keydown', handleKeydown);
       practiceBox.addEventListener('keyup', handleKeyup);
-      practiceBox.addEventListener('focus', function () {
-        highlightKey(state.text[state.index]);
-      });
-      practiceBox.addEventListener('blur', function () {
-        document.querySelectorAll('.key-cap').forEach(function (el) {
-          el.classList.remove('key-active', 'key-pressed');
-        });
-      });
+      practiceBox.addEventListener('focus', function () { highlightKey(state.text[state.index]); });
+      practiceBox.addEventListener('blur', function () { document.querySelectorAll('.key-cap').forEach(function (el) { el.classList.remove('key-active', 'key-pressed'); }); });
 
-      // Virtual key highlight on keydown (show which key was pressed)
       document.querySelectorAll('.key-cap').forEach(function (el) {
         const key = el.getAttribute('data-key');
         if (!key) return;
-        el.addEventListener('mousedown', function () {
-          el.classList.add('key-pressed');
-        });
-        el.addEventListener('mouseup', function () {
-          el.classList.remove('key-pressed');
-        });
-        el.addEventListener('mouseleave', function () {
-          el.classList.remove('key-pressed');
-        });
+        el.addEventListener('mousedown', function () { el.classList.add('key-pressed'); });
+        el.addEventListener('mouseup', function () { el.classList.remove('key-pressed'); });
+        el.addEventListener('mouseleave', function () { el.classList.remove('key-pressed'); });
       });
 
-      // Theme toggle
       function applyTheme(dark) {
         document.documentElement.classList.toggle('dark', dark);
         const icon = document.querySelector('#theme-toggle .material-symbols-outlined');
@@ -521,9 +378,7 @@
       const saved = localStorage.getItem('mecanografia-theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       applyTheme(saved === 'dark' || (saved !== 'light' && prefersDark));
-      document.getElementById('theme-toggle').addEventListener('click', function () {
-        applyTheme(!document.documentElement.classList.contains('dark'));
-      });
+      document.getElementById('theme-toggle').addEventListener('click', function () { applyTheme(!document.documentElement.classList.contains('dark')); });
 
       startSession();
     })();

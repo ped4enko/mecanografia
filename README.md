@@ -37,15 +37,17 @@ git push -u origin main
 
 ### Option A: Deploy from Git (recommended)
 
-1. In [Cloudflare Dashboard](https://dash.cloudflare.com) → **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → choose **ped4enko/mecanografia**.
+1. In [Cloudflare Dashboard](https://dash.cloudflare.com) → **Workers & Pages** → your project → **Settings** → **Builds & deployments** → **Build configuration**.
 
-2. Build settings (static site, no build step):
+2. Set (static site — no build step):
    - **Framework preset:** None
-   - **Build command:** leave **empty**, or `npm run build` (no-op in this repo).
-   - **Build output directory:** `.` or root.
-   - Save and deploy. Each push to `main` will trigger a new deploy.
+   - **Build command:** leave **completely empty** (do not use `npx wrangler deploy` — that is for Workers and will fail).
+   - **Build output directory:** `.`
+   - Save. Redeploy from **Deployments** if needed.
 
-3. Add custom domain **mecanografia.info** in the project’s **Custom domains** and set DNS at your registrar.
+3. Add custom domain **mecanografia.info** in **Custom domains** and set DNS at your registrar.
+
+**If build fails with “run wrangler pages deploy instead”:** the Build command is set to `wrangler deploy`. Clear the Build command field (leave it empty) and set Build output directory to `.`, then redeploy.
 
 ### Option B: Deploy from CLI
 
