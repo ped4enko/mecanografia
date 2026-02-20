@@ -14,6 +14,13 @@
   <link rel="alternate" hreflang="es" href="https://mecanografia.info/" />
   <link rel="alternate" hreflang="ca" href="https://mecanografia.info/cat/" />
   <link rel="canonical" href="https://mecanografia.info/cat/" />
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://mecanografia.info/cat/"/>
+  <meta property="og:title" content="Mecanografia — Pràctica d'escriptura en català | mecanografia.info"/>
+  <meta property="og:description" content="Practica la mecanografia en català. Mecanografia per a qui aprèn català — velocitat i precisió amb ç, accents, punt volat (l·l) i puntuació."/>
+  <meta property="og:image" content="https://mecanografia.info/og.avif"/>
+  <meta property="og:image:type" content="image/avif"/>
+  <meta property="og:locale" content="ca_ES"/>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebApplication","name":"Mecanografia (català)","description":"Practica la mecanografia en català. Velocitat i precisió amb ç, accents i punt volat.","url":"https://mecanografia.info/cat/","applicationCategory":"EducationalApplication","inLanguage":"ca"}
   </script>
@@ -199,7 +206,7 @@
       <p class="flex flex-wrap items-center justify-center gap-4 gap-y-2">
         <a href="https://www.producthunt.com/products/mecanografia-app?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-mecanografia-app" target="_blank" rel="noopener noreferrer"><img alt="Mecanografia App - free typing training in Spanish/Catalan for kids &amp; adults | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1082401&amp;theme=neutral&amp;t=1771537515551"></a>
       </p>
-      <p>© <span id="year">2025</span> Mecanografia. Pràctica d’escriptura en català.</p>
+      <p>© <span id="year">2026</span> Mecanografia. Pràctica d’escriptura en català.</p>
     </div>
   </footer>
 
@@ -326,7 +333,7 @@
       function highlightKey(char) {
         document.querySelectorAll('.key-cap').forEach(function (el) { el.classList.remove('key-active', 'key-pressed'); });
         if (!char) return;
-        const map = { ' ': ' ', '\n': 'Enter', '´': '´', '`': '`', 'º': 'º', '¡': '¡', 'ç': 'ç', '·': '·', 'à': 'a', 'è': 'e', 'é': 'e', 'í': 'i', 'ï': 'i', 'ó': 'o', 'ò': 'o', 'ú': 'u', 'ü': 'u' };
+        const map = { ' ': ' ', '\n': 'Enter', '´': '´', '`': '`', 'º': 'º', '¡': '¡', 'ç': 'ç', '·': '·', '\u2019': "'", 'à': 'a', 'è': 'e', 'é': 'e', 'í': 'i', 'ï': 'i', 'ó': 'o', 'ò': 'o', 'ú': 'u', 'ü': 'u' };
         const keyName = map[char] !== undefined ? map[char] : char.toLowerCase();
         const el = document.querySelector('[data-key="' + keyName + '"]');
         if (el) el.classList.add('key-active');
@@ -337,7 +344,8 @@
         if (e.key === 'Tab') { e.preventDefault(); restartSession(); return; }
         if (!state.text || state.index >= state.text.length) return;
         const expected = state.text[state.index];
-        if (e.key === expected) {
+        const keyMatch = (e.key === expected) || (expected === '\u2019' && e.key === "'");
+        if (keyMatch) {
           e.preventDefault();
           state.index++;
           state.correct++;
