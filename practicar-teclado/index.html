@@ -4,15 +4,13 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Practicar teclado en español. Ejercicios de mecanografía gratis en línea — mejora velocidad y precisión con ñ, acentos y puntuación."/>
-  <title>Practicar teclado — Mecanografía en español | mecanografia.info</title>
+  <title>Practicar teclado en español | mecanografia.info</title>
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="Mecanografia" />
   <link rel="manifest" href="/site.webmanifest" />
-  <link rel="alternate" hreflang="es" href="https://mecanografia.info/" />
-  <link rel="alternate" hreflang="ca" href="https://mecanografia.info/cat/" />
   <link rel="canonical" href="https://mecanografia.info/practicar-teclado/" />
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://mecanografia.info/practicar-teclado/"/>
@@ -505,7 +503,7 @@
         state.index = 0;
         state.correct = 0;
         state.errors = 0;
-        state.startTime = Date.now();
+        state.startTime = null;
         state.lastWpm = 0;
         if (state.timerId) clearInterval(state.timerId);
         state.timerId = setInterval(updateStats, 500);
@@ -557,6 +555,8 @@
           return;
         }
         if (!state.text || state.index >= state.text.length) return;
+
+        if (state.startTime === null) state.startTime = Date.now();
 
         const expected = state.text[state.index];
         if (e.key === expected) {

@@ -310,7 +310,7 @@
         state.index = 0;
         state.correct = 0;
         state.errors = 0;
-        state.startTime = Date.now();
+        state.startTime = null;
         state.lastWpm = 0;
         if (state.timerId) clearInterval(state.timerId);
         state.timerId = setInterval(updateStats, 500);
@@ -343,6 +343,7 @@
         if (e.ctrlKey || e.metaKey || e.altKey) { if (e.key === 'r' || e.key === 'Tab') e.preventDefault(); return; }
         if (e.key === 'Tab') { e.preventDefault(); restartSession(); return; }
         if (!state.text || state.index >= state.text.length) return;
+        if (state.startTime === null) state.startTime = Date.now();
         const expected = state.text[state.index];
         const keyMatch = (e.key === expected) || (expected === '\u2019' && e.key === "'");
         if (keyMatch) {
