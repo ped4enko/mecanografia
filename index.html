@@ -192,6 +192,17 @@
         >
           <span id="typed" aria-hidden="true"></span><span id="current" class="typing-char cursor" aria-hidden="true"></span><span id="remaining" aria-hidden="true"></span>
         </div>
+        <input
+          id="mobile-input"
+          type="text"
+          inputmode="latin"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="none"
+          spellcheck="false"
+          class="sr-only"
+          aria-hidden="true"
+        />
       </div>
       <div class="mt-4 sm:mt-6 flex flex-wrap justify-center gap-3">
         <button type="button" id="btn-restart" class="flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark">
@@ -403,6 +414,7 @@
       const currentEl = document.getElementById('current');
       const remainingEl = document.getElementById('remaining');
       const practiceBox = document.getElementById('practice-box');
+      const mobileInput = document.getElementById('mobile-input');
       const statPpm = document.getElementById('stat-ppm');
       const statPpmTrend = document.getElementById('stat-ppm-trend');
       const statAccuracy = document.getElementById('stat-accuracy');
@@ -508,7 +520,12 @@
         state.timerId = setInterval(updateStats, 500);
         updateStats();
         renderTyping();
-        practiceBox.focus();
+        if (mobileInput) {
+          mobileInput.focus();
+          mobileInput.value = '';
+        } else {
+          practiceBox.focus();
+        }
       }
 
       function restartSession() {
@@ -590,6 +607,13 @@
       practiceBox.setAttribute('tabindex', '0');
       practiceBox.addEventListener('keydown', handleKeydown);
       practiceBox.addEventListener('keyup', handleKeyup);
+      practiceBox.addEventListener('click', function () {
+        if (mobileInput) {
+          mobileInput.focus();
+        } else {
+          practiceBox.focus();
+        }
+      });
       practiceBox.addEventListener('focus', function () {
         highlightKey(state.text[state.index]);
       });
@@ -598,6 +622,14 @@
           el.classList.remove('key-active', 'key-pressed');
         });
       });
+
+      if (mobileInput) {
+        mobileInput.addEventListener('keydown', handleKeydown);
+        mobileInput.addEventListener('keyup', handleKeyup);
+        mobileInput.addEventListener('input', function () {
+          mobileInput.value = '';
+        });
+      }
 
       // Virtual key highlight on keydown (show which key was pressed)
       document.querySelectorAll('.key-cap').forEach(function (el) {
