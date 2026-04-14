@@ -1,0 +1,34 @@
+Mecanografía (https://mecanografia.info/
+) is a web application and a set of educational tools designed for training and self-learning touch typing in Spanish. Unlike many generic typing tools, the project is specifically focused on the global Spanish-speaking audience.
+
+The project was created in 2026 with the goal of becoming a reference standard for typing tests and typing practice in Spanish. It was founded in the town of Salou, in the province of Tarragona, Spain, which is why the platform also includes training tools for the Catalan language.
+
+This startup was built to help both children and adults improve their typing skills through a growing collection of practice texts. The platform currently offers 20 training texts, with new content planned to be added every month.
+
+As soon as a user starts typing a new text, the tool automatically calculates and displays key performance metrics in real time:
+
+KPM (keystrokes per minute)
+Accuracy
+Time
+Level
+
+The interface provides two keyboard layout display modes: Windows and Apple (Mac), helping users practice with the layout they actually use in daily life.
+The application is completely free to use.
+
+🔹 Short Description (for Crunchbase / directories)
+
+Mecanografía is a free web-based typing trainer focused on Spanish and Catalan typing practice, offering structured exercises and real-time performance metrics for learners of all ages.
+
+🔹 One-liner / Pitch (optional)
+
+A free typing practice platform for the Spanish-speaking world, with structured lessons and real-time feedback.
+
+🔹 Tagline Options (EN)
+
+Learn touch typing in Spanish — step by step.
+
+Practice typing the right way.
+
+Typing training for the Spanish-speaking world.
+
+Improve your typing speed and accuracy.
