@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="How mecanografia.info chooses environmentally responsible technology: hosting, development hardware, data processing, and reference climate frameworks."/>
+  <title>Environmental sustainability | Mecanografía</title>
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="canonical" href="https://mecanografia.info/environmental-sustainability/" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: { "primary": "#135bec", "background-light": "#f6f6f8", "background-dark": "#101622" },
+          fontFamily: { "display": ["Lexend", "sans-serif"], "reading": ["Atkinson Hyperlegible", "sans-serif"] },
+        },
+      },
+    }
+  </script>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vkghhjthlf");
+  </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+  <header class="border-b border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <div class="bg-primary p-1.5 rounded-lg text-white" aria-hidden="true"><span class="material-symbols-outlined leading-none text-xl sm:text-2xl">keyboard</span></div>
+        <span class="text-lg sm:text-xl font-bold tracking-tight">Mecanografía</span>
+      </a>
+      <nav class="flex items-center gap-4 sm:gap-6" aria-label="Main">
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="/">Practice</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="/contact/">Contact</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm" href="/cat/">Català</a>
+        <button type="button" id="theme-toggle" class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full" aria-label="Toggle dark mode"><span class="material-symbols-outlined">dark_mode</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-3xl mx-auto w-full px-4 sm:px-6 py-8 sm:py-12 font-reading text-slate-700 dark:text-slate-300">
+    <h1 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-slate-100 mb-6">Environmental sustainability</h1>
+    <p class="text-sm text-slate-500 dark:text-slate-400 mb-8">Last updated: March 2026</p>
+
+    <p class="leading-relaxed mb-6">At <strong>mecanografia.info</strong>, we aim to use technology that is as environmentally responsible as practical. This page explains how we think about our footprint across hosting, development, and data processing—and points to independent frameworks and provider credentials you can verify yourself.</p>
+    <p class="leading-relaxed mb-8 text-sm text-slate-500 dark:text-slate-400">We do not claim every certification listed below for our own organization unless stated explicitly. Where possible, we link to third-party standards and to our vendors’ public sustainability disclosures.</p>
+
+    <h2 class="text-lg font-display font-bold text-slate-900 dark:text-slate-100 mt-8 mb-3">Hosting and content delivery</h2>
+    <p class="leading-relaxed mb-4">The site is deployed on <strong>Cloudflare Pages</strong>, a static hosting model served through Cloudflare’s global network. Static pages mean no always-on application servers for the typing practice itself—reducing compute and energy compared with heavy server-rendered apps.</p>
+    <ul class="list-disc pl-5 space-y-2 mb-4">
+      <li>Edge caching brings content closer to users, which can lower repeated round-trips to distant data centers.</li>
+      <li>We avoid unnecessary build steps and keep the deployed bundle lean.</li>
+    </ul>
+    <p class="leading-relaxed mb-6">Provider reference: <a href="https://www.cloudflare.com/trust-hub/sustainability/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Cloudflare — Sustainability</a>. Independent hosting checks: <a href="https://www.thegreenwebfoundation.org/green-web-dataset/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">The Green Web Foundation</a>.</p>
+
+    <h2 class="text-lg font-display font-bold text-slate-900 dark:text-slate-100 mt-8 mb-3">Developer laptops and remote work</h2>
+    <p class="leading-relaxed mb-4">Our team works primarily on laptops, often remotely. That reduces daily commuting emissions and lets us standardize on efficient, long-lived hardware rather than large desktop fleets.</p>
+    <ul class="list-disc pl-5 space-y-2 mb-4">
+      <li>We favor devices with strong energy-efficiency profiles and extend their useful life through repairs and OS updates where feasible.</li>
+      <li>Power-saving settings, dark mode (also available on the site), and unplugged use when possible help lower idle draw.</li>
+      <li>We choose cloud-based tooling to limit local server hardware for development and staging.</li>
+    </ul>
+    <p class="leading-relaxed mb-6">Hardware credentials reference: <a href="https://www.epeat.net/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">EPEAT</a> (electronics environmental assessment). Energy management reference: <a href="https://www.iso.org/iso-50001-energy-management.html" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">ISO 50001 — Energy management systems</a>.</p>
+
+    <h2 class="text-lg font-display font-bold text-slate-900 dark:text-slate-100 mt-8 mb-3">Data processing and green energy</h2>
+    <p class="leading-relaxed mb-4">Most typing practice runs <strong>in your browser</strong> (localStorage for theme and best score only). That limits server-side processing and data transfer for the core product.</p>
+    <ul class="list-disc pl-5 space-y-2 mb-4">
+      <li><strong>Contact form:</strong> Messages are handled via <a href="https://formspree.io" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Formspree</a>; review their policies for data location and operations.</li>
+      <li><strong>Analytics:</strong> We use Microsoft Clarity for aggregated usage insights; see Microsoft’s environmental reporting for their cloud operations.</li>
+      <li><strong>Fonts and CDN:</strong> Third-party assets (e.g. Google Fonts, Tailwind CDN) add requests; we keep the list minimal and monitor alternatives.</li>
+    </ul>
+    <p class="leading-relaxed mb-6">When we select vendors that operate data centers, we prefer providers that publish renewable-energy targets, efficiency metrics, and third-party climate disclosures (see frameworks below).</p>
+
+    <h2 class="text-lg font-display font-bold text-slate-900 dark:text-slate-100 mt-8 mb-3">Climate frameworks and third-party credentials</h2>
+    <p class="leading-relaxed mb-4">We align our vendor and operations choices with widely recognized climate and sustainability programs. Use these official links to read criteria, sign-up requirements, and public registries:</p>
+    <ul class="list-disc pl-5 space-y-3 mb-6">
+      <li><a href="https://smeclimatehub.org/sme-climate-commitment/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">SME Climate Commitment</a> — SME Climate Hub</li>
+      <li><a href="https://www.theclimatepledge.com/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">The Climate Pledge</a></li>
+      <li><a href="https://www.cdp.net/en" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">CDP</a> (Carbon Disclosure Project)</li>
+      <li><a href="https://www.iso.org/iso-50001-energy-management.html" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">ISO 50001</a> — Energy management</li>
+      <li><a href="https://www.bcorporation.net/en-us/certification/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">B Corp Certification</a></li>
+      <li><a href="https://sciencebasedtargets.org/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Science Based Targets initiative (SBTi)</a></li>
+      <li><a href="https://www.un.org/en/climatechange/net-zero-coalition" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">UN Net Zero Coalition</a></li>
+    </ul>
+
+    <h2 class="text-lg font-display font-bold text-slate-900 dark:text-slate-100 mt-8 mb-3">What we are doing next</h2>
+    <p class="leading-relaxed mb-6">We will revisit this page as our stack evolves: fewer third-party requests, greener hosting verification, and clearer reporting on vendor climate credentials. Questions or suggestions: <a href="mailto:hola@mecanografia.info" class="text-primary hover:underline">hola@mecanografia.info</a>.</p>
+
+    <p class="mt-8"><a href="/" class="text-primary hover:underline">← Back to practice</a></p>
+  </main>
+
+  <footer class="py-6 px-4 border-t border-slate-200 dark:border-slate-800 text-center text-sm text-slate-500">
+    <a href="/" class="hover:text-primary">Practice</a>
+    <span class="mx-2">·</span>
+    <a href="/contact/" class="hover:text-primary">Contact</a>
+    <span class="mx-2">·</span>
+    <a href="/politica-privacidad/" class="hover:text-primary">Privacy</a>
+    <span class="mx-2">·</span>
+    <a href="/terms/" class="hover:text-primary">Terms</a>
+    <span class="mx-2">·</span>
+    <a href="/environmental-sustainability/" class="hover:text-primary">Sustainability</a>
+    <span class="mx-2">·</span>
+    <a href="/cat/" class="hover:text-primary">Català</a>
+    <span class="mx-2">·</span>
+    <span>mecanografia.info</span>
+    <p class="mt-2">© <span id="year">2026</span> Mecanografía.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    (function () {
+      function applyTheme(dark) {
+        document.documentElement.classList.toggle('dark', dark);
+        var icon = document.querySelector('#theme-toggle .material-symbols-outlined');
+        if (icon) icon.textContent = dark ? 'light_mode' : 'dark_mode';
+        try { localStorage.setItem('mecanografia-theme', dark ? 'dark' : 'light'); } catch (e) {}
+      }
+      var saved = localStorage.getItem('mecanografia-theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(saved === 'dark' || (saved !== 'light' && prefersDark));
+      document.getElementById('theme-toggle').addEventListener('click', function () { applyTheme(!document.documentElement.classList.contains('dark')); });
+    })();
+  </script>
+</body>
+</html>
