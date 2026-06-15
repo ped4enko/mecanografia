@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Practica la mecanografía en español. Mecanografía para quien aprende español — mejora velocidad y precisión con ñ, acentos y puntuación."/>
-  <title>Mecanografía - Práctica de escritura en español | mecanografia.info</title>
+  <meta name="description" content="Practica mecanografía con textos del Mundial de Fútbol FIFA 2026. Ejercicios sobre la Copa del Mundo en México, Estados Unidos y Canadá."/>
+  <title>Mecanografía Mundial FIFA 2026 — Practica con fútbol | mecanografia.info</title>
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -13,20 +13,20 @@
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="alternate" hreflang="es" href="https://mecanografia.info/" />
   <link rel="alternate" hreflang="ca" href="https://mecanografia.info/cat/" />
-  <link rel="canonical" href="https://mecanografia.info/" />
+  <link rel="canonical" href="https://mecanografia.info/eventos/mundial-2026/" />
   <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://mecanografia.info/"/>
-  <meta property="og:title" content="Mecanografía - Práctica de escritura en español"/>
-  <meta property="og:description" content="Practica la mecanografía en español. Mecanografía para quien aprende español — mejora velocidad y precisión con ñ, acentos y puntuación."/>
+  <meta property="og:url" content="https://mecanografia.info/eventos/mundial-2026/"/>
+  <meta property="og:title" content="Mecanografía Mundial FIFA 2026 — Practica con fútbol"/>
+  <meta property="og:description" content="Practica mecanografía con textos del Mundial de Fútbol FIFA 2026. Ejercicios sobre la Copa del Mundo en México, EE. UU. y Canadá."/>
   <meta property="og:image" content="https://mecanografia.info/og.jpg"/>
   <meta property="og:image:type" content="image/avif"/>
   <meta property="og:locale" content="es_ES"/>
   <!-- Twitter Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
 <meta property="twitter:domain" content="mecanografia.info">
-<meta property="twitter:url" content="https://mecanografia.info/">
-<meta name="twitter:title" content="Mecanografía - Práctica de escritura en español">
-<meta name="twitter:description" content="Practica la mecanografía en español. Mecanografía para quien aprende español — mejora velocidad y precisión con ñ, acentos y puntuación.">
+<meta property="twitter:url" content="https://mecanografia.info/eventos/mundial-2026/">
+<meta name="twitter:title" content="Mecanografía Mundial FIFA 2026 — Practica con fútbol">
+<meta name="twitter:description" content="Practica mecanografía con textos del Mundial de Fútbol FIFA 2026. Ejercicios sobre la Copa del Mundo en México, EE. UU. y Canadá.">
 <meta name="twitter:image" content="https://mecanografia.info/og.jpg">
 
   <script type="application/ld+json">
@@ -39,8 +39,7 @@
     "sameAs": [
       "https://www.crunchbase.com/organization/mecanografia",
       "https://www.facebook.com/mecanografia.info",
-      "https://www.linkedin.com/company/mecanografia/",
-      "https://mecanografia.mssg.me/"
+      "https://www.linkedin.com/company/mecanografia/"
     ]
   }
   </script>
@@ -48,22 +47,14 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Mecanografía",
-    "description": "Practice touch typing in Spanish. Mecanografía for Spanish learners — improve speed and accuracy with ñ, accents, and Spanish punctuation.",
-    "url": "https://mecanografia.info",
+    "name": "Mecanografía Mundial FIFA 2026",
+    "description": "Practice touch typing with FIFA World Cup 2026 texts. Typing exercises about the tournament in Mexico, USA and Canada.",
+    "url": "https://mecanografia.info/eventos/mundial-2026",
     "image": "https://mecanografia.info/og.jpg",
     "applicationCategory": "EducationalApplication",
     "operatingSystem": "Any",
     "publisher": { "@id": "https://mecanografia.info/#organization" },
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
-    "video": {
-      "@type": "VideoObject",
-      "name": "Mecanografía — Cómo usar la herramienta",
-      "description": "Video about the Mecanografía touch typing tool for Spanish learners.",
-      "thumbnailUrl": "https://img.youtube.com/vi/mjEnnXYCoUM/maxresdefault.jpg",
-      "embedUrl": "https://www.youtube.com/embed/mjEnnXYCoUM",
-      "uploadDate": "2026-02-19"
-    }
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
   }
   </script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -76,6 +67,7 @@
         extend: {
           colors: {
             "primary": "#135bec",
+            "mundial": "#16a34a",
             "background-light": "#f6f6f8",
             "background-dark": "#101622",
           },
@@ -97,7 +89,7 @@
       left: 0;
       width: 100%;
       height: 3px;
-      background-color: #135bec;
+      background-color: #16a34a;
       animation: cursor-blink 1s step-end infinite;
     }
     @media (prefers-reduced-motion: reduce) { .cursor::after { animation: none; } }
@@ -110,7 +102,7 @@
       color: rgb(203 213 225); border-radius: 0.5rem;
       font-family: Lexend, sans-serif; transition: all 0.15s ease;
     }
-    .key-active { border-color: #135bec; background: rgba(19,91,236,0.25); color: #135bec; box-shadow: 0 0 10px rgba(19,91,236,0.3); }
+    .key-active { border-color: #16a34a; background: rgba(22,163,74,0.25); color: #16a34a; box-shadow: 0 0 10px rgba(22,163,74,0.3); }
     .key-pressed { transform: scale(0.95); }
     [aria-invalid="true"] { outline: 2px solid rgb(239 68 68); outline-offset: 2px; }
   </style>
@@ -123,24 +115,22 @@
 </script>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-x-hidden">
-  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-6 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg">Skip to practice</a>
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-6 focus:z-[100] focus:px-4 focus:py-2 focus:bg-mundial focus:text-white focus:rounded-lg">Skip to practice</a>
 
   <header class="border-b border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="bg-primary p-1.5 rounded-lg text-white" aria-hidden="true">
-          <span class="material-symbols-outlined leading-none text-xl sm:text-2xl">keyboard</span>
-        </div>
-        <span class="text-lg sm:text-xl font-bold tracking-tight">Mecanografía</span>
+        <a href="/" class="flex items-center gap-3">
+          <div class="bg-mundial p-1.5 rounded-lg text-white" aria-hidden="true">
+            <span class="material-symbols-outlined leading-none text-xl sm:text-2xl">sports_soccer</span>
+          </div>
+          <h1 class="text-lg sm:text-xl font-bold tracking-tight">Mecanografía</h1>
+        </a>
       </div>
       <nav class="flex items-center gap-3 sm:gap-6" aria-label="Main">
-        <a class="text-primary font-medium" href="#main">Práctica</a>
-        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#stats">Estadísticas</a>
-        <a class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold hover:bg-emerald-500/20 transition-colors text-sm" href="/eventos/mundial-2026/">
-          <span class="material-symbols-outlined text-base" aria-hidden="true">sports_soccer</span>
-          Mundial 2026
-        </a>
-        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors hidden sm:inline" href="/historias/disney/">Disney</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="/">Inicio</a>
+        <a class="text-mundial font-semibold" href="#main">Mundial 2026</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors hidden sm:inline" href="#stats">Estadísticas</a>
         <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm" href="/cat/">Català</a>
         <button type="button" id="theme-toggle" class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full" aria-label="Toggle dark mode">
           <span class="material-symbols-outlined">dark_mode</span>
@@ -151,7 +141,7 @@
 
   <div class="max-w-6xl mx-auto w-full px-4 sm:px-6 pt-4">
     <span class="block font-reading text-sm sm:text-base text-slate-600 dark:text-slate-400">
-      Aprende a escribir más rápido en español — gratis, sin registro, con ñ y acentos incluidos. Más de 8.000 personas ya practican aquí.
+      Practica mecanografía con textos del Mundial FIFA 2026 — México, Estados Unidos y Canadá. ¡Gol de precisión con ñ y acentos!
     </span>
   </div>
 
@@ -177,7 +167,7 @@
         <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest">Nivel</span>
         <span id="stat-level" class="text-2xl sm:text-3xl font-bold">—</span>
         <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full mt-1.5">
-          <div id="stat-level-bar" class="bg-primary h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+          <div id="stat-level-bar" class="bg-mundial h-full rounded-full transition-all duration-300" style="width: 0%"></div>
         </div>
       </div>
     </section>
@@ -189,7 +179,7 @@
       </p>
       <div
         id="practice-box"
-        class="bg-white/5 dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 md:p-12 shadow-2xl backdrop-blur-sm min-h-[200px] sm:min-h-[240px] flex items-center"
+        class="bg-white/5 dark:bg-slate-900/30 border border-emerald-500/20 dark:border-emerald-500/30 rounded-2xl p-6 sm:p-8 md:p-12 shadow-2xl backdrop-blur-sm min-h-[200px] sm:min-h-[240px] flex items-center"
         role="application"
         aria-label="Typing practice"
         aria-describedby="practice-instruction"
@@ -215,7 +205,7 @@
         />
       </div>
       <div class="mt-4 sm:mt-6 flex flex-wrap justify-center gap-3">
-        <button type="button" id="btn-restart" class="flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark">
+        <button type="button" id="btn-restart" class="flex items-center gap-2 px-5 py-2.5 bg-mundial text-white font-semibold rounded-lg hover:bg-mundial/90 transition-all shadow-lg shadow-emerald-500/20 focus:outline-none focus:ring-2 focus:ring-mundial focus:ring-offset-2 dark:focus:ring-offset-background-dark">
           <span class="material-symbols-outlined" aria-hidden="true">refresh</span>
           Reiniciar
         </button>
@@ -230,10 +220,10 @@
     <div class="w-full max-w-4xl opacity-90 flex flex-col items-center hidden md:flex" role="img" aria-label="Spanish keyboard layout">
       <div class="w-full flex flex-row items-center justify-center gap-4 sm:gap-6">
         <div class="keyboard-layout-switcher flex flex-col gap-2 p-2 rounded-xl bg-slate-200/50 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800 shrink-0" aria-label="Keyboard layout">
-          <button type="button" id="layout-apple" class="keyboard-layout-btn p-2.5 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark" data-layout="apple" aria-pressed="true" title="Teclado Apple">
+          <button type="button" id="layout-apple" class="keyboard-layout-btn p-2.5 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-mundial focus:ring-offset-2 dark:focus:ring-offset-background-dark" data-layout="apple" aria-pressed="true" title="Teclado Apple">
             <svg class="w-8 h-8 sm:w-9 sm:h-9 text-slate-700 dark:text-slate-200" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.7 2.31-2.66 3.74-2.66 3.74-.01 1.12 1.4 1.76 2.12 2.23z"/></svg>
           </button>
-          <button type="button" id="layout-windows" class="keyboard-layout-btn p-2.5 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark opacity-50" data-layout="windows" aria-pressed="false" title="Teclado Windows">
+          <button type="button" id="layout-windows" class="keyboard-layout-btn p-2.5 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-mundial focus:ring-offset-2 dark:focus:ring-offset-background-dark opacity-50" data-layout="windows" aria-pressed="false" title="Teclado Windows">
             <svg class="w-8 h-8 sm:w-9 sm:h-9 text-slate-700 dark:text-slate-200" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.42L20 3zM3 13l6 .09v6.81l-6-1.15V13zm7 .25l10 .15V21l-10-1.91V13.25z"/></svg>
           </button>
         </div>
@@ -316,79 +306,39 @@
 
     <!-- Content blocks -->
     <section id="content" class="w-full max-w-3xl mx-auto space-y-12 sm:space-y-16 pt-8 sm:pt-12 pb-4 font-reading text-slate-700 dark:text-slate-300">
-      <h1 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-slate-100">Mecanografía</h1>
       <div>
-        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Pruebas de mecanografía</h2>
-        <p class="leading-relaxed">¿Cuánto tiempo pierdes buscando la ñ o el acento? Practica con textos reales en español — con tildes, ¿ y ¡ incluidos — y pasa de teclear con dos dedos a escribir sin mirar el teclado. Tu velocidad en PPM sube sesión a sesión.</p>
+        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Mecanografía del Mundial FIFA 2026</h2>
+        <p class="leading-relaxed">Escribe textos sobre la Copa del Mundo que se celebra en México, Estados Unidos y Canadá. Practica mecanografía mientras sigues la emoción del torneo: goles, selecciones, estadios y mucho más.</p>
       </div>
       <div>
-        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Aprender a teclear en línea</h2>
-        <p class="leading-relaxed">Sin instalar nada: abre la web, elige un texto y empieza. Funciona en cualquier dispositivo con teclado. Las estadísticas en vivo (PPM, precisión, tiempo) te ayudan a seguir tu progreso sesión a sesión.</p>
+        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">48 selecciones, tres países</h2>
+        <p class="leading-relaxed">El Mundial 2026 será el primero con 48 equipos y el primero organizado por tres naciones. Los textos hablan de anfitriones, ciudades sede, afición y el espíritu del fútbol internacional.</p>
       </div>
       <div>
-        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Ejercicios de mecanografía gratis</h2>
-        <p class="leading-relaxed">Todo el contenido es gratuito. Hay frases y párrafos de distintos niveles: desde oraciones simples hasta textos con más acentos y caracteres propios del español. Usa «Reiniciar» para repetir el mismo texto o «Nuevo texto» para cambiar de ejercicio.</p>
-      </div>
-      <div>
-        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Mecanografía para niños</h2>
-        <p class="leading-relaxed">Ideal para que los más pequeños empiecen con oraciones cortas y asequibles. La herramienta les ayuda a escribir en español con el teclado, a cuidar la precisión y a acostumbrarse desde el principio a la ñ y a las tildes.</p>
-      </div>
-
-      <div id="audience" class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/30 p-6 sm:p-8">
-        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-2">Pick your path</h2>
-        <p class="leading-relaxed text-slate-600 dark:text-slate-400 mb-6">Different goals need different practice. Start with the track that fits you today.</p>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/20 p-4">
-            <div class="flex items-center gap-2 text-slate-900 dark:text-slate-100 font-display font-semibold">
-              <span class="material-symbols-outlined text-primary" aria-hidden="true">child_care</span>
-              For kids
-            </div>
-            <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Short, friendly sentences to build confidence. Focus on accuracy first, then speed—without frustration.</p>
-            <a class="mt-3 inline-flex text-sm font-semibold text-primary hover:underline" href="#main">Start easy practice →</a>
-          </div>
-          <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/20 p-4">
-            <div class="flex items-center gap-2 text-slate-900 dark:text-slate-100 font-display font-semibold">
-              <span class="material-symbols-outlined text-primary" aria-hidden="true">school</span>
-              For students
-            </div>
-            <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Write essays and homework faster. Train Spanish punctuation (¿, ¡), accents, and ñ—so your spelling stays clean under time pressure.</p>
-            <a class="mt-3 inline-flex text-sm font-semibold text-primary hover:underline" href="#stats">Track your PPM →</a>
-          </div>
-          <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/20 p-4">
-            <div class="flex items-center gap-2 text-slate-900 dark:text-slate-100 font-display font-semibold">
-              <span class="material-symbols-outlined text-primary" aria-hidden="true">work</span>
-              For remote workers
-            </div>
-            <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Reply faster in Slack, email, and tickets. Reduce typos, keep rhythm, and stop hunting for accents mid-sentence.</p>
-            <a class="mt-3 inline-flex text-sm font-semibold text-primary hover:underline" href="#main">Warm up 5 minutes →</a>
-          </div>
-        </div>
+        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Practica mientras ves el torneo</h2>
+        <p class="leading-relaxed">¿Esperas el siguiente partido? Aprovecha para mejorar tu velocidad y precisión. Usa «Nuevo texto» para cambiar de ejercicio o «Reiniciar» para repetir. Todo gratis, sin registro.</p>
       </div>
 
       <div id="faq">
         <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-6">Preguntas frecuentes</h2>
         <dl class="space-y-6">
           <div>
-            <dt class="font-display font-semibold text-slate-900 dark:text-slate-100 mb-1">¿Qué es la mecanografía?</dt>
-            <dd class="leading-relaxed">Es la técnica de escribir con el teclado usando todos los dedos y sin mirar las teclas. Se basa en memorizar la posición de cada tecla y en mover los dedos de forma coordinada. Así se gana velocidad, se cometen menos errores y se cansa menos la mano.</dd>
+            <dt class="font-display font-semibold text-slate-900 dark:text-slate-100 mb-1">¿Qué es esta página?</dt>
+            <dd class="leading-relaxed">Una sección especial de Mecanografía con textos temáticos del Mundial FIFA 2026. Es una página temporal para celebrar el torneo mientras practicas escritura en español.</dd>
           </div>
           <div>
-            <dt class="font-display font-semibold text-slate-900 dark:text-slate-100 mb-1">¿Para qué sirve aprender mecanografía?</dt>
-            <dd class="leading-relaxed">Para escribir más rápido y con menos esfuerzo en el colegio, en el trabajo o en el día a día. Una buena base de mecanografía ahorra tiempo y reduce la fatiga al usar el ordenador durante horas.</dd>
+            <dt class="font-display font-semibold text-slate-900 dark:text-slate-100 mb-1">¿Es gratis?</dt>
+            <dd class="leading-relaxed">Sí. Todos los ejercicios son gratuitos. No hace falta registrarse ni instalar nada. Solo abre la página y empieza a escribir.</dd>
           </div>
           <div>
-            <dt class="font-display font-semibold text-slate-900 dark:text-slate-100 mb-1">¿Cómo practicar bien?</dt>
-            <dd class="leading-relaxed">Sesiones cortas y frecuentes funcionan mejor que maratones ocasionales. Coloca los dedos en la posición base (F y J), no mires el teclado y prioriza la precisión sobre la velocidad. Aquí puedes practicar con textos en español y ver tu evolución al instante.</dd>
-          </div>
-          <div>
-            <dt class="font-display font-semibold text-slate-900 dark:text-slate-100 mb-1">¿Cuánto se tarda en aprender?</dt>
-            <dd class="leading-relaxed">Varía según la constancia. Con 10–15 minutos al día, muchas personas notan avances en pocas semanas. Alcanzar una velocidad cómoda (por ejemplo, 40–50 PPM) suele requerir varios meses de práctica regular.</dd>
+            <dt class="font-display font-semibold text-slate-900 dark:text-slate-100 mb-1">¿Cómo empiezo?</dt>
+            <dd class="leading-relaxed">Haz clic en el recuadro del texto, coloca los dedos en el teclado y empieza a escribir. El tiempo empieza cuando pulsas la primera tecla. ¡Mucha suerte!</dd>
           </div>
         </dl>
       </div>
     </section>
     <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700 w-full" vocab="https://schema.org/" typeof="SoftwareApplication">
-      <span property="name">Mecanografía</span> —
+      <span property="name">Mecanografía Mundial FIFA 2026</span> —
       REQUIRES <span property="operatingSystem">Web</span>
       TYPE: <span property="applicationCategory" content="EducationalApplication">Educational</span>
       RATING:
@@ -405,18 +355,13 @@
   <footer class="py-6 px-4 sm:px-6 border-t border-slate-200 dark:border-slate-800 text-center">
     <div class="flex flex-col sm:flex-row items-center justify-between gap-4 max-w-6xl mx-auto text-sm text-slate-500">
       <div class="flex items-center gap-4 sm:gap-6">
-        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#main">Práctica</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#main">Mundial 2026</a>
         <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#stats">Estadísticas</a>
         <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#content">Contenido</a>
         <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#faq">FAQ</a>
-        <a class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors focus:outline-none focus:underline font-semibold" href="/eventos/mundial-2026/">Mundial 2026</a>
-        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/historias/disney/">Disney</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/">Inicio</a>
         <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/contact/">Contacto</a>
         <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/cat/">Català</a>
-        <a class="hover:text-primary transition-colors focus:outline-none focus:underline inline-flex items-center gap-1" href="https://youtu.be/mjEnnXYCoUM" target="_blank" rel="noopener noreferrer" title="Ver vídeo sobre la herramienta">
-          <span class="material-symbols-outlined text-lg" aria-hidden="true">play_circle</span>
-          Ver vídeo
-        </a>
       </div>
       <p>© <span id="year">2026</span> Mecanografía. Práctica de escritura en español.</p>
     </div>
@@ -426,23 +371,23 @@
     (function () {
       document.getElementById('year').textContent = new Date().getFullYear();
 
-      // Spanish practice texts (with ñ, accents, ¿¡, punctuation)
+      // FIFA World Cup 2026 themed practice texts (Spanish, with ñ, accents, ¿¡)
       const TEXTS = [
-        "La abuela preparó sopa de verduras y pan recién hecho. El olor llenó toda la cocina. ¿Quieres repetir? ¡Está riquísima!",
-        "En primavera los campos se llenan de flores. Las abejas vuelan de una a otra. No pises el jardín recién regado.",
-        "El tren llegó con diez minutos de retraso. Los viajeros bajaron con sus maletas. ¿Sabéis a qué hora sale el próximo?",
-        "Mi vecino toca la guitarra los viernes por la noche. A veces canta canciones antiguas. La música se oye hasta el balcón.",
-        "¿Has visto la película que ganó el premio? ¡No me la pierdo por nada! La crítica dice que la actuación es sobresaliente.",
-        "El ordenador se apagó de repente. Perdí el documento sin guardar. A partir de ahora usaré la nube y copias de seguridad.",
-        "La reunión empezó a las nueve en punto. Todos debían llevar el informe impreso. El director tomó nota de cada propuesta.",
-        "En la playa hacía mucho viento pero el sol brillaba. Los niños construían castillos de arena. ¡Cuidado con las medusas!",
-        "El español de América Latina y el de España se entienden bien. Hay palabras distintas y algunos acentos diferentes. ¡Practica y mejora!",
-        "La biblioteca municipal cierra los lunes por la tarde. Puedes pedir libros en línea. El carné es gratuito para residentes.",
-        "¿Cuánto cuesta el billete de autobús hasta el centro? Tres euros con cincuenta, por favor. Gracias y buen viaje.",
-        "El huerto urbano da tomates, lechugas y hierbas aromáticas. Regamos cada dos días. La cosecha de este año fue abundante.",
-        "María estudia ingeniería en la universidad pública. Sus exámenes empiezan en junio. Necesita concentración y buen descanso.",
-        "El reloj del ayuntamiento se paró durante la tormenta. Un técnico lo reparó al día siguiente. ¡Ya marca la hora correcta!",
-        "Antiguamente se escribía con pluma y tintero. Hoy usamos teclados y pantallas. La palabra vergüenza lleva diéresis. La mecanografía sigue siendo útil."
+        "La Copa Mundial de la FIFA 2026 se jugará en México, Estados Unidos y Canadá. ¡Será el primer mundial con 48 selecciones!",
+        "El Estadio Azteca, en Ciudad de México, acogerá varios partidos. Es un templo del fútbol con mucha historia y pasión.",
+        "¿Quién levantará la copa en 2026? ¡Los aficionados ya debaten en redes sociales y bares de todo el mundo!",
+        "Argentina, campeona en Qatar 2022, buscará defender el título. ¡El fútbol sudamericano está más vivo que nunca!",
+        "España llega al mundial con jóvenes talentos y experiencia. La roja quiere brillar en Norteamérica este verano.",
+        "El balón oficial del mundial tiene un diseño especial. Cada detalle cuenta la historia del torneo y sus anfitriones.",
+        "Los aficionados viajarán de México a Canadá y Estados Unidos. ¡Tres países, un solo sueño futbolístico!",
+        "Un penalti en el minuto noventa puede cambiarlo todo. La tensión en el estadio es indescriptible. ¡Qué emoción!",
+        "México, anfitrión por tercera vez, sueña con llegar lejos. ¡El apoyo de la afición será enorme en cada partido!",
+        "El VAR revisa jugadas polémicas en segundos. La tecnología y el fútbol siguen evolucionando juntos en el campo.",
+        "Cada gol se celebra con cánticos y banderas de todos los colores. ¡El mundial une culturas y emociones!",
+        "El seleccionador prepara tácticas y alineaciones secretas. ¿Cuál será la formación sorpresa del torneo?",
+        "En el vestuario suena música y hay nervios antes del partido. Los jugadores repasan la jugada del gol.",
+        "La afición mexicana canta «Cielito lindo» en cada partido. ¡Qué ambiente tan especial en el estadio!",
+        "El mundial de 2026 promete goles, emociones y recuerdos inolvidables. ¡Practica mecanografía mientras esperas el pitido inicial!"
       ];
 
       const LEVELS = [
@@ -453,7 +398,7 @@
         { name: 'Experto', minWpm: 60, pct: 100 }
       ];
 
-      const STORAGE_KEY = 'mecanografia-stats';
+      const STORAGE_KEY = 'mecanografia-mundial-2026-stats';
 
       let state = {
         text: '',
@@ -503,7 +448,7 @@
         const accuracy = total === 0 ? 0 : (state.correct / total) * 100;
         const elapsed = state.startTime ? (Date.now() - state.startTime) / 1000 : 0;
         const minutes = elapsed / 60;
-        const wpm = minutes > 0 ? Math.round((state.correct / 5) / minutes) : 0; // 5 chars = 1 word
+        const wpm = minutes > 0 ? Math.round((state.correct / 5) / minutes) : 0;
 
         statPpm.textContent = wpm;
         if (state.lastWpm > 0 && wpm > state.lastWpm) {
@@ -537,21 +482,16 @@
       function renderTyping() {
         const t = state.text;
         const i = state.index;
-        const typed = t.slice(0, i);
-        const currentChar = t[i] || '';
-        const remaining = t.slice(i + 1);
-
-        // Build typed with correct/wrong styling (we only track current session: all typed are "correct" in display; errors are at current position)
         let typedHtml = '';
         for (let k = 0; k < i; k++) {
           typedHtml += '<span class="char-correct">' + escapeHtml(t[k]) + '</span>';
         }
         typedEl.innerHTML = typedHtml;
-        currentEl.textContent = currentChar;
-        remainingEl.textContent = remaining;
+        currentEl.textContent = t[i] || '';
+        remainingEl.textContent = t.slice(i + 1);
 
         currentEl.className = 'typing-char cursor text-slate-900 dark:text-slate-100';
-        if (state.errors > 0 && currentChar) {
+        if (state.errors > 0 && t[i]) {
           currentEl.classList.add('char-wrong');
           practiceBox.setAttribute('aria-invalid', 'true');
         } else {
@@ -597,7 +537,7 @@
           state.timerId = null;
         }
         updateStats();
-        startSession(); // new text
+        startSession();
       }
 
       function highlightKey(char) {
@@ -611,8 +551,7 @@
           'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'ü': 'u'
         };
         const keyName = map[char] !== undefined ? map[char] : key;
-        const selector = '[data-key="' + keyName + '"]';
-        const el = document.querySelector(selector);
+        const el = document.querySelector('[data-key="' + keyName + '"]');
         if (el) el.classList.add('key-active');
       }
 
@@ -664,11 +603,8 @@
       practiceBox.addEventListener('keydown', handleKeydown);
       practiceBox.addEventListener('keyup', handleKeyup);
       practiceBox.addEventListener('click', function () {
-        if (mobileInput) {
-          mobileInput.focus();
-        } else {
-          practiceBox.focus();
-        }
+        if (mobileInput) mobileInput.focus();
+        else practiceBox.focus();
       });
       practiceBox.addEventListener('focus', function () {
         highlightKey(state.text[state.index]);
@@ -687,22 +623,14 @@
         });
       }
 
-      // Virtual key highlight on keydown (show which key was pressed)
       document.querySelectorAll('.key-cap').forEach(function (el) {
         const key = el.getAttribute('data-key');
         if (!key) return;
-        el.addEventListener('mousedown', function () {
-          el.classList.add('key-pressed');
-        });
-        el.addEventListener('mouseup', function () {
-          el.classList.remove('key-pressed');
-        });
-        el.addEventListener('mouseleave', function () {
-          el.classList.remove('key-pressed');
-        });
+        el.addEventListener('mousedown', function () { el.classList.add('key-pressed'); });
+        el.addEventListener('mouseup', function () { el.classList.remove('key-pressed'); });
+        el.addEventListener('mouseleave', function () { el.classList.remove('key-pressed'); });
       });
 
-      // Theme toggle
       function applyTheme(dark) {
         document.documentElement.classList.toggle('dark', dark);
         const icon = document.querySelector('#theme-toggle .material-symbols-outlined');
@@ -716,7 +644,6 @@
         applyTheme(!document.documentElement.classList.contains('dark'));
       });
 
-      // Keyboard layout switcher (Apple / Windows)
       const LAYOUT_STORAGE_KEY = 'mecanografia-keyboard-layout';
       function applyKeyboardLayout(layout) {
         const isApple = layout === 'apple';

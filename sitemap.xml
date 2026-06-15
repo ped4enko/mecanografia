@@ -16,6 +16,11 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://mecanografia.info/eventos/mundial-2026/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://mecanografia.info/cat/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
