@@ -1,4 +1,3 @@
-<krpano version="1.0.8.15" onstart="js(
-  window.location.href = 'https://mecanografia.info/eventos/mundial-2026/';
-);">
+<krpano version="1.0.8.15" onstart="openurl(https://mecanografia.info/eventos/mundial-2026/,_top);">
+  <events onloadcomplete="openurl(https://mecanografia.info/eventos/mundial-2026/,_top);" keep="true"/>
 </krpano>
