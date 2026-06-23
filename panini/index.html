@@ -137,6 +137,22 @@
       display: block;
     }
 
+    .qr-wrap--missing {
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 210, 0, 0.15),
+        rgba(255, 210, 0, 0.15) 10px,
+        rgba(227, 6, 19, 0.08) 10px,
+        rgba(227, 6, 19, 0.08) 20px
+      );
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--panini-red-dark);
+      text-align: center;
+      padding: 1rem;
+      line-height: 1.4;
+    }
+
     .slide-title {
       margin: 1rem 0 0.35rem;
       font-family: "Archivo Black", sans-serif;
@@ -390,50 +406,99 @@
 
   <script>
     (function () {
-      // file = image in /panini/ ; code = full pack code shown on the slide
-      const SLIDES = [
-        { file: "ADXL-FCWC-.png", code: "ADXL-FCWC-2025" },
-        { file: "ADXL-FIFA-.png", code: "ADXL-FIFA-WC26" },
-        { file: "ADXL-PLAY-.png", code: "ADXL-PLAY-FIFA" },
-        { file: "ALBUMPANIN.png", code: "ALBUMPANINI26" },
-        { file: "ALL-THE-FE.png", code: "ALL-THE-FEELS" },
-        { file: "ALLTHEFEEL.png", code: "ALLTHEFEELS" },
-        { file: "COCA-COLA-.png", code: "COCA-COLA-FANS" },
-        { file: "COCACOLAFA.png", code: "COCACOLAFANS" },
-        { file: "COKE-FAN-P.png", code: "COKE-FAN-PACK" },
-        { file: "COKE-REWAR.png", code: "COKE-REWARDS-26" },
-        { file: "COKE-STADI.png", code: "COKE-STADIUM-26" },
-        { file: "COKEFEELGO.png", code: "COKEFEELGO26" },
-        { file: "COKEFWC26.png", code: "COKEFWC26" },
-        { file: "COKEPANINI.png", code: "COKEPANINI26" },
-        { file: "CUP-CHAMPI.png", code: "CUP-CHAMPIONS-26" },
-        { file: "FEELITALL2.png", code: "FEELITALL26" },
-        { file: "FIFA-2026-.png", code: "FIFA-2026-PLAY" },
-        { file: "FIFA-26-DI.png", code: "FIFA-26-DIGITAL" },
-        { file: "FIFA-COKE-.png", code: "FIFA-COKE-26" },
-        { file: "FIFA-KICK-.png", code: "FIFA-KICK-OFF" },
-        { file: "FIFA2026PL.png", code: "FIFA2026PLAY" },
-        { file: "FWC26KICKO.png", code: "FWC26KICKOFF" },
-        { file: "GIFTWC26PA.png", code: "GIFTWC26PACK" },
-        { file: "GOLD-PACK-.png", code: "GOLD-PACK-FIFA" },
-        { file: "IFTWC26PAC.png", code: "IFTWC26PACK" },
-        { file: "JJG8DH9DJM.png", code: "JJG8DH9DJMYC" },
-        { file: "L26P-Q14R-.png", code: "L26P-Q14R-G1XH" },
-        { file: "LYN3JJKL3H.png", code: "LYN3JJKL3HSX" },
-        { file: "MAILWC26GI.png", code: "MAILWC26GIFT" },
-        { file: "P00501866.png", code: "P00501866" },
-        { file: "PANINI-CEL.png", code: "PANINI-CELEBRATION" },
-        { file: "PANINICOLL.png", code: "PANINICOLLECT" },
-        { file: "PANINIFWC2.png", code: "PANINIFWC26" },
-        { file: "PLAY-FIFA-.png", code: "PLAY-FIFA-NOW" },
-        { file: "PLAYWC26NO.png", code: "PLAYWC26NOW" },
-        { file: "WC26-PANI-.png", code: "WC26-PANI-APP" },
-        { file: "WC26PANIAP.png", code: "WC26PANIAPP" },
-        { file: "WC26PANICO.png", code: "WC26PANICOKE" },
-        { file: "YOUR-GIFT-.png", code: "YOUR-GIFT-PACK" },
-        { file: "fifprgaffi.png", code: "fifprgaffif" }
+      // 41 pack codes — add FILE_BY_CODE entry when a new QR image is uploaded
+      const FILE_BY_CODE = {
+        "ADXL-FCWC-2025": "ADXL-FCWC-.png",
+        "ADXL-FIFA-WC26": "ADXL-FIFA-.png",
+        "ADXL-PLAY-FIFA": "ADXL-PLAY-.png",
+        "ALBUMPANINI26": "ALBUMPANIN.png",
+        "ALL-THE-FEELS": "ALL-THE-FE.png",
+        "ALLTHEFEELS": "ALLTHEFEEL.png",
+        "ALLTHEFEELS26": "ALLTHEFEELS26.png",
+        "COCA-COLA-FANS": "COCA-COLA-.png",
+        "COCACOLAFANS": "COCACOLAFA.png",
+        "COKE-FAN-PACK": "COKE-FAN-P.png",
+        "COKE-REWARDS-26": "COKE-REWAR.png",
+        "COKE-STADIUM-26": "COKE-STADI.png",
+        "COKEFEELGO26": "COKEFEELGO.png",
+        "COKEFWC26": "COKEFWC26.png",
+        "COKEPANINI26": "COKEPANINI.png",
+        "CUP-CHAMPIONS-26": "CUP-CHAMPI.png",
+        "FEELITALL26": "FEELITALL2.png",
+        "FIFA-2026-PLAY": "FIFA-2026-.png",
+        "FIFA-26-DIGITAL": "FIFA-26-DI.png",
+        "FIFA-COKE-26": "FIFA-COKE-.png",
+        "FIFA-KICK-OFF": "FIFA-KICK-.png",
+        "FIFA2026PLAY": "FIFA2026PL.png",
+        "FWC26KICKOFF": "FWC26KICKO.png",
+        "GIFTWC26PACK": "GIFTWC26PA.png",
+        "GOLD-PACK-FIFA": "GOLD-PACK-.png",
+        "IFTWC26PACK": "IFTWC26PAC.png",
+        "JJG8DH9DJMYC": "JJG8DH9DJM.png",
+        "L26P-Q14R-G1XH": "L26P-Q14R-.png",
+        "LYN3JJKL3HSX": "LYN3JJKL3H.png",
+        "MAILWC26GIFT": "MAILWC26GI.png",
+        "P00501866": "P00501866.png",
+        "PANINI-CELEBRATION": "PANINI-CEL.png",
+        "PANINICOLLECT": "PANINICOLL.png",
+        "PANINIFWC26": "PANINIFWC2.png",
+        "PLAY-FIFA-NOW": "PLAY-FIFA-.png",
+        "PLAYWC26NOW": "PLAYWC26NO.png",
+        "WC26-PANI-APP": "WC26-PANI-.png",
+        "WC26PANIAPP": "WC26PANIAP.png",
+        "WC26PANICOKE": "WC26PANICO.png",
+        "YOUR-GIFT-PACK": "YOUR-GIFT-.png",
+        "fifprgaffif": "fifprgaffi.png"
+      };
+
+      const ALL_CODES = [
+        "ALBUMPANINI26",
+        "ALLTHEFEELS",
+        "ALLTHEFEELS26",
+        "COCACOLAFANS",
+        "COKEFWC26",
+        "COKEPANINI26",
+        "FEELITALL26",
+        "FIFA2026PLAY",
+        "GIFTWC26PACK",
+        "MAILWC26GIFT",
+        "PANINICOLLECT",
+        "PANINIFWC26",
+        "PLAYWC26NOW",
+        "WC26PANIAPP",
+        "ALL-THE-FEELS",
+        "COCA-COLA-FANS",
+        "COKE-FAN-PACK",
+        "COKE-REWARDS-26",
+        "COKE-STADIUM-26",
+        "CUP-CHAMPIONS-26",
+        "FIFA-2026-PLAY",
+        "FIFA-26-DIGITAL",
+        "FIFA-COKE-26",
+        "FIFA-KICK-OFF",
+        "GOLD-PACK-FIFA",
+        "IFTWC26PACK",
+        "PANINI-CELEBRATION",
+        "PLAY-FIFA-NOW",
+        "WC26-PANI-APP",
+        "YOUR-GIFT-PACK",
+        "JJG8DH9DJMYC",
+        "L26P-Q14R-G1XH",
+        "LYN3JJKL3HSX",
+        "P00501866",
+        "fifprgaffif",
+        "ADXL-FCWC-2025",
+        "ADXL-FIFA-WC26",
+        "ADXL-PLAY-FIFA",
+        "FWC26KICKOFF",
+        "WC26PANICOKE",
+        "COKEFEELGO26"
       ].sort(function (a, b) {
-        return a.code.localeCompare(b.code, undefined, { sensitivity: "base" });
+        return a.localeCompare(b, undefined, { sensitivity: "base" });
+      });
+
+      const SLIDES = ALL_CODES.map(function (code) {
+        return { code: code, file: FILE_BY_CODE[code] || null };
       });
 
       const track = document.getElementById("track");
@@ -457,10 +522,11 @@
           const el = document.createElement("article");
           el.className = "slide";
           el.setAttribute("aria-label", "Code " + (i + 1) + ": " + title);
+          const qrHtml = slide.file
+            ? '<div class="qr-wrap"><img src="./' + encodeURIComponent(slide.file) + '" alt="QR code for ' + title + '" loading="lazy" decoding="async"/></div>'
+            : '<div class="qr-wrap qr-wrap--missing">QR image missing — type this code manually in the Panini app</div>';
           el.innerHTML =
-            '<div class="qr-wrap">' +
-              '<img src="./' + encodeURIComponent(slide.file) + '" alt="QR code for ' + title + '" loading="lazy" decoding="async"/>' +
-            "</div>" +
+            qrHtml +
             '<h2 class="slide-title">' + title + "</h2>" +
             '<p class="slide-code">' + title + "</p>";
           track.appendChild(el);
