@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, nofollow"/>
+  <meta name="description" content="Free PANINI digital World Cup pack codes — scan QR codes one by one."/>
+  <title>Free PANINI digital World Cup pack codes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --panini-red: #e30613;
+      --panini-red-dark: #9b0410;
+      --panini-yellow: #ffd200;
+      --panini-yellow-dark: #e6b800;
+      --panini-ink: #1a0a0a;
+      --panini-white: #fffdf5;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "DM Sans", system-ui, sans-serif;
+      color: var(--panini-ink);
+      background:
+        radial-gradient(circle at top right, rgba(255, 210, 0, 0.35), transparent 28rem),
+        linear-gradient(160deg, var(--panini-red) 0%, #b80510 42%, var(--panini-red-dark) 100%);
+    }
+
+    .page {
+      max-width: 34rem;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 2rem;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 0.75rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: var(--panini-yellow);
+      color: var(--panini-red-dark);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(1.45rem, 5vw, 2rem);
+      line-height: 1.15;
+      color: var(--panini-white);
+      text-shadow: 0 3px 0 rgba(0, 0, 0, 0.18);
+    }
+
+    .slider-shell {
+      background: var(--panini-white);
+      border: 4px solid var(--panini-yellow);
+      border-radius: 1.25rem;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+    }
+
+    .slider-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      background: linear-gradient(90deg, var(--panini-yellow), #ffe566);
+      border-bottom: 3px solid var(--panini-red);
+    }
+
+    .slider-top strong {
+      font-size: 0.95rem;
+      color: var(--panini-red-dark);
+    }
+
+    .counter {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--panini-red-dark);
+      background: rgba(255, 255, 255, 0.65);
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+    }
+
+    .viewport {
+      position: relative;
+      overflow: hidden;
+      touch-action: pan-y;
+    }
+
+    .track {
+      display: flex;
+      transition: transform 0.35s ease;
+      will-change: transform;
+    }
+
+    .slide {
+      min-width: 100%;
+      padding: 1.25rem 1rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .qr-wrap {
+      width: min(100%, 18rem);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      padding: 0.85rem;
+      background: #fff;
+      border: 3px solid var(--panini-red);
+      border-radius: 1rem;
+      box-shadow: inset 0 0 0 4px var(--panini-yellow);
+    }
+
+    .qr-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .slide-title {
+      margin: 1rem 0 0.35rem;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 1.05rem;
+      color: var(--panini-red-dark);
+      word-break: break-word;
+    }
+
+    .slide-code {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--panini-ink);
+      padding: 0.55rem 0.9rem;
+      border-radius: 0.65rem;
+      background: rgba(255, 210, 0, 0.28);
+      border: 2px dashed var(--panini-yellow-dark);
+      word-break: break-all;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: #fff7cc;
+      border-top: 3px solid var(--panini-red);
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      border-radius: 0.75rem;
+      padding: 0.85rem 1rem;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .btn:active { transform: translateY(1px); }
+
+    .btn-prev,
+    .btn-next {
+      background: var(--panini-red);
+      color: var(--panini-white);
+      box-shadow: 0 4px 0 #8f030d;
+    }
+
+    .btn-prev:disabled,
+    .btn-next:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .dots {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0 1rem 1rem;
+      background: #fff7cc;
+    }
+
+    .dot {
+      width: 0.55rem;
+      height: 0.55rem;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(227, 6, 19, 0.25);
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .dot.is-active {
+      background: var(--panini-red);
+      transform: scale(1.2);
+    }
+
+    .hint {
+      margin: 1rem 0 0;
+      text-align: center;
+      color: rgba(255, 253, 245, 0.92);
+      font-size: 0.9rem;
+    }
+
+    footer {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: rgba(255, 253, 245, 0.9);
+    }
+
+    footer p {
+      margin: 0 0 0.65rem;
+    }
+
+    footer p:last-child {
+      margin-bottom: 0;
+    }
+
+    footer a {
+      color: var(--panini-yellow);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    footer a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <span class="badge">Panini · FIFA World Cup</span>
+      <h1>Free PANINI digital World Cup pack codes 👇</h1>
+    </header>
+
+    <section class="slider-shell" aria-label="PANINI QR code slider">
+      <div class="slider-top">
+        <strong>Scan one code at a time</strong>
+        <span class="counter" id="counter" aria-live="polite">1 / 1</span>
+      </div>
+
+      <div class="viewport" id="viewport">
+        <div class="track" id="track" aria-live="polite"></div>
+      </div>
+
+      <div class="controls">
+        <button type="button" class="btn btn-prev" id="btn-prev" aria-label="Previous code">← Previous</button>
+        <button type="button" class="btn btn-next" id="btn-next" aria-label="Next code">Next →</button>
+      </div>
+
+      <div class="dots" id="dots" aria-label="Slide navigation"></div>
+    </section>
+
+    <p class="hint">Swipe left or right on mobile · use arrows on desktop</p>
+
+    <footer>
+      <p>
+        Created for
+        <a href="https://www.reddit.com/r/panini/" target="_blank" rel="noopener noreferrer">Panini subreddit</a>
+        by
+        <a href="https://www.reddit.com/user/Fun_Researcher_9000/" target="_blank" rel="noopener noreferrer">u/Fun_Researcher_9000</a>.
+      </p>
+      <p>
+        Thanks to
+        <a href="https://www.reddit.com/user/ricxosy/" target="_blank" rel="noopener noreferrer">u/ricxosy</a>
+        and
+        <a href="https://www.reddit.com/user/EducationalMost4536/" target="_blank" rel="noopener noreferrer">u/EducationalMost4536</a>
+        for helping me collect 41 codes.
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      // Add new filenames here when you drop images into /panini/
+      const SLIDES = [
+        "ADXL-FCWC-.png",
+        "ADXL-FIFA-.png",
+        "ADXL-PLAY-.png",
+        "ALBUMPANIN.png",
+        "ALL-THE-FE.png",
+        "ALLTHEFEEL.png",
+        "COCA-COLA-.png",
+        "COCACOLAFA.png",
+        "COKE-FAN-P.png",
+        "COKE-REWAR.png",
+        "COKE-STADI.png",
+        "COKEFEELGO.png",
+        "COKEFWC26.png",
+        "COKEPANINI.png",
+        "CUP-CHAMPI.png",
+        "FEELITALL2.png",
+        "FIFA-2026-.png",
+        "FIFA-26-DI.png",
+        "FIFA-COKE-.png",
+        "FIFA-KICK-.png",
+        "FIFA2026PL.png",
+        "FWC26KICKO.png",
+        "GIFTWC26PA.png",
+        "GOLD-PACK-.png",
+        "IFTWC26PAC.png",
+        "JJG8DH9DJM.png",
+        "L26P-Q14R-.png",
+        "LYN3JJKL3H.png",
+        "MAILWC26GI.png",
+        "P00501866.png",
+        "PANINI-CEL.png",
+        "PANINICOLL.png",
+        "PANINIFWC2.png",
+        "PLAY-FIFA-.png",
+        "PLAYWC26NO.png",
+        "WC26-PANI-.png",
+        "WC26PANIAP.png",
+        "WC26PANICO.png",
+        "YOUR-GIFT-.png",
+        "fifprgaffi.png"
+      ].sort(function (a, b) {
+        return a.localeCompare(b, undefined, { sensitivity: "base" });
+      });
+
+      const track = document.getElementById("track");
+      const dotsEl = document.getElementById("dots");
+      const counterEl = document.getElementById("counter");
+      const btnPrev = document.getElementById("btn-prev");
+      const btnNext = document.getElementById("btn-next");
+      const viewport = document.getElementById("viewport");
+
+      let index = 0;
+      let startX = 0;
+      let dragging = false;
+
+      function titleFromFile(file) {
+        return file.replace(/\.png$/i, "");
+      }
+
+      function buildSlides() {
+        track.innerHTML = "";
+        dotsEl.innerHTML = "";
+
+        SLIDES.forEach(function (file, i) {
+          const title = titleFromFile(file);
+          const slide = document.createElement("article");
+          slide.className = "slide";
+          slide.setAttribute("aria-label", "Code " + (i + 1) + ": " + title);
+          slide.innerHTML =
+            '<div class="qr-wrap">' +
+              '<img src="./' + encodeURIComponent(file) + '" alt="QR code for ' + title + '" loading="lazy" decoding="async"/>' +
+            "</div>" +
+            '<h2 class="slide-title">' + title + "</h2>" +
+            '<p class="slide-code">' + title + "</p>";
+          track.appendChild(slide);
+
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "dot" + (i === 0 ? " is-active" : "");
+          dot.setAttribute("aria-label", "Go to code " + (i + 1));
+          dot.addEventListener("click", function () { goTo(i); });
+          dotsEl.appendChild(dot);
+        });
+      }
+
+      function updateUI() {
+        track.style.transform = "translateX(-" + (index * 100) + "%)";
+        counterEl.textContent = (index + 1) + " / " + SLIDES.length;
+        btnPrev.disabled = index === 0;
+        btnNext.disabled = index === SLIDES.length - 1;
+        dotsEl.querySelectorAll(".dot").forEach(function (dot, i) {
+          dot.classList.toggle("is-active", i === index);
+        });
+      }
+
+      function goTo(nextIndex) {
+        index = Math.max(0, Math.min(SLIDES.length - 1, nextIndex));
+        updateUI();
+      }
+
+      btnPrev.addEventListener("click", function () { goTo(index - 1); });
+      btnNext.addEventListener("click", function () { goTo(index + 1); });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") goTo(index - 1);
+        if (e.key === "ArrowRight") goTo(index + 1);
+      });
+
+      viewport.addEventListener("touchstart", function (e) {
+        startX = e.touches[0].clientX;
+        dragging = true;
+      }, { passive: true });
+
+      viewport.addEventListener("touchend", function (e) {
+        if (!dragging) return;
+        const delta = e.changedTouches[0].clientX - startX;
+        if (Math.abs(delta) > 50) {
+          goTo(delta < 0 ? index + 1 : index - 1);
+        }
+        dragging = false;
+      }, { passive: true });
+
+      buildSlides();
+      updateUI();
+    })();
+  </script>
+</body>
+</html>
