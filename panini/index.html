@@ -225,6 +225,92 @@
       font-size: 0.9rem;
     }
 
+    .code-spoiler {
+      margin-top: 1.25rem;
+      background: var(--panini-white);
+      border: 3px solid var(--panini-yellow);
+      border-radius: 1rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+
+    .code-spoiler summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 0.9rem 1rem;
+      font-weight: 700;
+      color: var(--panini-red-dark);
+      background: linear-gradient(90deg, var(--panini-yellow), #ffe566);
+      border-bottom: 2px solid transparent;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      user-select: none;
+    }
+
+    .code-spoiler summary::-webkit-details-marker { display: none; }
+
+    .code-spoiler summary::after {
+      content: "▼";
+      font-size: 0.75rem;
+      transition: transform 0.2s ease;
+    }
+
+    .code-spoiler[open] summary {
+      border-bottom-color: var(--panini-red);
+    }
+
+    .code-spoiler[open] summary::after {
+      transform: rotate(180deg);
+    }
+
+    .code-spoiler-body {
+      padding: 0.75rem 1rem 1rem;
+      max-height: 18rem;
+      overflow-y: auto;
+    }
+
+    .code-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .code-list li { margin: 0; }
+
+    .code-list button {
+      width: 100%;
+      text-align: left;
+      border: 0;
+      border-radius: 0.5rem;
+      padding: 0.5rem 0.65rem;
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--panini-ink);
+      background: rgba(255, 210, 0, 0.18);
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
+      word-break: break-all;
+    }
+
+    .code-list button:hover,
+    .code-list button:focus-visible {
+      background: var(--panini-red);
+      color: var(--panini-white);
+      outline: none;
+    }
+
+    .code-list button.is-active {
+      background: var(--panini-red-dark);
+      color: var(--panini-yellow);
+    }
+
     footer {
       margin-top: 1.5rem;
       text-align: center;
@@ -278,6 +364,13 @@
 
     <p class="hint">Swipe left or right on mobile · use arrows on desktop</p>
 
+    <details class="code-spoiler">
+      <summary>Spoiler · full code list</summary>
+      <div class="code-spoiler-body">
+        <ul class="code-list" id="code-list" aria-label="All pack codes"></ul>
+      </div>
+    </details>
+
     <footer>
       <p>
         Created for
@@ -297,54 +390,55 @@
 
   <script>
     (function () {
-      // Add new filenames here when you drop images into /panini/
+      // file = image in /panini/ ; code = full pack code shown on the slide
       const SLIDES = [
-        "ADXL-FCWC-.png",
-        "ADXL-FIFA-.png",
-        "ADXL-PLAY-.png",
-        "ALBUMPANIN.png",
-        "ALL-THE-FE.png",
-        "ALLTHEFEEL.png",
-        "COCA-COLA-.png",
-        "COCACOLAFA.png",
-        "COKE-FAN-P.png",
-        "COKE-REWAR.png",
-        "COKE-STADI.png",
-        "COKEFEELGO.png",
-        "COKEFWC26.png",
-        "COKEPANINI.png",
-        "CUP-CHAMPI.png",
-        "FEELITALL2.png",
-        "FIFA-2026-.png",
-        "FIFA-26-DI.png",
-        "FIFA-COKE-.png",
-        "FIFA-KICK-.png",
-        "FIFA2026PL.png",
-        "FWC26KICKO.png",
-        "GIFTWC26PA.png",
-        "GOLD-PACK-.png",
-        "IFTWC26PAC.png",
-        "JJG8DH9DJM.png",
-        "L26P-Q14R-.png",
-        "LYN3JJKL3H.png",
-        "MAILWC26GI.png",
-        "P00501866.png",
-        "PANINI-CEL.png",
-        "PANINICOLL.png",
-        "PANINIFWC2.png",
-        "PLAY-FIFA-.png",
-        "PLAYWC26NO.png",
-        "WC26-PANI-.png",
-        "WC26PANIAP.png",
-        "WC26PANICO.png",
-        "YOUR-GIFT-.png",
-        "fifprgaffi.png"
+        { file: "ADXL-FCWC-.png", code: "ADXL-FCWC-2025" },
+        { file: "ADXL-FIFA-.png", code: "ADXL-FIFA-WC26" },
+        { file: "ADXL-PLAY-.png", code: "ADXL-PLAY-FIFA" },
+        { file: "ALBUMPANIN.png", code: "ALBUMPANINI26" },
+        { file: "ALL-THE-FE.png", code: "ALL-THE-FEELS" },
+        { file: "ALLTHEFEEL.png", code: "ALLTHEFEELS" },
+        { file: "COCA-COLA-.png", code: "COCA-COLA-FANS" },
+        { file: "COCACOLAFA.png", code: "COCACOLAFANS" },
+        { file: "COKE-FAN-P.png", code: "COKE-FAN-PACK" },
+        { file: "COKE-REWAR.png", code: "COKE-REWARDS-26" },
+        { file: "COKE-STADI.png", code: "COKE-STADIUM-26" },
+        { file: "COKEFEELGO.png", code: "COKEFEELGO26" },
+        { file: "COKEFWC26.png", code: "COKEFWC26" },
+        { file: "COKEPANINI.png", code: "COKEPANINI26" },
+        { file: "CUP-CHAMPI.png", code: "CUP-CHAMPIONS-26" },
+        { file: "FEELITALL2.png", code: "FEELITALL26" },
+        { file: "FIFA-2026-.png", code: "FIFA-2026-PLAY" },
+        { file: "FIFA-26-DI.png", code: "FIFA-26-DIGITAL" },
+        { file: "FIFA-COKE-.png", code: "FIFA-COKE-26" },
+        { file: "FIFA-KICK-.png", code: "FIFA-KICK-OFF" },
+        { file: "FIFA2026PL.png", code: "FIFA2026PLAY" },
+        { file: "FWC26KICKO.png", code: "FWC26KICKOFF" },
+        { file: "GIFTWC26PA.png", code: "GIFTWC26PACK" },
+        { file: "GOLD-PACK-.png", code: "GOLD-PACK-FIFA" },
+        { file: "IFTWC26PAC.png", code: "IFTWC26PACK" },
+        { file: "JJG8DH9DJM.png", code: "JJG8DH9DJMYC" },
+        { file: "L26P-Q14R-.png", code: "L26P-Q14R-G1XH" },
+        { file: "LYN3JJKL3H.png", code: "LYN3JJKL3HSX" },
+        { file: "MAILWC26GI.png", code: "MAILWC26GIFT" },
+        { file: "P00501866.png", code: "P00501866" },
+        { file: "PANINI-CEL.png", code: "PANINI-CELEBRATION" },
+        { file: "PANINICOLL.png", code: "PANINICOLLECT" },
+        { file: "PANINIFWC2.png", code: "PANINIFWC26" },
+        { file: "PLAY-FIFA-.png", code: "PLAY-FIFA-NOW" },
+        { file: "PLAYWC26NO.png", code: "PLAYWC26NOW" },
+        { file: "WC26-PANI-.png", code: "WC26-PANI-APP" },
+        { file: "WC26PANIAP.png", code: "WC26PANIAPP" },
+        { file: "WC26PANICO.png", code: "WC26PANICOKE" },
+        { file: "YOUR-GIFT-.png", code: "YOUR-GIFT-PACK" },
+        { file: "fifprgaffi.png", code: "fifprgaffif" }
       ].sort(function (a, b) {
-        return a.localeCompare(b, undefined, { sensitivity: "base" });
+        return a.code.localeCompare(b.code, undefined, { sensitivity: "base" });
       });
 
       const track = document.getElementById("track");
       const dotsEl = document.getElementById("dots");
+      const codeListEl = document.getElementById("code-list");
       const counterEl = document.getElementById("counter");
       const btnPrev = document.getElementById("btn-prev");
       const btnNext = document.getElementById("btn-next");
@@ -354,26 +448,22 @@
       let startX = 0;
       let dragging = false;
 
-      function titleFromFile(file) {
-        return file.replace(/\.png$/i, "");
-      }
-
       function buildSlides() {
         track.innerHTML = "";
         dotsEl.innerHTML = "";
 
-        SLIDES.forEach(function (file, i) {
-          const title = titleFromFile(file);
-          const slide = document.createElement("article");
-          slide.className = "slide";
-          slide.setAttribute("aria-label", "Code " + (i + 1) + ": " + title);
-          slide.innerHTML =
+        SLIDES.forEach(function (slide, i) {
+          const title = slide.code;
+          const el = document.createElement("article");
+          el.className = "slide";
+          el.setAttribute("aria-label", "Code " + (i + 1) + ": " + title);
+          el.innerHTML =
             '<div class="qr-wrap">' +
-              '<img src="./' + encodeURIComponent(file) + '" alt="QR code for ' + title + '" loading="lazy" decoding="async"/>' +
+              '<img src="./' + encodeURIComponent(slide.file) + '" alt="QR code for ' + title + '" loading="lazy" decoding="async"/>' +
             "</div>" +
             '<h2 class="slide-title">' + title + "</h2>" +
             '<p class="slide-code">' + title + "</p>";
-          track.appendChild(slide);
+          track.appendChild(el);
 
           const dot = document.createElement("button");
           dot.type = "button";
@@ -384,6 +474,19 @@
         });
       }
 
+      function buildCodeList() {
+        codeListEl.innerHTML = "";
+        SLIDES.forEach(function (slide, i) {
+          const li = document.createElement("li");
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.textContent = slide.code;
+          btn.addEventListener("click", function () { goTo(i); });
+          li.appendChild(btn);
+          codeListEl.appendChild(li);
+        });
+      }
+
       function updateUI() {
         track.style.transform = "translateX(-" + (index * 100) + "%)";
         counterEl.textContent = (index + 1) + " / " + SLIDES.length;
@@ -391,6 +494,9 @@
         btnNext.disabled = index === SLIDES.length - 1;
         dotsEl.querySelectorAll(".dot").forEach(function (dot, i) {
           dot.classList.toggle("is-active", i === index);
+        });
+        codeListEl.querySelectorAll("button").forEach(function (btn, i) {
+          btn.classList.toggle("is-active", i === index);
         });
       }
 
@@ -422,6 +528,7 @@
       }, { passive: true });
 
       buildSlides();
+      buildCodeList();
       updateUI();
     })();
   </script>
