@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Prueba todos los tipos de letra usados en Mecanografía y las fuentes FIFA World Cup 2026. Escribe tu texto, cambia el tamaño y compara estilos."/>
+  <title>Texto — tipografías de Mecanografía | mecanografia.info</title>
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="canonical" href="https://mecanografia.info/texto/" />
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://mecanografia.info/texto/"/>
+  <meta property="og:title" content="Texto — tipografías de Mecanografía"/>
+  <meta property="og:description" content="Prueba todos los tipos de letra del sitio y las fuentes FIFA World Cup 2026."/>
+  <meta property="og:image" content="https://mecanografia.info/og.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Texto — tipografías de Mecanografía"/>
+  <meta name="twitter:description" content="Prueba todos los tipos de letra del sitio y las fuentes FIFA World Cup 2026."/>
+  <meta name="twitter:image" content="https://mecanografia.info/og.jpg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@400;500;600;700&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    @font-face {
+      font-family: "FWC26 Regular";
+      src: url("./mundial-2026/fonts/FWC26-NormalRegular.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "FWC26 Medium";
+      src: url("./mundial-2026/fonts/FWC26-NormalMedium.woff2") format("woff2");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "FWC26 Ultra Condensed Bold";
+      src: url("./mundial-2026/fonts/FWC26-UltraCondensedBold.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "FWC26 Ultra Condensed Black";
+      src: url("./mundial-2026/fonts/FWC26-UltraCondensedBlack.woff2") format("woff2");
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #0b1220;
+      --panel: #121a2b;
+      --panel-2: #182338;
+      --line: rgba(255, 255, 255, 0.1);
+      --text: #f4f7fb;
+      --muted: #9aa8bd;
+      --accent: #135bec;
+      --accent-2: #86efac;
+      --warn: #ffd200;
+      --input: #0f1726;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "DM Sans", system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(19, 91, 236, 0.22), transparent 28rem),
+        radial-gradient(circle at bottom left, rgba(22, 163, 74, 0.14), transparent 24rem),
+        var(--bg);
+    }
+
+    .page {
+      max-width: 56rem;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 2.5rem;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 0.65rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(19, 91, 236, 0.18);
+      color: #93c5fd;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 0.5rem;
+      font-family: Lexend, sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      line-height: 1.15;
+    }
+
+    .lede {
+      margin: 0;
+      color: var(--muted);
+      max-width: 42rem;
+      line-height: 1.5;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--accent-2);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover { text-decoration: underline; }
+
+    .controls {
+      display: grid;
+      gap: 1rem;
+      margin: 1.5rem 0 1.25rem;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: rgba(18, 26, 43, 0.92);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.45rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    #text-input {
+      width: 100%;
+      min-height: 5.5rem;
+      resize: vertical;
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 0.75rem;
+      background: var(--input);
+      color: var(--text);
+      font: inherit;
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+
+    #text-input:focus {
+      outline: 2px solid rgba(19, 91, 236, 0.55);
+      outline-offset: 1px;
+    }
+
+    .size-row { display: grid; gap: 0.65rem; }
+
+    .size-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .size-value {
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+      color: var(--warn);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+
+    .group-title {
+      margin: 1.75rem 0 0.75rem;
+      font-family: Lexend, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #d7e2f2;
+    }
+
+    .previews {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .sample {
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      overflow: hidden;
+      background: var(--panel);
+    }
+
+    .sample-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.7rem 1rem;
+      background: var(--panel-2);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .sample-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #d7e2f2;
+    }
+
+    .sample-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .sample-body {
+      padding: 1.1rem 1rem 1.25rem;
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
+      line-height: 1.2;
+      min-height: 3.5rem;
+    }
+
+    .ff-lexend { font-family: Lexend, sans-serif; font-weight: 600; }
+    .ff-atkinson { font-family: "Atkinson Hyperlegible", sans-serif; font-weight: 400; }
+    .ff-dm { font-family: "DM Sans", sans-serif; font-weight: 600; }
+    .ff-archivo { font-family: "Archivo Black", sans-serif; font-weight: 400; }
+    .ff-fwc-regular { font-family: "FWC26 Regular", sans-serif; font-weight: 400; }
+    .ff-fwc-medium { font-family: "FWC26 Medium", sans-serif; font-weight: 500; }
+    .ff-fwc-uc-bold { font-family: "FWC26 Ultra Condensed Bold", sans-serif; font-weight: 700; }
+    .ff-fwc-uc-black { font-family: "FWC26 Ultra Condensed Black", sans-serif; font-weight: 900; }
+
+    .disclaimer {
+      margin-top: 2rem;
+      padding: 1rem 1.1rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 210, 0, 0.35);
+      background: rgba(255, 210, 0, 0.08);
+      color: #fde68a;
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .disclaimer strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: var(--warn);
+      font-family: Lexend, sans-serif;
+    }
+
+    #faq {
+      margin-top: 2rem;
+    }
+
+    #faq h2 {
+      margin: 0 0 1rem;
+      font-family: Lexend, sans-serif;
+      font-size: 1.25rem;
+    }
+
+    #faq dl {
+      margin: 0;
+      display: grid;
+      gap: 1rem;
+    }
+
+    #faq dt {
+      margin: 0 0 0.3rem;
+      font-weight: 700;
+      color: #e2e8f0;
+    }
+
+    #faq dd {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    footer {
+      margin-top: 1.75rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    footer a {
+      color: #93c5fd;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <span class="eyebrow">texto · tipografías</span>
+      <h1>Todas las tipografías del sitio</h1>
+      <p class="lede">Escribe tu texto, cambia el tamaño y compara las fuentes usadas en Mecanografía junto con las tipografías FIFA World Cup 2026.</p>
+      <nav class="nav-links" aria-label="Secciones">
+        <a href="/">← Inicio</a>
+        <a href="/texto/mundial-2026/">Solo fuentes Mundial 2026 →</a>
+      </nav>
+    </header>
+
+    <section class="controls" aria-label="Controles de texto y tamaño">
+      <div>
+        <label for="text-input">Tu texto</label>
+        <textarea id="text-input" rows="3" spellcheck="true">Practico mecanografía todos los días</textarea>
+      </div>
+      <div class="size-row">
+        <div class="size-meta">
+          <label for="size-range" style="margin:0">Tamaño de fuente</label>
+          <span class="size-value" id="size-value" aria-live="polite">40 px</span>
+        </div>
+        <input
+          id="size-range"
+          type="range"
+          min="16"
+          max="120"
+          value="40"
+          step="1"
+          aria-valuemin="16"
+          aria-valuemax="120"
+          aria-valuenow="40"
+        />
+      </div>
+    </section>
+
+    <h2 class="group-title">Tipografías del sitio</h2>
+    <section class="previews" aria-label="Tipografías del sitio">
+      <article class="sample">
+        <div class="sample-head">
+          <span class="sample-name">Lexend</span>
+          <span class="sample-tag">UI · títulos · teclado</span>
+        </div>
+        <div class="sample-body ff-lexend preview-text">Practico mecanografía todos los días</div>
+      </article>
+      <article class="sample">
+        <div class="sample-head">
+          <span class="sample-name">Atkinson Hyperlegible</span>
+          <span class="sample-tag">Lectura · textos de práctica</span>
+        </div>
+        <div class="sample-body ff-atkinson preview-text">Practico mecanografía todos los días</div>
+      </article>
+      <article class="sample">
+        <div class="sample-head">
+          <span class="sample-name">DM Sans</span>
+          <span class="sample-tag">Panini · texto</span>
+        </div>
+        <div class="sample-body ff-dm preview-text">Practico mecanografía todos los días</div>
+      </article>
+      <article class="sample">
+        <div class="sample-head">
+          <span class="sample-name">Archivo Black</span>
+          <span class="sample-tag">Panini · display</span>
+        </div>
+        <div class="sample-body ff-archivo preview-text">Practico mecanografía todos los días</div>
+      </article>
+    </section>
+
+    <h2 class="group-title">FIFA World Cup 2026 (FWC26)</h2>
+    <section class="previews" aria-label="Tipografías FIFA World Cup 2026">
+      <article class="sample">
+        <div class="sample-head">
+          <span class="sample-name">FWC26 Regular</span>
+          <span class="sample-tag">Normal · Regular</span>
+        </div>
+        <div class="sample-body ff-fwc-regular preview-text">Practico mecanografía todos los días</div>
+      </article>
+      <article class="sample">
+        <div class="sample-head">
+          <span class="sample-name">FWC26 Medium</span>
+          <span class="sample-tag">Normal · Medium</span>
+        </div>
+        <div class="sample-body ff-fwc-medium preview-text">Practico mecanografía todos los días</div>
+      </article>
+      <article class="sample">
+        <div class="sample-head">
+          <span class="sample-name">FWC26 Ultra Condensed Bold</span>
+          <span class="sample-tag">Ultra Condensed · Bold</span>
+        </div>
+        <div class="sample-body ff-fwc-uc-bold preview-text">Practico mecanografía todos los días</div>
+      </article>
+      <article class="sample">
+        <div class="sample-head">
+          <span class="sample-name">FWC26 Ultra Condensed Black</span>
+          <span class="sample-tag">Ultra Condensed · Black</span>
+        </div>
+        <div class="sample-body ff-fwc-uc-black preview-text">Practico mecanografía todos los días</div>
+      </article>
+    </section>
+
+    <aside class="disclaimer" role="note">
+      <strong>Aviso / Disclaimer</strong>
+      Todas las tipografías mostradas en esta sección se usan únicamente con fines educativos y de demostración tipográfica.
+      No somos propietarios de las tipografías de terceros (incluida la familia FWC26 relacionada con FIFA).
+      Esta página no tiene afiliación oficial con FIFA, Panini u otras marcas mencionadas.
+      Si eres titular de derechos y deseas solicitar cambios, contáctanos en
+      <a href="/contact/" style="color:#fff;font-weight:700">Contacto</a>.
+    </aside>
+
+    <section id="faq">
+      <h2>Preguntas frecuentes</h2>
+      <dl>
+        <div>
+          <dt>¿Qué es esta página?</dt>
+          <dd>Es un laboratorio tipográfico: puedes escribir un texto y ver cómo se ve con todas las fuentes usadas en Mecanografía.info, más las fuentes FIFA World Cup 2026.</dd>
+        </div>
+        <div>
+          <dt>¿Qué tipografías incluye el sitio?</dt>
+          <dd>Lexend y Atkinson Hyperlegible (páginas principales), DM Sans y Archivo Black (sección Panini), y FWC26 Regular, Medium, Ultra Condensed Bold y Ultra Condensed Black (sección Mundial 2026).</dd>
+        </div>
+        <div>
+          <dt>¿Puedo usar estas fuentes en mis proyectos?</dt>
+          <dd>Depende de la licencia de cada tipografía. Lexend, Atkinson Hyperlegible, DM Sans y Archivo Black suelen estar disponibles vía Google Fonts. Las tipografías FWC26 pertenecen a terceros: aquí solo se muestran con fines educativos.</dd>
+        </div>
+        <div>
+          <dt>¿Por qué hay una sección aparte de Mundial 2026?</dt>
+          <dd>Para enfocar solo las fuentes FWC26. Puedes abrirla aquí: <a href="/texto/mundial-2026/" style="color:#86efac">/texto/mundial-2026/</a>.</dd>
+        </div>
+        <div>
+          <dt>¿Se guarda mi texto?</dt>
+          <dd>No. El texto vive solo en tu navegador mientras usas la página. No se envía a ningún servidor.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <footer>
+      <a href="/">Mecanografía</a>
+      ·
+      <a href="/texto/mundial-2026/">Mundial 2026 fonts</a>
+      ·
+      <a href="/eventos/mundial-2026/">Práctica Mundial</a>
+      ·
+      <a href="/contact/">Contacto</a>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const DEFAULT_TEXT = "Practico mecanografía todos los días";
+      const input = document.getElementById("text-input");
+      const sizeRange = document.getElementById("size-range");
+      const sizeValue = document.getElementById("size-value");
+      const previews = document.querySelectorAll(".preview-text");
+
+      function applyText() {
+        const text = input.value.length ? input.value : " ";
+        previews.forEach(function (el) {
+          el.textContent = text;
+        });
+      }
+
+      function applySize() {
+        const size = Number(sizeRange.value);
+        sizeValue.textContent = size + " px";
+        sizeRange.setAttribute("aria-valuenow", String(size));
+        previews.forEach(function (el) {
+          el.style.fontSize = size + "px";
+        });
+      }
+
+      if (!input.value.trim()) input.value = DEFAULT_TEXT;
+      input.addEventListener("input", applyText);
+      sizeRange.addEventListener("input", applySize);
+
+      applyText();
+      applySize();
+    })();
+  </script>
+</body>
+</html>

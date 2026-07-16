@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Preview text in FIFA World Cup 2026 official fonts. Type your own text and adjust size across FWC26 Regular, Medium, Ultra Condensed Bold and Black."/>
+  <title>Texto Mundial FIFA World Cup 2026 | mecanografia.info</title>
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="canonical" href="https://mecanografia.info/texto/mundial-2026/" />
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://mecanografia.info/texto/mundial-2026/"/>
+  <meta property="og:title" content="FIFA World Cup 2026 fonts — texto"/>
+  <meta property="og:description" content="Preview text in FIFA World Cup 2026 official fonts. Type your own text and adjust size."/>
+  <meta property="og:image" content="https://mecanografia.info/og.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="FIFA World Cup 2026 fonts — texto"/>
+  <meta name="twitter:description" content="Preview text in FIFA World Cup 2026 official fonts."/>
+  <meta name="twitter:image" content="https://mecanografia.info/og.jpg"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    @font-face {
+      font-family: "FWC26 Regular";
+      src: url("./fonts/FWC26-NormalRegular.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "FWC26 Medium";
+      src: url("./fonts/FWC26-NormalMedium.woff2") format("woff2");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "FWC26 Ultra Condensed Bold";
+      src: url("./fonts/FWC26-UltraCondensedBold.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "FWC26 Ultra Condensed Black";
+      src: url("./fonts/FWC26-UltraCondensedBlack.woff2") format("woff2");
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #0b1220;
+      --panel: #121a2b;
+      --panel-2: #182338;
+      --line: rgba(255, 255, 255, 0.1);
+      --text: #f4f7fb;
+      --muted: #9aa8bd;
+      --accent: #16a34a;
+      --accent-2: #ffd200;
+      --input: #0f1726;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "DM Sans", system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(22, 163, 74, 0.22), transparent 28rem),
+        radial-gradient(circle at bottom left, rgba(255, 210, 0, 0.12), transparent 24rem),
+        var(--bg);
+    }
+
+    .page {
+      max-width: 56rem;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 2.5rem;
+    }
+
+    header {
+      margin-bottom: 1.25rem;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 0.65rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(22, 163, 74, 0.18);
+      color: #86efac;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 0.5rem;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      line-height: 1.15;
+    }
+
+    .lede {
+      margin: 0;
+      color: var(--muted);
+      max-width: 40rem;
+      line-height: 1.5;
+    }
+
+    .controls {
+      display: grid;
+      gap: 1rem;
+      margin: 1.5rem 0 1.25rem;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: rgba(18, 26, 43, 0.92);
+      backdrop-filter: blur(8px);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.45rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    #text-input {
+      width: 100%;
+      min-height: 5.5rem;
+      resize: vertical;
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 0.75rem;
+      background: var(--input);
+      color: var(--text);
+      font: inherit;
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+
+    #text-input:focus {
+      outline: 2px solid rgba(22, 163, 74, 0.55);
+      outline-offset: 1px;
+    }
+
+    .size-row {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .size-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .size-value {
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+      color: var(--accent-2);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+
+    .previews {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .sample {
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      overflow: hidden;
+      background: var(--panel);
+    }
+
+    .sample-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.7rem 1rem;
+      background: var(--panel-2);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .sample-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #d7e2f2;
+    }
+
+    .sample-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
+    .sample-body {
+      padding: 1.1rem 1rem 1.25rem;
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
+      line-height: 1.15;
+      min-height: 3.5rem;
+    }
+
+    .fwc-regular { font-family: "FWC26 Regular", sans-serif; font-weight: 400; }
+    .fwc-medium { font-family: "FWC26 Medium", sans-serif; font-weight: 500; }
+    .fwc-uc-bold { font-family: "FWC26 Ultra Condensed Bold", sans-serif; font-weight: 700; letter-spacing: 0.01em; }
+    .fwc-uc-black { font-family: "FWC26 Ultra Condensed Black", sans-serif; font-weight: 900; letter-spacing: 0.01em; }
+
+    footer {
+      margin-top: 1.75rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    footer a {
+      color: #86efac;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <span class="eyebrow">texto · Mundial 2026</span>
+      <h1>FIFA World Cup 2026 fonts</h1>
+      <p class="lede">Type any text below and preview it in the official FWC26 font styles. Use the slider to change size for all samples at once.</p>
+    </header>
+
+    <section class="controls" aria-label="Text and size controls">
+      <div>
+        <label for="text-input">Your text</label>
+        <textarea id="text-input" rows="3" spellcheck="false">FIFA World Cup 2026</textarea>
+      </div>
+      <div class="size-row">
+        <div class="size-meta">
+          <label for="size-range" style="margin:0">Font size</label>
+          <span class="size-value" id="size-value" aria-live="polite">48 px</span>
+        </div>
+        <input
+          id="size-range"
+          type="range"
+          min="18"
+          max="120"
+          value="48"
+          step="1"
+          aria-valuemin="18"
+          aria-valuemax="120"
+          aria-valuenow="48"
+        />
+      </div>
+    </section>
+
+    <section class="previews" aria-label="Font previews">
+      <article class="sample">
+        <div class="sample-head">
+          <span class="sample-name">FWC26 Regular</span>
+          <span class="sample-tag">Normal · Regular</span>
+        </div>
+        <div class="sample-body fwc-regular preview-text">FIFA World Cup 2026</div>
+      </article>
+
+      <article class="sample">
+        <div class="sample-head">
+          <span class="sample-name">FWC26 Medium</span>
+          <span class="sample-tag">Normal · Medium</span>
+        </div>
+        <div class="sample-body fwc-medium preview-text">FIFA World Cup 2026</div>
+      </article>
+
+      <article class="sample">
+        <div class="sample-head">
+          <span class="sample-name">FWC26 Ultra Condensed Bold</span>
+          <span class="sample-tag">Ultra Condensed · Bold</span>
+        </div>
+        <div class="sample-body fwc-uc-bold preview-text">FIFA World Cup 2026</div>
+      </article>
+
+      <article class="sample">
+        <div class="sample-head">
+          <span class="sample-name">FWC26 Ultra Condensed Black</span>
+          <span class="sample-tag">Ultra Condensed · Black</span>
+        </div>
+        <div class="sample-body fwc-uc-black preview-text">FIFA World Cup 2026</div>
+      </article>
+    </section>
+
+    <footer>
+      Fonts: FWC26 from FIFA play assets.
+      <a href="/">← Mecanografía</a>
+      ·
+      <a href="/eventos/mundial-2026/">Mundial typing practice</a>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const DEFAULT_TEXT = "FIFA World Cup 2026";
+      const input = document.getElementById("text-input");
+      const sizeRange = document.getElementById("size-range");
+      const sizeValue = document.getElementById("size-value");
+      const previews = document.querySelectorAll(".preview-text");
+
+      function applyText() {
+        const text = input.value.length ? input.value : " ";
+        previews.forEach(function (el) {
+          el.textContent = text;
+        });
+      }
+
+      function applySize() {
+        const size = Number(sizeRange.value);
+        sizeValue.textContent = size + " px";
+        sizeRange.setAttribute("aria-valuenow", String(size));
+        previews.forEach(function (el) {
+          el.style.fontSize = size + "px";
+        });
+      }
+
+      if (!input.value.trim()) input.value = DEFAULT_TEXT;
+      input.addEventListener("input", applyText);
+      sizeRange.addEventListener("input", applySize);
+
+      applyText();
+      applySize();
+    })();
+  </script>
+</body>
+</html>
