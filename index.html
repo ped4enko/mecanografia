@@ -628,6 +628,40 @@
         startSession(); // new text
       }
 
+      var TP_COOKIE = 'tp_invite_shown';
+      var TP_COOKIE_DAYS = 365;
+
+      function getCookie(name) {
+        var match = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)'));
+        return match ? decodeURIComponent(match[1]) : '';
+      }
+
+      function setCookie(name, value, days) {
+        var expires = '';
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+          expires = '; expires=' + date.toUTCString();
+        }
+        document.cookie = name + '=' + encodeURIComponent(value) + expires + '; path=/; SameSite=Lax';
+      }
+
+      function maybeShowTrustpilotInvite() {
+        if (getCookie(TP_COOKIE) === '1') return;
+        setCookie(TP_COOKIE, '1', TP_COOKIE_DAYS);
+        (function (w, d, s, r, n) {
+          w.TrustpilotObject = n;
+          w[n] = w[n] || function () { (w[n].q = w[n].q || []).push(arguments); };
+          var a = d.createElement(s);
+          a.async = 1;
+          a.src = r;
+          a.type = 'text/java' + s;
+          var f = d.getElementsByTagName(s)[0];
+          f.parentNode.insertBefore(a, f);
+        })(window, document, 'script', 'https://invitejs.trustpilot.com/tp.min.js', 'tp');
+        tp('register', 'yScInFU1peY6WtgW');
+      }
+
       function highlightKey(char) {
         document.querySelectorAll('.key-cap').forEach(function (el) {
           el.classList.remove('key-active', 'key-pressed');
@@ -664,8 +698,10 @@
           state.index++;
           state.correct++;
           state.errors = 0;
-          if (state.index >= state.text.length) finishSession();
-          else {
+          if (state.index >= state.text.length) {
+            maybeShowTrustpilotInvite();
+            finishSession();
+          } else {
             renderTyping();
             highlightKey(state.text[state.index]);
           }
