@@ -22,6 +22,12 @@ If the repo already exists, just push:
 git push -u origin main
 ```
 
+## Languages
+
+- **Primary language of the site:** Spanish (Spain / `es`). All new pages, UI copy, SEO metadata, and practice content must be written in Spanish by default.
+- **Other allowed languages:** only Catalan (`ca`, e.g. `/cat/`) and regional Spanish variants (for example Mexican Spanish). Do not add unrelated languages (English UI, French, etc.) unless explicitly requested.
+- When creating or editing pages, keep `lang` / `hreflang` / `canonical` consistent with the language of the content.
+
 ## Features
 
 - **Spanish-focused**: Practice texts include ñ, á, é, í, ó, ú, ü, ¿, ¡, and common vocabulary.
