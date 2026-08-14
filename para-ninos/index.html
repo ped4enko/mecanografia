@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Practica el teclado con textos fáciles para niños de 10 a 14 años. Frases cortas, temas del cole y del día a día, con ñ y acentos. Gratis y sin registro."/>
+  <title>Mecanografía para niños — practica el teclado | mecanografia.info</title>
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Mecanografia" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="canonical" href="https://mecanografia.info/para-ninos/" />
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://mecanografia.info/para-ninos/"/>
+  <meta property="og:title" content="Mecanografía para niños — practica el teclado"/>
+  <meta property="og:description" content="Textos fáciles para aprender a escribir más rápido. Pensado para chicos y chicas de 10 a 14 años."/>
+  <meta property="og:image" content="https://mecanografia.info/og.jpg"/>
+  <meta property="og:image:type" content="image/avif"/>
+  <meta property="og:locale" content="es_ES"/>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:domain" content="mecanografia.info">
+  <meta property="twitter:url" content="https://mecanografia.info/para-ninos/">
+  <meta name="twitter:title" content="Mecanografía para niños — practica el teclado">
+  <meta name="twitter:description" content="Textos fáciles para aprender a escribir más rápido. Pensado para chicos y chicas de 10 a 14 años.">
+  <meta name="twitter:image" content="https://mecanografia.info/og.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://mecanografia.info/#organization",
+    "name": "Mecanografía",
+    "url": "https://mecanografia.info"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Mecanografía para niños",
+    "description": "Práctica de teclado en español con textos fáciles para niños de 10 a 14 años.",
+    "url": "https://mecanografia.info/para-ninos",
+    "image": "https://mecanografia.info/og.jpg",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "publisher": { "@id": "https://mecanografia.info/#organization" },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#6c9bd2",
+            "peach": "#f4a261",
+            "mint": "#7dd3c7",
+            "cream": "#fff6f0",
+            "lilac": "#cbb2fe",
+          },
+          fontFamily: {
+            "display": ["Lexend", "sans-serif"],
+            "reading": ["Atkinson Hyperlegible", "sans-serif"]
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+  <style>
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(203, 178, 254, 0.28), transparent 28rem),
+        radial-gradient(circle at top right, rgba(125, 211, 199, 0.22), transparent 24rem),
+        radial-gradient(circle at bottom, rgba(244, 162, 97, 0.16), transparent 22rem),
+        #fff6f0;
+    }
+    .typing-char { position: relative; }
+    .cursor::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #6c9bd2;
+      animation: cursor-blink 1s step-end infinite;
+    }
+    @media (prefers-reduced-motion: reduce) { .cursor::after { animation: none; } }
+    @keyframes cursor-blink { 50% { opacity: 0; } }
+    .char-correct { color: #2a9d8f; }
+    .char-wrong { color: #e76f51; text-decoration: underline; text-decoration-style: wavy; }
+    .key-cap {
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid #eadfd4; background: #fffaf6;
+      color: #5c4d42; border-radius: 0.6rem;
+      font-family: Lexend, sans-serif; transition: all 0.15s ease;
+      box-shadow: 0 1px 0 #f0e4d8;
+    }
+    .key-active { border-color: #6c9bd2; background: #e8f2fb; color: #4a7fb8; box-shadow: 0 0 10px rgba(108,155,210,0.28); }
+    .key-pressed { transform: scale(0.95); }
+    [aria-invalid="true"] { outline: 2px solid #e76f51; outline-offset: 2px; }
+  </style>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vkghhjthlf");
+  </script>
+</head>
+<body class="font-display text-stone-800 min-h-screen flex flex-col overflow-x-hidden">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-6 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg">Ir a practicar</a>
+
+  <header class="border-b border-orange-100/80 bg-white/70 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <div class="bg-primary p-1.5 rounded-2xl text-white" aria-hidden="true">
+          <span class="material-symbols-outlined leading-none text-xl sm:text-2xl">child_care</span>
+        </div>
+        <span class="text-lg sm:text-xl font-bold tracking-tight">Mecanografía</span>
+      </a>
+      <nav class="flex items-center gap-3 sm:gap-6" aria-label="Main">
+        <a class="text-stone-500 hover:text-primary transition-colors" href="/">Inicio</a>
+        <a class="text-primary font-semibold" href="#main">Para niños</a>
+        <a class="text-stone-500 hover:text-primary transition-colors hidden sm:inline" href="#stats">Tu progreso</a>
+        <a class="text-stone-500 hover:text-primary transition-colors hidden lg:inline" href="/historias/disney/">Disney</a>
+        <a class="text-stone-500 hover:text-primary transition-colors text-sm" href="/cat/">Català</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="max-w-6xl mx-auto w-full px-4 sm:px-6 pt-5">
+    <p class="font-reading text-sm sm:text-base text-stone-600">
+      Escribe más rápido con textos fáciles: el cole, amigos, animales y juegos. Pensado para chicos y chicas de 10 a 14 años.
+    </p>
+  </div>
+
+  <main id="main" class="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 max-w-6xl mx-auto w-full gap-8 sm:gap-12" tabindex="-1">
+    <section id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 w-full" aria-live="polite" aria-label="Tu progreso">
+      <div class="bg-white/80 border border-orange-100 p-3 sm:p-4 rounded-2xl flex flex-col items-center justify-center gap-0.5 shadow-sm">
+        <span class="text-stone-500 text-xs font-semibold uppercase tracking-widest">Velocidad</span>
+        <span id="stat-ppm" class="text-2xl sm:text-3xl font-bold text-primary">0</span>
+        <span id="stat-ppm-trend" class="text-xs font-medium text-stone-400" aria-hidden="true"></span>
+      </div>
+      <div class="bg-white/80 border border-orange-100 p-3 sm:p-4 rounded-2xl flex flex-col items-center justify-center gap-0.5 shadow-sm">
+        <span class="text-stone-500 text-xs font-semibold uppercase tracking-widest">Aciertos</span>
+        <span id="stat-accuracy" class="text-2xl sm:text-3xl font-bold text-mint">—%</span>
+        <span id="stat-accuracy-label" class="text-xs font-medium text-stone-400"></span>
+      </div>
+      <div class="bg-white/80 border border-orange-100 p-3 sm:p-4 rounded-2xl flex flex-col items-center justify-center gap-0.5 shadow-sm">
+        <span class="text-stone-500 text-xs font-semibold uppercase tracking-widest">Tiempo</span>
+        <span id="stat-time" class="text-2xl sm:text-3xl font-bold">00:00</span>
+        <span id="stat-time-meta" class="text-xs font-medium text-stone-400"></span>
+      </div>
+      <div class="bg-white/80 border border-orange-100 p-3 sm:p-4 rounded-2xl flex flex-col items-center justify-center gap-0.5 shadow-sm">
+        <span class="text-stone-500 text-xs font-semibold uppercase tracking-widest">Nivel</span>
+        <span id="stat-level" class="text-2xl sm:text-3xl font-bold text-peach">—</span>
+        <div class="w-full bg-orange-100 h-1.5 rounded-full mt-1.5">
+          <div id="stat-level-bar" class="bg-peach h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="w-full relative">
+      <p class="absolute -top-10 right-0 text-sm text-stone-500 flex items-center gap-4">
+        <span class="hidden sm:inline"><kbd class="px-1.5 py-0.5 rounded bg-white border border-orange-100 text-xs">Tab</kbd> empezar de nuevo</span>
+      </p>
+      <div
+        id="practice-box"
+        class="bg-white/90 border border-orange-100 rounded-3xl p-6 sm:p-8 md:p-12 shadow-lg shadow-orange-100/80 min-h-[200px] sm:min-h-[240px] flex items-center"
+        role="application"
+        aria-label="Práctica de teclado"
+        aria-describedby="practice-instruction"
+      >
+        <p id="practice-instruction" class="sr-only">Escribe el texto que ves. Pulsa Tab o el botón Empezar de nuevo para repetir.</p>
+        <div
+          id="typing-text"
+          class="font-reading text-2xl sm:text-3xl md:text-4xl leading-relaxed tracking-wide text-left select-none break-words text-stone-700"
+        >
+          <span id="typed" aria-hidden="true"></span><span id="current" class="typing-char cursor" aria-hidden="true"></span><span id="remaining" aria-hidden="true"></span>
+        </div>
+        <input
+          id="mobile-input"
+          type="text"
+          inputmode="latin"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="none"
+          spellcheck="false"
+          class="sr-only"
+          aria-hidden="true"
+        />
+      </div>
+      <div class="mt-4 sm:mt-6 flex flex-wrap justify-center gap-3">
+        <button type="button" id="btn-restart" class="flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-semibold rounded-2xl hover:bg-sky-600 transition-all shadow-lg shadow-primary/20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+          <span class="material-symbols-outlined" aria-hidden="true">refresh</span>
+          Empezar de nuevo
+        </button>
+        <button type="button" id="btn-new" class="flex items-center gap-2 px-5 py-2.5 border border-orange-200 bg-white hover:bg-orange-50 font-semibold rounded-2xl transition-all focus:outline-none focus:ring-2 focus:ring-peach focus:ring-offset-2">
+          <span class="material-symbols-outlined" aria-hidden="true">auto_stories</span>
+          Otro texto
+        </button>
+      </div>
+    </div>
+
+    <div class="w-full max-w-4xl flex flex-col items-center hidden md:flex" role="img" aria-label="Teclado español">
+      <div class="w-full flex flex-row items-center justify-center gap-4 sm:gap-6">
+        <div class="keyboard-layout-switcher flex flex-col gap-2 p-2 rounded-2xl bg-white/80 border border-orange-100 shrink-0" aria-label="Tipo de teclado">
+          <button type="button" id="layout-apple" class="keyboard-layout-btn p-2.5 rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-primary" data-layout="apple" aria-pressed="true" title="Teclado Apple">
+            <svg class="w-8 h-8 sm:w-9 sm:h-9 text-stone-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.7 2.31-2.66 3.74-2.66 3.74-.01 1.12 1.4 1.76 2.12 2.23z"/></svg>
+          </button>
+          <button type="button" id="layout-windows" class="keyboard-layout-btn p-2.5 rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-primary opacity-50" data-layout="windows" aria-pressed="false" title="Teclado Windows">
+            <svg class="w-8 h-8 sm:w-9 sm:h-9 text-stone-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.42L20 3zM3 13l6 .09v6.81l-6-1.15V13zm7 .25l10 .15V21l-10-1.91V13.25z"/></svg>
+          </button>
+        </div>
+        <div class="flex flex-col gap-1.5 sm:gap-2 p-3 sm:p-4 rounded-3xl bg-white/80 border border-orange-100 flex-1 min-w-0">
+        <div class="flex gap-1 h-10 sm:h-12" data-row="0">
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="º">º</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="1">1</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="2">2</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="3">3</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="4">4</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="5">5</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="6">6</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="7">7</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="8">8</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="9">9</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="0">0</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="'">'</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="¡">¡</div>
+          <div class="key-cap flex-1 text-xs sm:text-sm" data-key="Backspace">⌫</div>
+        </div>
+        <div class="flex gap-1 h-10 sm:h-12" data-row="1">
+          <div class="key-cap w-12 sm:w-16 text-xs sm:text-sm" data-key="Tab">Tab</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="q">Q</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="w">W</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="e">E</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="r">R</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="t">T</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="y">Y</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="u">U</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="i">I</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="o">O</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="p">P</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="`">`</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="+">+</div>
+          <div class="key-cap flex-1 text-xs sm:text-sm" data-key="Enter">↵</div>
+        </div>
+        <div class="flex gap-1 h-10 sm:h-12" data-row="2">
+          <div class="key-cap w-20 sm:w-28 px-1.5 text-[10px] sm:text-xs leading-tight" data-key="CapsLock">Bloq Mayús</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="a">A</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="s">S</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="d">D</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="f">F</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="g">G</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="h">H</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="j">J</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="k">K</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="l">L</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="ñ">Ñ</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="´">´</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="ç">Ç</div>
+        </div>
+        <div class="flex gap-1 h-10 sm:h-12" data-row="3">
+          <div class="key-cap w-10 sm:w-12 text-xs sm:text-sm" data-key="<"><</div>
+          <div class="key-cap w-10 sm:w-14 text-xs sm:text-sm" data-key="Shift">⇧</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="z">Z</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="x">X</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="c">C</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="v">V</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="b">B</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="n">N</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="m">M</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key=",">,</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key=".">.</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="-">-</div>
+          <div class="key-cap flex-1 text-xs sm:text-sm" data-key="Shift">⇧</div>
+        </div>
+        <div class="flex gap-1 h-10 sm:h-12" data-row="4">
+          <div class="key-cap w-12 sm:w-16 text-xs" data-key="Control">Ctrl</div>
+          <div class="key-cap key-label-mod w-10 sm:w-14 text-xs" data-key="Alt" data-layout-apple="Opt" data-layout-windows="Alt">Opt</div>
+          <div class="key-cap key-label-mod w-10 sm:w-14 text-xs" data-key="Meta" data-layout-apple="Cmd" data-layout-windows="Win">Cmd</div>
+          <div class="key-cap flex-[3] min-w-[120px] text-xs" data-key=" ">Espacio</div>
+          <div class="key-cap key-label-mod w-10 sm:w-14 text-xs" data-key="Meta" data-layout-apple="Cmd" data-layout-windows="Win">Cmd</div>
+          <div class="key-cap key-label-mod w-10 sm:w-14 text-xs" data-key="Alt" data-layout-apple="Opt" data-layout-windows="Alt">Opt</div>
+          <div class="key-cap w-12 sm:w-16 text-xs" data-key="Control">Ctrl</div>
+        </div>
+        </div>
+      </div>
+      <p class="text-center text-xs text-stone-500 mt-3 w-full">Teclado español. La tecla que brilla es la que tienes que pulsar.</p>
+    </div>
+
+    <section id="content" class="w-full max-w-3xl mx-auto space-y-10 sm:space-y-12 pt-4 sm:pt-8 pb-4 font-reading text-stone-600">
+      <h1 class="text-2xl sm:text-3xl font-display font-bold text-stone-800">Aprende a escribir en el teclado</h1>
+      <div>
+        <h2 class="text-xl sm:text-2xl font-display font-bold text-stone-800 mb-3">¿Qué haces aquí?</h2>
+        <p class="leading-relaxed">Copias el texto que ves, letra a letra. Si aciertas, la letra se pone verde. Si te equivocas, se marca en rojo: no pasa nada, lo intentas otra vez. Así aprendes a escribir sin mirar las teclas.</p>
+      </div>
+      <div>
+        <h2 class="text-xl sm:text-2xl font-display font-bold text-stone-800 mb-3">Textos para tu edad</h2>
+        <p class="leading-relaxed">Las frases hablan del cole, de amigos, de animales, de deportes y de planes del fin de semana. Son cortas y claras, con ñ, tildes y los signos ¿ ¡, como cuando escribes en clase.</p>
+      </div>
+      <div>
+        <h2 class="text-xl sm:text-2xl font-display font-bold text-stone-800 mb-3">Cómo empezar</h2>
+        <p class="leading-relaxed">Pon los dedos índice sobre las teclas F y J (tienen un pequeño relieve). Mira la pantalla, no el teclado. Primero intenta no fallar; la velocidad llega sola si practicas un poquito cada día.</p>
+      </div>
+      <div>
+        <h2 class="text-xl sm:text-2xl font-display font-bold text-stone-800 mb-3">Gratis y sin cuenta</h2>
+        <p class="leading-relaxed">No hace falta registrarse ni instalar nada. Pulsa «Empezar de nuevo» para repetir el mismo texto u «Otro texto» para cambiar de historia.</p>
+      </div>
+
+      <div id="faq">
+        <h2 class="text-xl sm:text-2xl font-display font-bold text-stone-800 mb-6">Preguntas fáciles</h2>
+        <dl class="space-y-6">
+          <div>
+            <dt class="font-display font-semibold text-stone-800 mb-1">¿Qué significa velocidad?</dt>
+            <dd class="leading-relaxed">Es cuántas palabras escribes en un minuto. Empieza despacio. Si escribes bien, cada semana irás un poco más rápido.</dd>
+          </div>
+          <div>
+            <dt class="font-display font-semibold text-stone-800 mb-1">¿Y los aciertos?</dt>
+            <dd class="leading-relaxed">Dicen si pulsas las teclas correctas. Es mejor acertar que ir muy rápido y fallar. Un 90% o más ya es muy bueno.</dd>
+          </div>
+          <div>
+            <dt class="font-display font-semibold text-stone-800 mb-1">¿Cuánto tiempo hay que practicar?</dt>
+            <dd class="leading-relaxed">Con 10 minutos al día basta. Mejor un rato corto todos los días que una hora una sola vez.</dd>
+          </div>
+          <div>
+            <dt class="font-display font-semibold text-stone-800 mb-1">¿Puedo usarlo en el cole?</dt>
+            <dd class="leading-relaxed">Sí. Sirve para deberes, trabajos y chats con amigos. Escribir bien te ahorra tiempo y te queda más claro.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-6 px-4 sm:px-6 border-t border-orange-100 text-center">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 max-w-6xl mx-auto text-sm text-stone-500">
+      <div class="flex items-center gap-4 sm:gap-6 flex-wrap justify-center">
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#main">Practicar</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/">Inicio</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/historias/disney/">Disney</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/practicar-teclado/">Más práctica</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/contact/">Contacto</a>
+      </div>
+      <p>© <span id="year">2026</span> Mecanografía. Práctica fácil para niños y niñas.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const TEXTS = [
+        "El gato de Lucía se esconde detrás del sofá. ¿Dónde está? ¡Ahí está, junto a la ventana!",
+        "El sábado jugamos al fútbol en el parque. Después comemos pizza y vemos una película en casa.",
+        "En clase de ciencias vimos cómo crece una planta. Hay que regarla cada día y ponerla al sol.",
+        "Mi perro se llama Nube. Corre por el jardín y trae la pelota cuando se la lanzo. ¡Es muy rápido!",
+        "Hoy toca deberes de matemáticas y luego un rato de lectura. Si termino pronto, puedo salir a jugar.",
+        "En el recreo compartimos el bocadillo. Ana trae pan con tomate y yo traigo fruta. ¡Qué rico!",
+        "El fin de semana fuimos a la playa. El agua estaba fría, pero nos reímos mucho. Luego hicimos un castillo de arena.",
+        "Me gusta tocar la guitarra después del colegio. Todavía me equivoco, pero cada día sueno un poco mejor.",
+        "Los viernes hay club de ajedrez. Aprendemos jugadas nuevas y nos reímos entre partida y partida. ¿Quieres venir?",
+        "El cumpleaños de Pablo es el sábado. Le vamos a regalar un libro de aventuras y un balón. ¡Va a ser una fiesta genial!",
+        "Ayer llovió mucho y nos quedamos en casa. Jugamos a un juego de mesa y preparamos galletas con mamá.",
+        "En el bosque hay pájaros, pinos y un río pequeño. Caminamos despacio y no dejamos basura. La naturaleza se cuida entre todos.",
+        "Tengo que escribir un trabajo sobre España. Voy a hablar de la paella, de la ñ y de las fiestas de mi pueblo.",
+        "Cuando estoy nervioso antes de un examen, respiro despacio y repaso mis apuntes. Luego todo sale mejor.",
+        "¿Has visto las estrellas esta noche? El cielo está claro y la luna brilla. ¡Qué maravilla tan grande!"
+      ];
+
+      const LEVELS = [
+        { name: 'Empiezo', minWpm: 0, pct: 0 },
+        { name: 'Voy bien', minWpm: 12, pct: 25 },
+        { name: 'Bien', minWpm: 25, pct: 50 },
+        { name: 'Genial', minWpm: 40, pct: 75 },
+        { name: 'Campeón', minWpm: 55, pct: 100 }
+      ];
+
+      const STORAGE_KEY = 'mecanografia-ninos-stats';
+
+      let state = {
+        text: '',
+        index: 0,
+        correct: 0,
+        errors: 0,
+        startTime: null,
+        timerId: null,
+        lastWpm: 0,
+        bestWpm: parseInt(localStorage.getItem(STORAGE_KEY + '-best') || '0', 10)
+      };
+
+      const typedEl = document.getElementById('typed');
+      const currentEl = document.getElementById('current');
+      const remainingEl = document.getElementById('remaining');
+      const practiceBox = document.getElementById('practice-box');
+      const mobileInput = document.getElementById('mobile-input');
+      const statPpm = document.getElementById('stat-ppm');
+      const statPpmTrend = document.getElementById('stat-ppm-trend');
+      const statAccuracy = document.getElementById('stat-accuracy');
+      const statAccuracyLabel = document.getElementById('stat-accuracy-label');
+      const statTime = document.getElementById('stat-time');
+      const statLevel = document.getElementById('stat-level');
+      const statLevelBar = document.getElementById('stat-level-bar');
+
+      function pickText() {
+        return TEXTS[Math.floor(Math.random() * TEXTS.length)];
+      }
+
+      function getLevel(wpm, accuracy) {
+        if (accuracy < 0.9) return LEVELS[0];
+        for (let i = LEVELS.length - 1; i >= 0; i--) {
+          if (wpm >= LEVELS[i].minWpm) return LEVELS[i];
+        }
+        return LEVELS[0];
+      }
+
+      function formatTime(sec) {
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60);
+        return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+      }
+
+      function updateStats() {
+        const total = state.index + state.errors;
+        const accuracy = total === 0 ? 0 : (state.correct / total) * 100;
+        const elapsed = state.startTime ? (Date.now() - state.startTime) / 1000 : 0;
+        const minutes = elapsed / 60;
+        const wpm = minutes > 0 ? Math.round((state.correct / 5) / minutes) : 0;
+
+        statPpm.textContent = wpm;
+        if (state.lastWpm > 0 && wpm > state.lastWpm) {
+          statPpmTrend.textContent = '↑';
+          statPpmTrend.className = 'text-teal-500 text-xs font-medium';
+        } else {
+          statPpmTrend.textContent = '';
+        }
+
+        if (total === 0) {
+          statAccuracy.textContent = '—%';
+          statAccuracyLabel.textContent = '';
+        } else {
+          statAccuracy.textContent = accuracy.toFixed(1) + '%';
+          statAccuracyLabel.textContent = accuracy >= 97 ? '¡Genial!' : accuracy >= 90 ? '¡Bien!' : 'Ánimo';
+          statAccuracyLabel.className = accuracy >= 97 ? 'text-teal-600 text-xs font-medium' : accuracy >= 90 ? 'text-stone-500 text-xs font-medium' : 'text-peach text-xs font-medium';
+        }
+
+        statTime.textContent = formatTime(elapsed);
+
+        const level = getLevel(wpm, accuracy / 100);
+        statLevel.textContent = level.name;
+        statLevelBar.style.width = level.pct + '%';
+
+        if (wpm > state.bestWpm && state.index > 10) {
+          state.bestWpm = wpm;
+          try { localStorage.setItem(STORAGE_KEY + '-best', String(wpm)); } catch (e) {}
+        }
+      }
+
+      function renderTyping() {
+        const t = state.text;
+        const i = state.index;
+        const currentChar = t[i] || '';
+        const remaining = t.slice(i + 1);
+
+        let typedHtml = '';
+        for (let k = 0; k < i; k++) {
+          typedHtml += '<span class="char-correct">' + escapeHtml(t[k]) + '</span>';
+        }
+        typedEl.innerHTML = typedHtml;
+        currentEl.textContent = currentChar;
+        remainingEl.textContent = remaining;
+
+        currentEl.className = 'typing-char cursor text-stone-800';
+        if (state.errors > 0 && currentChar) {
+          currentEl.classList.add('char-wrong');
+          practiceBox.setAttribute('aria-invalid', 'true');
+        } else {
+          practiceBox.removeAttribute('aria-invalid');
+        }
+      }
+
+      function escapeHtml(s) {
+        const div = document.createElement('div');
+        div.textContent = s;
+        return div.innerHTML;
+      }
+
+      function startSession() {
+        state.text = pickText();
+        state.index = 0;
+        state.correct = 0;
+        state.errors = 0;
+        state.startTime = null;
+        state.lastWpm = 0;
+        if (state.timerId) clearInterval(state.timerId);
+        state.timerId = setInterval(updateStats, 500);
+        updateStats();
+        renderTyping();
+        if (mobileInput) {
+          mobileInput.focus();
+          mobileInput.value = '';
+        } else {
+          practiceBox.focus();
+        }
+      }
+
+      function restartSession() {
+        state.lastWpm = state.startTime && state.index > 0
+          ? Math.round((state.correct / 5) / ((Date.now() - state.startTime) / 1000 / 60))
+          : 0;
+        startSession();
+      }
+
+      function finishSession() {
+        if (state.timerId) {
+          clearInterval(state.timerId);
+          state.timerId = null;
+        }
+        updateStats();
+        startSession();
+      }
+
+      function highlightKey(char) {
+        document.querySelectorAll('.key-cap').forEach(function (el) {
+          el.classList.remove('key-active', 'key-pressed');
+        });
+        if (!char) return;
+        const key = char.toLowerCase();
+        const map = {
+          ' ': ' ', '\n': 'Enter', '´': '´', '`': '`', 'º': 'º', '¡': '¡', 'ñ': 'ñ', 'ç': 'ç',
+          'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'ü': 'u'
+        };
+        const keyName = map[char] !== undefined ? map[char] : key;
+        const selector = '[data-key="' + keyName + '"]';
+        const el = document.querySelector(selector);
+        if (el) el.classList.add('key-active');
+      }
+
+      function handleKeydown(e) {
+        if (e.ctrlKey || e.metaKey || e.altKey) {
+          if (e.key === 'r' || e.key === 'Tab') e.preventDefault();
+          return;
+        }
+        if (e.key === 'Tab') {
+          e.preventDefault();
+          restartSession();
+          return;
+        }
+        if (!state.text || state.index >= state.text.length) return;
+
+        if (state.startTime === null) state.startTime = Date.now();
+
+        const expected = state.text[state.index];
+        if (e.key === expected) {
+          e.preventDefault();
+          state.index++;
+          state.correct++;
+          state.errors = 0;
+          if (state.index >= state.text.length) finishSession();
+          else {
+            renderTyping();
+            highlightKey(state.text[state.index]);
+          }
+          updateStats();
+        } else if (e.key.length === 1 && !e.repeat) {
+          e.preventDefault();
+          state.errors++;
+          renderTyping();
+          highlightKey(expected);
+          updateStats();
+        }
+      }
+
+      function handleKeyup() {
+        document.querySelectorAll('.key-cap').forEach(function (el) {
+          el.classList.remove('key-pressed');
+        });
+      }
+
+      document.getElementById('btn-restart').addEventListener('click', restartSession);
+      document.getElementById('btn-new').addEventListener('click', finishSession);
+
+      practiceBox.setAttribute('tabindex', '0');
+      practiceBox.addEventListener('keydown', handleKeydown);
+      practiceBox.addEventListener('keyup', handleKeyup);
+      practiceBox.addEventListener('click', function () {
+        if (mobileInput) {
+          mobileInput.focus();
+        } else {
+          practiceBox.focus();
+        }
+      });
+      practiceBox.addEventListener('focus', function () {
+        highlightKey(state.text[state.index]);
+      });
+      practiceBox.addEventListener('blur', function () {
+        document.querySelectorAll('.key-cap').forEach(function (el) {
+          el.classList.remove('key-active', 'key-pressed');
+        });
+      });
+
+      if (mobileInput) {
+        mobileInput.addEventListener('keydown', handleKeydown);
+        mobileInput.addEventListener('keyup', handleKeyup);
+        mobileInput.addEventListener('input', function () {
+          mobileInput.value = '';
+        });
+      }
+
+      document.querySelectorAll('.key-cap').forEach(function (el) {
+        const key = el.getAttribute('data-key');
+        if (!key) return;
+        el.addEventListener('mousedown', function () {
+          el.classList.add('key-pressed');
+        });
+        el.addEventListener('mouseup', function () {
+          el.classList.remove('key-pressed');
+        });
+        el.addEventListener('mouseleave', function () {
+          el.classList.remove('key-pressed');
+        });
+      });
+
+      const LAYOUT_STORAGE_KEY = 'mecanografia-keyboard-layout';
+      function applyKeyboardLayout(layout) {
+        const isApple = layout === 'apple';
+        document.getElementById('layout-apple').classList.toggle('opacity-50', !isApple);
+        document.getElementById('layout-apple').setAttribute('aria-pressed', isApple ? 'true' : 'false');
+        document.getElementById('layout-windows').classList.toggle('opacity-50', isApple);
+        document.getElementById('layout-windows').setAttribute('aria-pressed', isApple ? 'false' : 'true');
+        document.querySelectorAll('.key-label-mod').forEach(function (el) {
+          el.textContent = el.getAttribute('data-layout-' + layout) || el.textContent;
+        });
+        try { localStorage.setItem(LAYOUT_STORAGE_KEY, layout); } catch (e) {}
+      }
+      const savedLayout = localStorage.getItem(LAYOUT_STORAGE_KEY) || 'apple';
+      applyKeyboardLayout(savedLayout);
+      document.getElementById('layout-apple').addEventListener('click', function () { applyKeyboardLayout('apple'); });
+      document.getElementById('layout-windows').addEventListener('click', function () { applyKeyboardLayout('windows'); });
+
+      startSession();
+    })();
+  </script>
+</body>
+</html>
