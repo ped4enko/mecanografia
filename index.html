@@ -26,7 +26,7 @@
   <meta property="og:image:type" content="image/avif"/>
   <meta property="og:locale" content="es_ES"/>
   <!-- Twitter Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:card" content="summary_large_image">
 <meta property="twitter:domain" content="mecanografia.info">
 <meta property="twitter:url" content="https://mecanografia.info/">
 <meta name="twitter:title" content="Mecanografía - Práctica de escritura en español">
@@ -170,6 +170,24 @@
       [data-kb-layout="apple"] .key-mod-side { width: 3.25rem; }
     }
     [aria-invalid="true"] { outline: 2px solid rgb(239 68 68); outline-offset: 2px; }
+    #back-to-top {
+      position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 40;
+      width: 2.75rem; height: 2.75rem; border-radius: 9999px;
+      display: flex; align-items: center; justify-content: center;
+      background: #135bec; color: #fff; border: none; cursor: pointer;
+      box-shadow: 0 8px 24px rgba(19, 91, 236, 0.35);
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transform: translateY(0.5rem);
+      transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+    }
+    #back-to-top.is-visible {
+      opacity: 1; visibility: visible; pointer-events: auto; transform: none;
+    }
+    #back-to-top:hover { background: #0f4bc4; }
+    #back-to-top:focus-visible { outline: 2px solid #135bec; outline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce) {
+      #back-to-top { transition: none; }
+    }
   </style>
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -203,11 +221,9 @@
     </div>
   </header>
 
-  <div class="max-w-6xl mx-auto w-full px-4 sm:px-6 pt-4">
-    <span class="block font-reading text-sm sm:text-base text-slate-600 dark:text-slate-400">
-      Aprende a escribir más rápido en español — gratis, sin registro, con ñ y acentos incluidos. Más de 8.000 personas ya practican aquí.
-    </span>
-  </div>
+  <p class="max-w-6xl mx-auto w-full px-4 sm:px-6 pt-4 font-reading text-sm sm:text-base text-slate-600 dark:text-slate-400">
+    Aprende a escribir más rápido en español — gratis, sin registro, con ñ y acentos incluidos. Más de 8.000 personas ya practican aquí.
+  </p>
 
   <main id="main" class="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 max-w-6xl mx-auto w-full gap-8 sm:gap-12" tabindex="-1">
     <!-- Stats -->
@@ -501,6 +517,10 @@
       <p>© <span id="year">2026</span> Mecanografía. Práctica de escritura en español.</p>
     </div>
   </footer>
+
+  <button type="button" id="back-to-top" aria-label="Volver arriba" title="Volver arriba">
+    <span class="material-symbols-outlined text-2xl leading-none" aria-hidden="true">arrow_upward</span>
+  </button>
 
   <script>
     (function () {
@@ -821,6 +841,16 @@
       applyKeyboardLayout(savedLayout);
       document.getElementById('layout-apple').addEventListener('click', function () { applyKeyboardLayout('apple'); });
       document.getElementById('layout-windows').addEventListener('click', function () { applyKeyboardLayout('windows'); });
+
+      const backToTop = document.getElementById('back-to-top');
+      function updateBackToTop() {
+        backToTop.classList.toggle('is-visible', window.scrollY > window.innerHeight);
+      }
+      window.addEventListener('scroll', updateBackToTop, { passive: true });
+      updateBackToTop();
+      backToTop.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      });
 
       startSession();
     })();
