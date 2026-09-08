@@ -224,6 +224,27 @@
     </div>
   </header>
 
+  <div class="max-w-6xl mx-auto w-full px-4 sm:px-6 pt-4">
+    <div
+      id="session-time-card"
+      class="inline-flex items-center gap-3 sm:gap-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm px-4 py-3 sm:px-5 sm:py-3.5"
+      role="status"
+      aria-live="polite"
+      aria-label="Tiempo total de práctica en esta sesión"
+    >
+      <div class="shrink-0 w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center" aria-hidden="true">
+        <span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400 text-2xl leading-none">emoji_events</span>
+      </div>
+      <div class="min-w-[11rem] sm:min-w-[14rem]">
+        <p class="font-display font-bold text-sm sm:text-base text-slate-800 dark:text-slate-100 leading-tight">Tiempo de sesión</p>
+        <p id="session-time-label" class="font-reading text-sm text-slate-500 dark:text-slate-400 leading-tight mt-0.5">0 minutos de práctica</p>
+        <div class="mt-2 h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Progreso hacia 10 minutos">
+          <div id="session-time-bar" class="h-full rounded-full bg-emerald-500 transition-[width] duration-300 ease-out" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <p class="max-w-6xl mx-auto w-full px-4 sm:px-6 pt-4 font-reading text-sm sm:text-base text-slate-600 dark:text-slate-400">
     Aprende a escribir más rápido en español — gratis, sin registro, con ñ y acentos incluidos. Más de 8.000 personas ya practican aquí.
   </p>
@@ -568,9 +589,11 @@
         startTime: null,
         timerId: null,
         lastWpm: 0,
+        sessionPracticeMs: 0,
         bestWpm: parseInt(localStorage.getItem(STORAGE_KEY + '-best') || '0', 10)
       };
 
+      const SESSION_GOAL_MS = 10 * 60 * 1000;
       const typedEl = document.getElementById('typed');
       const currentEl = document.getElementById('current');
       const remainingEl = document.getElementById('remaining');
@@ -584,6 +607,8 @@
       const statTimeMeta = document.getElementById('stat-time-meta');
       const statLevel = document.getElementById('stat-level');
       const statLevelBar = document.getElementById('stat-level-bar');
+      const sessionTimeLabel = document.getElementById('session-time-label');
+      const sessionTimeBar = document.getElementById('session-time-bar');
 
       function pickText() {
         return TEXTS[Math.floor(Math.random() * TEXTS.length)];
@@ -601,6 +626,37 @@
         const m = Math.floor(sec / 60);
         const s = Math.floor(sec % 60);
         return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+      }
+
+      function getSessionPracticeMs() {
+        return state.sessionPracticeMs + (state.startTime ? Date.now() - state.startTime : 0);
+      }
+
+      function bankPracticeTime() {
+        if (!state.startTime) return;
+        state.sessionPracticeMs += Date.now() - state.startTime;
+        state.startTime = null;
+      }
+
+      function formatPracticeLabel(ms) {
+        const totalSec = Math.floor(ms / 1000);
+        const minutes = Math.floor(totalSec / 60);
+        const seconds = totalSec % 60;
+        if (minutes <= 0) {
+          return seconds + (seconds === 1 ? ' segundo de práctica' : ' segundos de práctica');
+        }
+        if (seconds === 0) {
+          return minutes + (minutes === 1 ? ' minuto de práctica' : ' minutos de práctica');
+        }
+        return minutes + (minutes === 1 ? ' minuto' : ' minutos') + ' ' + seconds + ' s de práctica';
+      }
+
+      function updateSessionTimeCard() {
+        const ms = getSessionPracticeMs();
+        sessionTimeLabel.textContent = formatPracticeLabel(ms);
+        const pct = Math.min(100, (ms / SESSION_GOAL_MS) * 100);
+        sessionTimeBar.style.width = pct + '%';
+        sessionTimeBar.parentElement.setAttribute('aria-valuenow', String(Math.round(pct)));
       }
 
       function updateStats() {
@@ -628,6 +684,7 @@
         }
 
         statTime.textContent = formatTime(elapsed);
+        updateSessionTimeCard();
 
         const level = getLevel(wpm, accuracy / 100);
         statLevel.textContent = level.name;
@@ -671,6 +728,7 @@
       }
 
       function startSession() {
+        bankPracticeTime();
         state.text = pickText();
         state.index = 0;
         state.correct = 0;
