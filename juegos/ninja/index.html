@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ninja del teclado — juego de mecanografía | mecanografia.info</title>
+  <meta name="description" content="Juego gratis de mecanografía: las letras caen y tienes que pulsar la tecla correcta antes de que toquen el suelo. Fila base, ñ, tildes y ¿ ¡ del teclado español."/>
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Mecanografia" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="canonical" href="https://mecanografia.info/juegos/ninja/" />
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://mecanografia.info/juegos/ninja/"/>
+  <meta property="og:title" content="Ninja del teclado — juego de mecanografía"/>
+  <meta property="og:description" content="Las letras caen y tienes que pulsar la tecla correcta antes de que toquen el suelo. Entrena la escritura a ciegas con el teclado español."/>
+  <meta property="og:image" content="https://mecanografia.info/og.jpg"/>
+  <meta property="og:locale" content="es_ES"/>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:domain" content="mecanografia.info">
+  <meta property="twitter:url" content="https://mecanografia.info/juegos/ninja/">
+  <meta name="twitter:title" content="Ninja del teclado — juego de mecanografía">
+  <meta name="twitter:description" content="Las letras caen y tienes que pulsar la tecla correcta antes de que toquen el suelo. Entrena la escritura a ciegas con el teclado español.">
+  <meta name="twitter:image" content="https://mecanografia.info/og.jpg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Ninja del teclado",
+    "description": "Juego de mecanografía en español: pulsa la tecla de cada letra que cae antes de que toque el suelo.",
+    "url": "https://mecanografia.info/juegos/ninja/",
+    "inLanguage": "es",
+    "genre": "Educational",
+    "gamePlatform": "Web browser",
+    "applicationCategory": "Game",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "publisher": { "@type": "Organization", "name": "Mecanografía", "url": "https://mecanografia.info" }
+  }
+  </script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: { "primary": "#135bec", "background-light": "#f6f6f8", "background-dark": "#101622" },
+          fontFamily: { "display": ["Lexend", "sans-serif"], "reading": ["Atkinson Hyperlegible", "sans-serif"] },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+  <style>
+    /* Critical game styles: keep the canvas usable even if the Tailwind CDN is blocked. */
+    .game-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid rgb(226 232 240);
+      background: #eef2f7;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+    }
+    .dark .game-frame {
+      border-color: rgb(30 41 59);
+      background: #0b1220;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+    }
+    .game-frame canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      outline: none;
+    }
+    .game-frame canvas[data-phase="playing"] { cursor: default; }
+  </style>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vkghhjthlf");
+  </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-x-hidden">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-6 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg">Saltar al juego</a>
+
+  <header class="border-b border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <div class="bg-primary p-1.5 rounded-lg text-white" aria-hidden="true">
+          <span class="material-symbols-outlined leading-none text-xl sm:text-2xl">keyboard</span>
+        </div>
+        <span class="text-lg sm:text-xl font-bold tracking-tight">Mecanografía</span>
+      </a>
+      <nav class="flex items-center gap-3 sm:gap-6" aria-label="Main">
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="/">Práctica</a>
+        <a class="text-primary font-medium" href="/juegos/">Juegos</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm sm:text-base" href="/sin-tildes/">Sin tildes</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm" href="/en/">EN</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm" href="/cat/">Català</a>
+        <button type="button" id="theme-toggle" class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full" aria-label="Toggle dark mode">
+          <span class="material-symbols-outlined">dark_mode</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="flex-1 flex flex-col items-center p-4 sm:p-6 max-w-6xl mx-auto w-full gap-8 sm:gap-10" tabindex="-1">
+    <div class="w-full flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="mb-2">
+          <a href="/juegos/" class="text-sm font-semibold text-primary hover:underline inline-flex items-center gap-1">
+            <span class="material-symbols-outlined text-base" aria-hidden="true">arrow_back</span>
+            Todos los juegos
+          </a>
+        </p>
+        <h1 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-slate-100 tracking-tight">Ninja del teclado</h1>
+        <p class="font-reading text-sm sm:text-base text-slate-600 dark:text-slate-400 mt-1">Pulsa la tecla de cada letra antes de que toque el suelo.</p>
+      </div>
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button type="button" id="btn-sound" class="p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark" aria-label="Silenciar" aria-pressed="false">
+          <span class="material-symbols-outlined leading-none" aria-hidden="true">volume_up</span>
+        </button>
+        <button type="button" id="btn-start" class="flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark">
+          Empezar
+        </button>
+      </div>
+    </div>
+
+    <section id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 w-full" aria-live="polite" aria-label="Estadísticas de la partida">
+      <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-3 sm:p-4 rounded-xl flex flex-col items-center justify-center gap-0.5">
+        <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest">Puntos</span>
+        <span id="stat-score" class="text-2xl sm:text-3xl font-bold">0</span>
+      </div>
+      <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-3 sm:p-4 rounded-xl flex flex-col items-center justify-center gap-0.5">
+        <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest">Racha máx.</span>
+        <span id="stat-combo" class="text-2xl sm:text-3xl font-bold">0</span>
+      </div>
+      <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-3 sm:p-4 rounded-xl flex flex-col items-center justify-center gap-0.5">
+        <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest">Nivel</span>
+        <span id="stat-level" class="text-2xl sm:text-3xl font-bold">1</span>
+      </div>
+      <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-3 sm:p-4 rounded-xl flex flex-col items-center justify-center gap-0.5">
+        <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest">Mejor</span>
+        <span id="stat-best" class="text-2xl sm:text-3xl font-bold">0</span>
+      </div>
+    </section>
+
+    <div class="w-full hidden md:block">
+      <div class="game-frame">
+        <canvas id="game-canvas" width="960" height="540" role="img" aria-label="Zona de juego: letras que caen. Controla el juego con el teclado." tabindex="0" data-phase="idle"></canvas>
+      </div>
+      <p class="mt-3 text-center text-xs text-slate-500 dark:text-slate-400 flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+        <span><kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800">Enter</kbd> empezar</span>
+        <span><kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800">Esc</kbd> pausa</span>
+        <span>Teclado: Español (ISO)</span>
+      </p>
+    </div>
+
+    <div class="w-full md:hidden rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-white/40 dark:bg-slate-900/20 p-6 text-center font-reading text-slate-600 dark:text-slate-400">
+      <span class="material-symbols-outlined text-3xl text-primary mb-2" aria-hidden="true">keyboard</span>
+      <p>Este juego necesita un teclado físico. Ábrelo en un ordenador para jugar.</p>
+    </div>
+
+    <section id="como-jugar" class="w-full max-w-3xl mx-auto font-reading text-slate-700 dark:text-slate-300 pt-4" aria-labelledby="como-jugar-title">
+      <h2 id="como-jugar-title" class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Cómo se juega</h2>
+      <ol class="list-decimal pl-5 space-y-2 leading-relaxed">
+        <li>Coloca los dedos en la posición base: <strong>a s d f</strong> con la mano izquierda y <strong>j k l ñ</strong> con la derecha.</li>
+        <li>Cuando una letra caiga, pulsa su tecla sin mirar el teclado. Si hay varias iguales, se elimina la más cercana al suelo.</li>
+        <li>Cada acierto suma puntos; los aciertos seguidos aumentan la racha y el bonus.</li>
+        <li>Si una letra toca el suelo pierdes una vida. Tienes tres.</li>
+        <li>Cada 12 aciertos subes de nivel: primero la fila superior, luego la inferior, después las <strong>tildes</strong>, los signos <strong>¿ ¡</strong> y por último mayúsculas.</li>
+      </ol>
+      <p class="mt-5 leading-relaxed">Para las vocales con tilde usa la tecla de acento (<kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-xs">´</kbd>) y después la vocal, como al escribir normalmente. Las mayúsculas requieren <kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-xs">Shift</kbd>.</p>
+      <p class="mt-5">
+        <a href="/" class="inline-flex items-center gap-2 px-4 py-2.5 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 font-semibold rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-600 focus:ring-offset-2 dark:focus:ring-offset-background-dark">
+          <span class="material-symbols-outlined text-lg" aria-hidden="true">keyboard</span>
+          Practicar con textos reales
+        </a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="py-6 px-4 sm:px-6 border-t border-slate-200 dark:border-slate-800 text-center">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 max-w-6xl mx-auto text-sm text-slate-500">
+      <div class="flex items-center gap-4 sm:gap-6 flex-wrap justify-center">
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/">Práctica</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/juegos/">Juegos</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/sin-tildes/">Sin tildes</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/para-ninos/">Para niños</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/literatura/">Literatura</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/velocidad-promedio/">Velocidad</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/contact/">Contacto</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/en/">EN</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/cat/">Català</a>
+      </div>
+      <p>© <span id="year">2026</span> Mecanografía. Práctica de escritura en español.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      document.getElementById('year').textContent = new Date().getFullYear();
+      function applyTheme(dark) {
+        document.documentElement.classList.toggle('dark', dark);
+        var icon = document.querySelector('#theme-toggle .material-symbols-outlined');
+        if (icon) icon.textContent = dark ? 'light_mode' : 'dark_mode';
+        try { localStorage.setItem('mecanografia-theme', dark ? 'dark' : 'light'); } catch (e) {}
+      }
+      var saved = localStorage.getItem('mecanografia-theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(saved === 'dark' || (saved !== 'light' && prefersDark));
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        applyTheme(!document.documentElement.classList.contains('dark'));
+      });
+    })();
+  </script>
+  <script src="/assets/js/game-core.js"></script>
+  <script src="/assets/js/games/ninja.js"></script>
+</body>
+</html>
