@@ -41,6 +41,11 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://mecanografia.info/juegos/letras/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://mecanografia.info/juegos/ninja/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -106,22 +111,27 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://mecanografia.info/cursos-mecanografia/norteamerica/</loc>
+    <loc>https://mecanografia.info/cursos/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mecanografia.info/cursos/norteamerica/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mecanografia.info/cursos-mecanografia/sudamerica/</loc>
+    <loc>https://mecanografia.info/cursos/sudamerica/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mecanografia.info/cursos-mecanografia/europa/</loc>
+    <loc>https://mecanografia.info/cursos/europa/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mecanografia.info/cursos-mecanografia/europa/espana/</loc>
+    <loc>https://mecanografia.info/cursos/europa/espana/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

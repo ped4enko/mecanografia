@@ -322,6 +322,12 @@
       hit: function () { tone(880, 0.07, 'square', 0.06); tone(1320, 0.09, 'sine', 0.05); },
       miss: function () { tone(180, 0.18, 'sawtooth', 0.07); },
       lose: function () { tone(240, 0.2, 'triangle', 0.1); tone(150, 0.35, 'triangle', 0.09, 0.08); },
+      explode: function () {
+        tone(90, 0.28, 'sawtooth', 0.14);
+        tone(55, 0.42, 'triangle', 0.12, 0.04);
+        tone(180, 0.14, 'square', 0.08, 0.02);
+        tone(40, 0.5, 'sine', 0.1, 0.08);
+      },
       level: function () { tone(523, 0.12, 'sine', 0.09); tone(659, 0.12, 'sine', 0.09, 0.09); tone(784, 0.16, 'sine', 0.09, 0.18); },
       over: function () { tone(392, 0.2, 'triangle', 0.1); tone(311, 0.2, 'triangle', 0.1, 0.18); tone(233, 0.45, 'triangle', 0.1, 0.36); },
       isMuted: function () { return muted; },
@@ -352,6 +358,49 @@
     };
   }
 
+  /* ---------- media helpers (images / file audio) ---------- */
+
+  function loadImage(src) {
+    return new Promise(function (resolve, reject) {
+      var img = new Image();
+      img.onload = function () { resolve(img); };
+      img.onerror = function () { reject(new Error('Failed to load image: ' + src)); };
+      img.src = src;
+    });
+  }
+
+  function loadAudio(src) {
+    return new Promise(function (resolve, reject) {
+      var a = new Audio();
+      a.preload = 'auto';
+      function done() {
+        a.removeEventListener('canplaythrough', done);
+        a.removeEventListener('error', fail);
+        resolve(a);
+      }
+      function fail() {
+        a.removeEventListener('canplaythrough', done);
+        a.removeEventListener('error', fail);
+        reject(new Error('Failed to load audio: ' + src));
+      }
+      a.addEventListener('canplaythrough', done);
+      a.addEventListener('error', fail);
+      a.src = src;
+      a.load();
+    });
+  }
+
+  function loadAssets(map) {
+    var keys = Object.keys(map);
+    var out = {};
+    return Promise.all(keys.map(function (key) {
+      var src = map[key];
+      var lower = String(src).toLowerCase();
+      var loader = /\.(png|jpe?g|webp|gif|svg)(\?|$)/.test(lower) ? loadImage : loadAudio;
+      return loader(src).then(function (asset) { out[key] = asset; });
+    })).then(function () { return out; });
+  }
+
   global.MecanografiaGame = {
     LOGICAL_W: LOGICAL_W,
     LOGICAL_H: LOGICAL_H,
@@ -362,6 +411,9 @@
     createShake: createShake,
     createAudio: createAudio,
     createScores: createScores,
+    loadImage: loadImage,
+    loadAudio: loadAudio,
+    loadAssets: loadAssets,
     palette: palette,
     roundRect: roundRect,
     randomBetween: randomBetween,

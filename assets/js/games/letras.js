@@ -1,7 +1,6 @@
 /*
- * Ninja del teclado — fruit-slice edition (assets ready; gameplay still letter-based
- * until fruit frames / slash / monkey are wired). Spanish layout aware (ñ, tildes, ¿ ¡).
- * Letter-only copy lives at /juegos/letras/ (assets/js/games/letras.js).
+ * Letras que caen — letters fall from the top, press the matching key
+ * before they hit the ground. Spanish layout aware (ñ, tildes, ¿ ¡).
  * Depends on /assets/js/game-core.js
  */
 (function () {
@@ -9,28 +8,6 @@
 
   var G = window.MecanografiaGame;
   if (!G) return;
-
-  var ASSET_BASE = '/assets/games/ninja';
-  var ASSET_URLS = {
-    apple: ASSET_BASE + '/fruits/apple.png',
-    banana: ASSET_BASE + '/fruits/banana.png',
-    coconut: ASSET_BASE + '/fruits/coconut.png',
-    lime: ASSET_BASE + '/fruits/lime.png',
-    orange: ASSET_BASE + '/fruits/orange.png',
-    strawberry: ASSET_BASE + '/fruits/strawberry.png',
-    bg: ASSET_BASE + '/sprites/bg.jpg',
-    stage: ASSET_BASE + '/sprites/stage.png',
-    effects: ASSET_BASE + '/sprites/effects.png',
-    slashes: ASSET_BASE + '/sprites/slashes.png',
-    splatter: ASSET_BASE + '/sprites/splatter.png',
-    monkey: ASSET_BASE + '/sprites/monkey.png',
-    sfxPop: ASSET_BASE + '/sounds/pop.mp3',
-    sfxError: ASSET_BASE + '/sounds/error.mp3',
-    sfxIntro: ASSET_BASE + '/sounds/intro.mp3',
-    sfxGame: ASSET_BASE + '/sounds/game.mp3',
-    sfxBank: ASSET_BASE + '/sounds/sounds.mp3'
-  };
-  var media = null;
 
   var canvas = document.getElementById('game-canvas');
   if (!canvas) return;
@@ -43,18 +20,7 @@
   var particles = G.createParticles();
   var shake = G.createShake();
   var audio = G.createAudio('mecanografia-games-muted');
-  var scores = G.createScores('mecanografia-juego-ninja-best');
-
-  // Preload fruit / SFX / sprite sheets for the next animation pass.
-  G.loadAssets(ASSET_URLS).then(function (loaded) {
-    media = loaded;
-    if (location.hash === '#debug') {
-      window.__ninjaMedia = media;
-      console.info('[ninja] assets ready', Object.keys(media));
-    }
-  }).catch(function (err) {
-    console.warn('[ninja] asset preload failed', err);
-  });
+  var scores = G.createScores('mecanografia-juego-letras-best');
 
   var HOME = 'asdfghjklñ'.split('');
   var TOP = 'qwertyuiop'.split('');
@@ -65,9 +31,6 @@
   var GROUND_Y = H - 56;
   var LIVES_START = 3;
   var HITS_PER_LEVEL = 12;
-  var BOMB_CHANCE_BASE = 0.12;
-  var BOMB_CHANCE_PER_LEVEL = 0.025;
-  var BOMB_SCORE_PENALTY = 50;
 
   var state;
   var els = {
@@ -85,7 +48,6 @@
     state = {
       phase: 'idle', // idle | playing | paused | over
       letters: [],
-      blasts: [],
       score: 0,
       combo: 0,
       maxCombo: 0,
@@ -134,96 +96,26 @@
     return p.text;
   }
 
-  function fallingChars(kind) {
-    var map = {};
-    for (var i = 0; i < state.letters.length; i++) {
-      var o = state.letters[i];
-      if (o.state !== 'fall') continue;
-      if (kind && o.kind !== kind) continue;
-      map[o.ch] = true;
-    }
-    return map;
-  }
-
-  function pickChar(pool, banned) {
-    var options = [];
-    for (var i = 0; i < pool.length; i++) {
-      if (!banned[pool[i]]) options.push(pool[i]);
-    }
-    if (!options.length) return null;
-    return G.pick(options);
-  }
-
-  function pickSpawnX() {
+  function spawnLetter() {
+    var pool = poolForLevel(state.level);
+    var ch = G.pick(pool);
+    // Keep clear of the HUD pills (level pill top-left, hearts top-right).
     var x = G.randomBetween(120, W - 120);
+    // Avoid stacking directly on top of a fresh letter.
     for (var i = 0; i < state.letters.length; i++) {
       var o = state.letters[i];
-      if (o.y < 80 && Math.abs(o.x - x) < 70) {
+      if (o.y < 80 && Math.abs(o.x - x) < 56) {
         x = G.randomBetween(120, W - 120);
         break;
       }
     }
-    return x;
-  }
-
-  function countBombs() {
-    var n = 0;
-    for (var i = 0; i < state.letters.length; i++) {
-      if (state.letters[i].kind === 'bomb' && state.letters[i].state === 'fall') n++;
-    }
-    return n;
-  }
-
-  function shouldSpawnBomb() {
-    if (state.level < 2) return false;
-    if (countBombs() >= 1) return false;
-    var chance = Math.min(0.32, BOMB_CHANCE_BASE + (state.level - 2) * BOMB_CHANCE_PER_LEVEL);
-    return Math.random() < chance;
-  }
-
-  function playClip(key) {
-    if (audio.isMuted() || !media || !media[key]) return;
-    try {
-      var clip = media[key].cloneNode ? media[key].cloneNode() : media[key];
-      clip.currentTime = 0;
-      var p = clip.play();
-      if (p && p.catch) p.catch(function () {});
-    } catch (e) {}
-  }
-
-  function playBombBoom() {
-    audio.explode();
-    playClip('sfxError');
-  }
-
-  function spawnLetter() {
-    var pool = poolForLevel(state.level);
-    var fruitChars = fallingChars('letter');
-    var bombChars = fallingChars('bomb');
-    var isBomb = shouldSpawnBomb();
-    var ch;
-
-    if (isBomb) {
-      // Never share a letter with a fruit already falling — impossible choice.
-      ch = pickChar(pool, fruitChars);
-      if (!ch) isBomb = false;
-    }
-    if (!isBomb) {
-      // Also avoid matching an on-screen bomb letter.
-      ch = pickChar(pool, bombChars);
-      if (!ch) ch = G.pick(pool);
-    }
-
-    var x = pickSpawnX();
     state.letters.push({
-      kind: isBomb ? 'bomb' : 'letter',
       ch: ch,
       x: x,
-      y: -40,
-      vy: fallSpeed(state.level) * G.randomBetween(0.85, 1.15) * (isBomb ? 0.9 : 1),
+      y: -30,
+      vy: fallSpeed(state.level) * G.randomBetween(0.85, 1.2),
       wobble: Math.random() * Math.PI * 2,
-      rot: G.randomBetween(-0.12, 0.12),
-      fuse: Math.random() * Math.PI * 2,
+      rot: G.randomBetween(-0.15, 0.15),
       state: 'fall',
       alpha: 1,
       scale: 1,
@@ -232,11 +124,7 @@
   }
 
   function addPopup(text, x, y, color) {
-    state.popups.push({ text: text, x: x, y: y, age: 0, life: 0.85, color: color });
-  }
-
-  function addBlast(x, y) {
-    state.blasts.push({ x: x, y: y, age: 0, life: 0.55 });
+    state.popups.push({ text: text, x: x, y: y, age: 0, life: 0.7, color: color });
   }
 
   function setPhase(p) {
@@ -274,26 +162,6 @@
     if (els.best) els.best.textContent = scores.best();
   }
 
-  function explodeBomb(bomb) {
-    bomb.state = 'explode';
-    bomb.age = 0;
-    bomb.alpha = 1;
-    bomb.scale = 1;
-    state.combo = 0;
-    var penalty = BOMB_SCORE_PENALTY;
-    state.score = Math.max(0, state.score - penalty);
-    state.flash = 0.6;
-    shake.trigger(16, 0.5);
-    addBlast(bomb.x, bomb.y);
-    particles.burst(bomb.x, bomb.y, { color: '#fb923c', count: 28, speed: 320, life: 0.7, size: 5 });
-    particles.burst(bomb.x, bomb.y, { color: '#fef08a', count: 16, speed: 240, life: 0.45, size: 3 });
-    particles.burst(bomb.x, bomb.y, { color: '#111827', count: 14, speed: 180, life: 0.55, size: 4 });
-    addPopup('-' + penalty, bomb.x, bomb.y - 34, G.palette().danger);
-    playBombBoom();
-    state.lives--;
-    if (state.lives <= 0) gameOver();
-  }
-
   function handleChar(ch) {
     if (state.phase !== 'playing') {
       if (state.phase === 'idle' || state.phase === 'over') {
@@ -311,26 +179,22 @@
 
     var p = G.palette();
     if (target) {
-      if (target.kind === 'bomb') {
-        explodeBomb(target);
-      } else {
-        target.state = 'hit';
-        target.age = 0;
-        state.combo++;
-        state.maxCombo = Math.max(state.maxCombo, state.combo);
-        var gained = 10 + Math.min(40, (state.combo - 1) * 2);
-        state.score += gained;
-        state.hits++;
-        particles.burst(target.x, target.y, { color: categoryColor(target.ch, p), count: 16, speed: 240 });
-        addPopup('+' + gained, target.x, target.y - 24, p.primary);
-        audio.hit();
+      target.state = 'hit';
+      target.age = 0;
+      state.combo++;
+      state.maxCombo = Math.max(state.maxCombo, state.combo);
+      var gained = 10 + Math.min(40, (state.combo - 1) * 2);
+      state.score += gained;
+      state.hits++;
+      particles.burst(target.x, target.y, { color: categoryColor(target.ch, p), count: 16, speed: 240 });
+      addPopup('+' + gained, target.x, target.y - 24, p.primary);
+      audio.hit();
 
-        var newLevel = 1 + Math.floor(state.hits / HITS_PER_LEVEL);
-        if (newLevel > state.level) {
-          state.level = newLevel;
-          state.levelFlash = 1.2;
-          audio.level();
-        }
+      var newLevel = 1 + Math.floor(state.hits / HITS_PER_LEVEL);
+      if (newLevel > state.level) {
+        state.level = newLevel;
+        state.levelFlash = 1.2;
+        audio.level();
       }
     } else {
       state.combo = 0;
@@ -364,11 +228,6 @@
       if (pop.age >= pop.life) state.popups.splice(k, 1);
     }
 
-    for (var b = state.blasts.length - 1; b >= 0; b--) {
-      state.blasts[b].age += dt;
-      if (state.blasts[b].age >= state.blasts[b].life) state.blasts.splice(b, 1);
-    }
-
     if (state.phase !== 'playing') return;
 
     state.time += dt;
@@ -381,22 +240,14 @@
     for (var i = state.letters.length - 1; i >= 0; i--) {
       var l = state.letters[i];
       l.age += dt;
-      if (l.kind === 'bomb' && l.state === 'fall') l.fuse += dt * 10;
       if (l.state === 'fall') {
         l.y += l.vy * dt;
         l.wobble += dt * 2.2;
-        if (l.kind === 'bomb') {
-          // Ignoring a bomb is correct — leave the playfield with no penalty.
-          if (l.y > H + 40) state.letters.splice(i, 1);
-        } else if (l.y >= GROUND_Y) {
+        if (l.y >= GROUND_Y) {
           state.letters.splice(i, 1);
           loseLife(l);
           if (state.phase !== 'playing') return;
         }
-      } else if (l.state === 'explode') {
-        l.scale = 1 + l.age * 2.8;
-        l.alpha = 1 - l.age / 0.45;
-        if (l.age >= 0.45) state.letters.splice(i, 1);
       } else {
         l.scale += 3 * dt;
         l.alpha -= 4 * dt;
@@ -428,159 +279,6 @@
     ctx.setLineDash([]);
   }
 
-  function drawBomb(l) {
-    var r = 28;
-    // Outer danger halo — keeps bombs distinct from dark fruit tiles.
-    ctx.fillStyle = 'rgba(250, 204, 21, 0.22)';
-    ctx.beginPath();
-    ctx.arc(0, 2, r + 10, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Body: glossy black sphere with hard yellow outline
-    var body = ctx.createRadialGradient(-9, -11, 3, 0, 2, r);
-    body.addColorStop(0, '#6b7280');
-    body.addColorStop(0.35, '#1f2937');
-    body.addColorStop(1, '#020617');
-    ctx.fillStyle = body;
-    ctx.beginPath();
-    ctx.arc(0, 2, r, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.strokeStyle = '#facc15';
-    ctx.lineWidth = 3;
-    ctx.stroke();
-
-    // Yellow/black hazard band
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(0, 2, r - 1, 0, Math.PI * 2);
-    ctx.clip();
-    ctx.fillStyle = '#facc15';
-    ctx.fillRect(-r, -4, r * 2, 12);
-    ctx.fillStyle = '#0f172a';
-    for (var s = -r; s < r; s += 10) {
-      ctx.beginPath();
-      ctx.moveTo(s, -4);
-      ctx.lineTo(s + 5, -4);
-      ctx.lineTo(s + 11, 8);
-      ctx.lineTo(s + 6, 8);
-      ctx.closePath();
-      ctx.fill();
-    }
-    ctx.restore();
-
-    // Spikes / studs around the rim
-    ctx.fillStyle = '#cbd5e1';
-    for (var a = 0; a < Math.PI * 2; a += Math.PI / 4) {
-      var sx = Math.cos(a) * (r + 2);
-      var sy = 2 + Math.sin(a) * (r + 2);
-      ctx.beginPath();
-      ctx.arc(sx, sy, 3.2, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    // Metal fuse base
-    ctx.fillStyle = '#94a3b8';
-    G.roundRect(ctx, -8, -r - 4, 16, 12, 3);
-    ctx.fill();
-    ctx.strokeStyle = '#64748b';
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-
-    // Visible fuse
-    ctx.strokeStyle = '#e7c27d';
-    ctx.lineWidth = 3.5;
-    ctx.lineCap = 'round';
-    ctx.beginPath();
-    ctx.moveTo(0, -r + 2);
-    var fx = Math.sin(l.fuse) * 6;
-    var fy = -r - 20 + Math.cos(l.fuse * 0.7) * 2;
-    ctx.quadraticCurveTo(fx + 8, -r - 12, fx, fy);
-    ctx.stroke();
-
-    // Spark
-    var sparkPulse = 0.7 + 0.3 * Math.sin(l.fuse * 3);
-    ctx.fillStyle = 'rgba(248, 113, 113, 0.35)';
-    ctx.beginPath();
-    ctx.arc(fx, fy - 2, 8 * sparkPulse, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = 'rgba(251, 146, 60, ' + sparkPulse + ')';
-    ctx.beginPath();
-    ctx.arc(fx, fy, 5 * sparkPulse, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = '#fef08a';
-    ctx.beginPath();
-    ctx.arc(fx, fy, 2.4, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Skull mark — unmistakably a bomb, not a fruit
-    ctx.fillStyle = '#f8fafc';
-    ctx.beginPath();
-    ctx.arc(0, -2, 7, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = '#0f172a';
-    ctx.beginPath();
-    ctx.arc(-2.5, -3, 1.6, 0, Math.PI * 2);
-    ctx.arc(2.5, -3, 1.6, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillRect(-1.2, 0, 2.4, 3);
-
-    // Letter badge (high contrast)
-    ctx.fillStyle = '#ef4444';
-    G.roundRect(ctx, -15, 8, 30, 22, 7);
-    ctx.fill();
-    ctx.strokeStyle = '#fef08a';
-    ctx.lineWidth = 2;
-    ctx.stroke();
-    ctx.fillStyle = '#ffffff';
-    ctx.font = '700 18px Lexend, "Atkinson Hyperlegible", sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(l.ch, 0, 20);
-  }
-
-  function drawExplosion(l) {
-    var t = Math.min(1, l.age / 0.45);
-    var radius = 18 + t * 70;
-    var alpha = 1 - t;
-    ctx.globalAlpha = alpha;
-    var fire = ctx.createRadialGradient(0, 0, 2, 0, 0, radius);
-    fire.addColorStop(0, '#fff7ed');
-    fire.addColorStop(0.25, '#fbbf24');
-    fire.addColorStop(0.55, '#f97316');
-    fire.addColorStop(1, 'rgba(127, 29, 29, 0)');
-    ctx.fillStyle = fire;
-    ctx.beginPath();
-    ctx.arc(0, 0, radius, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(254, 240, 138, ' + alpha + ')';
-    ctx.lineWidth = 4;
-    ctx.beginPath();
-    ctx.arc(0, 0, radius * 0.7, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.globalAlpha = 1;
-  }
-
-  function drawBlasts() {
-    for (var i = 0; i < state.blasts.length; i++) {
-      var b = state.blasts[i];
-      var t = b.age / b.life;
-      var r = 30 + t * 90;
-      ctx.save();
-      ctx.globalAlpha = (1 - t) * 0.55;
-      ctx.strokeStyle = '#fb923c';
-      ctx.lineWidth = 6 * (1 - t);
-      ctx.beginPath();
-      ctx.arc(b.x, b.y, r, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.strokeStyle = '#fef08a';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.arc(b.x, b.y, r * 0.55, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.restore();
-    }
-  }
-
   function drawLetters(p) {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
@@ -589,27 +287,21 @@
       var wob = l.state === 'fall' ? Math.sin(l.wobble) * 4 : 0;
       ctx.save();
       ctx.translate(l.x + wob, l.y);
-      if (l.state !== 'explode') ctx.rotate(l.rot);
+      ctx.rotate(l.rot);
       ctx.scale(l.scale, l.scale);
       ctx.globalAlpha = Math.max(0, l.alpha);
 
-      if (l.state === 'explode') {
-        drawExplosion(l);
-      } else if (l.kind === 'bomb') {
-        drawBomb(l);
-      } else {
-        var color = categoryColor(l.ch, p);
-        ctx.fillStyle = p.dark ? 'rgba(30, 41, 59, 0.95)' : 'rgba(255, 255, 255, 0.96)';
-        ctx.strokeStyle = color;
-        ctx.lineWidth = 2;
-        G.roundRect(ctx, -24, -24, 48, 48, 10);
-        ctx.fill();
-        ctx.stroke();
+      var color = categoryColor(l.ch, p);
+      ctx.fillStyle = p.dark ? 'rgba(30, 41, 59, 0.95)' : 'rgba(255, 255, 255, 0.96)';
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      G.roundRect(ctx, -24, -24, 48, 48, 10);
+      ctx.fill();
+      ctx.stroke();
 
-        ctx.fillStyle = color;
-        ctx.font = '700 28px Lexend, "Atkinson Hyperlegible", sans-serif';
-        ctx.fillText(l.ch, 0, 2);
-      }
+      ctx.fillStyle = color;
+      ctx.font = '700 28px Lexend, "Atkinson Hyperlegible", sans-serif';
+      ctx.fillText(l.ch, 0, 2);
       ctx.restore();
     }
     ctx.globalAlpha = 1;
@@ -682,14 +374,14 @@
     if (state.phase === 'idle') {
       ctx.fillStyle = p.text;
       ctx.font = '700 40px Lexend, sans-serif';
-      ctx.fillText('Ninja del teclado', W / 2, H / 2 - 70);
+      ctx.fillText('Letras que caen', W / 2, H / 2 - 70);
       ctx.fillStyle = p.muted;
       ctx.font = '400 18px "Atkinson Hyperlegible", sans-serif';
-      ctx.fillText('Las letras caen. Pulsa la tecla correcta antes de que toquen el suelo.', W / 2, H / 2 - 28);
-      ctx.fillText('Si aparece una bomba (mecha + calavera), NO pulses su letra: -50 pts y una vida.', W / 2, H / 2 + 2);
+      ctx.fillText('Las letras caen. Pulsa la tecla correcta antes de que toquen el suelo.', W / 2, H / 2 - 22);
+      ctx.fillText('Empieza con la fila base (a s d f · j k l ñ). Luego llegan tildes, ¿ ¡ y mayúsculas.', W / 2, H / 2 + 8);
       ctx.fillStyle = p.primary;
       ctx.font = '600 20px Lexend, sans-serif';
-      ctx.fillText('Pulsa Enter o Espacio para empezar', W / 2, H / 2 + 58);
+      ctx.fillText('Pulsa Enter o Espacio para empezar', W / 2, H / 2 + 64);
     } else if (state.phase === 'paused') {
       ctx.fillStyle = p.text;
       ctx.font = '700 36px Lexend, sans-serif';
@@ -726,7 +418,6 @@
     ctx.translate(off.x, off.y);
     drawBackground(p);
     drawLetters(p);
-    drawBlasts();
     particles.draw(ctx);
     drawHud(p);
     ctx.restore();
@@ -797,6 +488,6 @@
   G.createLoop({ update: update, render: render }).start();
 
   if (location.hash === '#debug') {
-    window.__ninjaState = function () { return state; };
+    window.__letrasState = function () { return state; };
   }
 })();

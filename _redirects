@@ -2,3 +2,6 @@
 /panini/] /panini/ 301
 /mecanografia-sin-tildes /sin-tildes/ 301
 /mecanografia-sin-tildes/ /sin-tildes/ 301
+/cursos-mecanografia /cursos/ 301
+/cursos-mecanografia/ /cursos/ 301
+/cursos-mecanografia/* /cursos/:splat 301
