@@ -1,7 +1,6 @@
 /*
- * Ninja del teclado — fruit-slice edition (assets ready; gameplay still letter-based
- * until fruit frames / slash / monkey are wired). Spanish layout aware (ñ, tildes, ¿ ¡).
- * Letter-only copy lives at /juegos/letras/ (assets/js/games/letras.js).
+ * Ninja del teclado — fruit-slice edition with sprite sheets + bomb hazards.
+ * Spanish layout aware (ñ, tildes, ¿ ¡). Letter-only copy: /juegos/letras/
  * Depends on /assets/js/game-core.js
  */
 (function () {
@@ -31,6 +30,16 @@
     sfxBank: ASSET_BASE + '/sounds/sounds.mp3'
   };
   var media = null;
+  var fruitAtlases = null; // built after images load
+  var FRUIT_KEYS = ['apple', 'banana', 'coconut', 'lime', 'orange', 'strawberry'];
+  var FRUIT_JUICE = {
+    apple: '#ef4444',
+    banana: '#facc15',
+    coconut: '#e7e5e4',
+    lime: '#84cc16',
+    orange: '#fb923c',
+    strawberry: '#e11d48'
+  };
 
   var canvas = document.getElementById('game-canvas');
   if (!canvas) return;
@@ -45,12 +54,131 @@
   var audio = G.createAudio('mecanografia-games-muted');
   var scores = G.createScores('mecanografia-juego-ninja-best');
 
-  // Preload fruit / SFX / sprite sheets for the next animation pass.
+  function isSpritePixel(r, g, b, a) {
+    return a > 20 && (r + g + b) > 45;
+  }
+
+  function extractSpriteBoxes(img) {
+    var c = document.createElement('canvas');
+    c.width = img.naturalWidth || img.width;
+    c.height = img.naturalHeight || img.height;
+    var cx = c.getContext('2d');
+    cx.drawImage(img, 0, 0);
+    var imageData = cx.getImageData(0, 0, c.width, c.height);
+    var data = imageData.data;
+    var w = c.width;
+    var h = c.height;
+    var visited = new Uint8Array(w * h);
+    var boxes = [];
+
+    function idx(x, y) { return y * w + x; }
+
+    for (var y = 0; y < h; y++) {
+      for (var x = 0; x < w; x++) {
+        var i = idx(x, y);
+        if (visited[i]) continue;
+        var p = i * 4;
+        if (!isSpritePixel(data[p], data[p + 1], data[p + 2], data[p + 3])) {
+          visited[i] = 1;
+          continue;
+        }
+        var stack = [x, y];
+        visited[i] = 1;
+        var minX = x, maxX = x, minY = y, maxY = y, count = 0;
+        while (stack.length) {
+          var cy = stack.pop();
+          var cx0 = stack.pop();
+          count++;
+          if (cx0 < minX) minX = cx0;
+          if (cx0 > maxX) maxX = cx0;
+          if (cy < minY) minY = cy;
+          if (cy > maxY) maxY = cy;
+          var nbs = [cx0 - 1, cy, cx0 + 1, cy, cx0, cy - 1, cx0, cy + 1];
+          for (var n = 0; n < nbs.length; n += 2) {
+            var nx = nbs[n], ny = nbs[n + 1];
+            if (nx < 0 || ny < 0 || nx >= w || ny >= h) continue;
+            var ni = idx(nx, ny);
+            if (visited[ni]) continue;
+            var np = ni * 4;
+            if (!isSpritePixel(data[np], data[np + 1], data[np + 2], data[np + 3])) {
+              visited[ni] = 1;
+              continue;
+            }
+            visited[ni] = 1;
+            stack.push(nx, ny);
+          }
+        }
+        var bw = maxX - minX + 1;
+        var bh = maxY - minY + 1;
+        if (count > 800 && bw > 24 && bh > 24) {
+          boxes.push({ x: minX, y: minY, w: bw, h: bh, count: count });
+        }
+      }
+    }
+    boxes.sort(function (a, b) { return b.count - a.count; });
+    return { canvas: c, data: data, boxes: boxes };
+  }
+
+  function cropTransparentFrame(srcCanvas, srcData, box) {
+    var out = document.createElement('canvas');
+    out.width = box.w;
+    out.height = box.h;
+    var ox = out.getContext('2d');
+    var img = ox.createImageData(box.w, box.h);
+    var sw = srcCanvas.width;
+    for (var y = 0; y < box.h; y++) {
+      for (var x = 0; x < box.w; x++) {
+        var si = ((box.y + y) * sw + (box.x + x)) * 4;
+        var di = (y * box.w + x) * 4;
+        var r = srcData[si], g = srcData[si + 1], b = srcData[si + 2], a = srcData[si + 3];
+        if (!isSpritePixel(r, g, b, a)) {
+          img.data[di + 3] = 0;
+        } else {
+          img.data[di] = r;
+          img.data[di + 1] = g;
+          img.data[di + 2] = b;
+          img.data[di + 3] = 255;
+        }
+      }
+    }
+    ox.putImageData(img, 0, 0);
+    return out;
+  }
+
+  function buildFruitAtlases(loaded) {
+    var atlases = {};
+    for (var i = 0; i < FRUIT_KEYS.length; i++) {
+      var key = FRUIT_KEYS[i];
+      var img = loaded[key];
+      if (!img) continue;
+      var extracted = extractSpriteBoxes(img);
+      if (!extracted.boxes.length) continue;
+      var frames = [];
+      for (var b = 0; b < extracted.boxes.length; b++) {
+        frames.push(cropTransparentFrame(extracted.canvas, extracted.data, extracted.boxes[b]));
+      }
+      atlases[key] = {
+        whole: frames[0],
+        halves: frames.slice(1, Math.min(5, frames.length)),
+        juice: FRUIT_JUICE[key] || '#f97316'
+      };
+    }
+    return atlases;
+  }
+
+  // Preload fruit / SFX / sprite sheets, then build transparent fruit frames.
   G.loadAssets(ASSET_URLS).then(function (loaded) {
     media = loaded;
+    try {
+      fruitAtlases = buildFruitAtlases(loaded);
+    } catch (err) {
+      console.warn('[ninja] fruit atlas failed', err);
+      fruitAtlases = null;
+    }
     if (location.hash === '#debug') {
       window.__ninjaMedia = media;
-      console.info('[ninja] assets ready', Object.keys(media));
+      window.__ninjaFruits = fruitAtlases;
+      console.info('[ninja] assets ready', Object.keys(media), fruitAtlases && Object.keys(fruitAtlases));
     }
   }).catch(function (err) {
     console.warn('[ninja] asset preload failed', err);
@@ -139,7 +267,9 @@
     for (var i = 0; i < state.letters.length; i++) {
       var o = state.letters[i];
       if (o.state !== 'fall') continue;
-      if (kind && o.kind !== kind) continue;
+      if (kind === 'bomb' && o.kind !== 'bomb') continue;
+      if (kind === 'letter' && o.kind === 'bomb') continue;
+      if (kind && kind !== 'letter' && kind !== 'bomb' && o.kind !== kind) continue;
       map[o.ch] = true;
     }
     return map;
@@ -215,16 +345,27 @@
     }
 
     var x = pickSpawnX();
+    var fruitKey = null;
+    if (!isBomb && fruitAtlases) {
+      var available = [];
+      for (var fi = 0; fi < FRUIT_KEYS.length; fi++) {
+        if (fruitAtlases[FRUIT_KEYS[fi]]) available.push(FRUIT_KEYS[fi]);
+      }
+      if (available.length) fruitKey = G.pick(available);
+    }
     state.letters.push({
-      kind: isBomb ? 'bomb' : 'letter',
+      kind: isBomb ? 'bomb' : 'fruit',
+      fruit: fruitKey,
       ch: ch,
       x: x,
       y: -40,
       vy: fallSpeed(state.level) * G.randomBetween(0.85, 1.15) * (isBomb ? 0.9 : 1),
       wobble: Math.random() * Math.PI * 2,
-      rot: G.randomBetween(-0.12, 0.12),
+      rot: G.randomBetween(-0.2, 0.2),
+      spin: G.randomBetween(-1.2, 1.2),
       fuse: Math.random() * Math.PI * 2,
       state: 'fall',
+      halves: null,
       alpha: 1,
       scale: 1,
       age: 0
@@ -274,6 +415,34 @@
     if (els.best) els.best.textContent = scores.best();
   }
 
+  function sliceFruit(fruit) {
+    fruit.state = 'sliced';
+    fruit.age = 0;
+    fruit.alpha = 1;
+    var atlas = fruit.fruit && fruitAtlases ? fruitAtlases[fruit.fruit] : null;
+    var halves = atlas && atlas.halves && atlas.halves.length ? atlas.halves : null;
+    fruit.halves = [
+      {
+        frame: halves ? halves[0] : null,
+        x: fruit.x - 8,
+        y: fruit.y,
+        vx: -G.randomBetween(140, 220),
+        vy: -G.randomBetween(90, 160),
+        rot: fruit.rot - 0.3,
+        spin: -G.randomBetween(3, 7)
+      },
+      {
+        frame: halves && halves[1] ? halves[1] : (halves ? halves[0] : null),
+        x: fruit.x + 8,
+        y: fruit.y,
+        vx: G.randomBetween(140, 220),
+        vy: -G.randomBetween(70, 140),
+        rot: fruit.rot + 0.3,
+        spin: G.randomBetween(3, 7)
+      }
+    ];
+  }
+
   function explodeBomb(bomb) {
     bomb.state = 'explode';
     bomb.age = 0;
@@ -314,16 +483,17 @@
       if (target.kind === 'bomb') {
         explodeBomb(target);
       } else {
-        target.state = 'hit';
-        target.age = 0;
+        sliceFruit(target);
         state.combo++;
         state.maxCombo = Math.max(state.maxCombo, state.combo);
         var gained = 10 + Math.min(40, (state.combo - 1) * 2);
         state.score += gained;
         state.hits++;
-        particles.burst(target.x, target.y, { color: categoryColor(target.ch, p), count: 16, speed: 240 });
-        addPopup('+' + gained, target.x, target.y - 24, p.primary);
+        var juice = (target.fruit && FRUIT_JUICE[target.fruit]) || categoryColor(target.ch, p);
+        particles.burst(target.x, target.y, { color: juice, count: 22, speed: 280, size: 0.65, size: 5 });
+        addPopup('+' + gained, target.x, target.y - 28, p.primary);
         audio.hit();
+        playClip('sfxPop');
 
         var newLevel = 1 + Math.floor(state.hits / HITS_PER_LEVEL);
         if (newLevel > state.level) {
@@ -337,6 +507,7 @@
       state.flash = 0.25;
       shake.trigger(5, 0.2);
       audio.miss();
+      playClip('sfxError');
     }
     updateHud();
   }
@@ -385,6 +556,7 @@
       if (l.state === 'fall') {
         l.y += l.vy * dt;
         l.wobble += dt * 2.2;
+        if (l.kind === 'fruit') l.rot += (l.spin || 0) * dt;
         if (l.kind === 'bomb') {
           // Ignoring a bomb is correct — leave the playfield with no penalty.
           if (l.y > H + 40) state.letters.splice(i, 1);
@@ -397,6 +569,17 @@
         l.scale = 1 + l.age * 2.8;
         l.alpha = 1 - l.age / 0.45;
         if (l.age >= 0.45) state.letters.splice(i, 1);
+      } else if (l.state === 'sliced') {
+        var gravity = 780;
+        for (var hi = 0; hi < l.halves.length; hi++) {
+          var half = l.halves[hi];
+          half.vy += gravity * dt;
+          half.x += half.vx * dt;
+          half.y += half.vy * dt;
+          half.rot += half.spin * dt;
+        }
+        l.alpha = 1 - l.age / 0.75;
+        if (l.age >= 0.75) state.letters.splice(i, 1);
       } else {
         l.scale += 3 * dt;
         l.alpha -= 4 * dt;
@@ -406,19 +589,25 @@
   }
 
   function drawBackground(p) {
-    var grad = ctx.createLinearGradient(0, 0, 0, H);
-    grad.addColorStop(0, p.bgTop);
-    grad.addColorStop(1, p.bgBottom);
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, W, H);
+    if (media && media.bg) {
+      ctx.drawImage(media.bg, 0, 0, W, H);
+      ctx.fillStyle = p.dark ? 'rgba(11, 18, 32, 0.28)' : 'rgba(246, 246, 248, 0.18)';
+      ctx.fillRect(0, 0, W, H);
+    } else {
+      var grad = ctx.createLinearGradient(0, 0, 0, H);
+      grad.addColorStop(0, p.bgTop);
+      grad.addColorStop(1, p.bgBottom);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
 
-    ctx.strokeStyle = p.grid;
-    ctx.lineWidth = 1;
-    for (var x = 0; x <= W; x += 60) {
-      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
-    }
-    for (var y = 0; y <= H; y += 60) {
-      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+      ctx.strokeStyle = p.grid;
+      ctx.lineWidth = 1;
+      for (var x = 0; x <= W; x += 60) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+      }
+      for (var y = 0; y <= H; y += 60) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+      }
     }
 
     ctx.strokeStyle = p.ground;
@@ -581,11 +770,82 @@
     }
   }
 
+  function drawFruitSprite(frame, size) {
+    if (!frame) return;
+    var s = size || 72;
+    var scale = Math.min(s / frame.width, s / frame.height);
+    var dw = frame.width * scale;
+    var dh = frame.height * scale;
+    ctx.drawImage(frame, -dw / 2, -dh / 2, dw, dh);
+  }
+
+  function drawLetterBadge(ch, yOff) {
+    ctx.fillStyle = 'rgba(15, 23, 42, 0.82)';
+    G.roundRect(ctx, -16, yOff - 12, 32, 26, 8);
+    ctx.fill();
+    ctx.strokeStyle = '#f8fafc';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.fillStyle = '#f8fafc';
+    ctx.font = '700 18px Lexend, "Atkinson Hyperlegible", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(ch, 0, yOff + 2);
+  }
+
+  function drawFruitFalling(l, p) {
+    var atlas = l.fruit && fruitAtlases ? fruitAtlases[l.fruit] : null;
+    if (atlas && atlas.whole) {
+      drawFruitSprite(atlas.whole, 78);
+      drawLetterBadge(l.ch, 34);
+      return;
+    }
+    // Fallback tile if sprites are still loading.
+    var color = categoryColor(l.ch, p);
+    ctx.fillStyle = p.dark ? 'rgba(30, 41, 59, 0.95)' : 'rgba(255, 255, 255, 0.96)';
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
+    G.roundRect(ctx, -24, -24, 48, 48, 10);
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = color;
+    ctx.font = '700 28px Lexend, "Atkinson Hyperlegible", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(l.ch, 0, 2);
+  }
+
+  function drawFruitSliced(l) {
+    if (!l.halves) return;
+    for (var i = 0; i < l.halves.length; i++) {
+      var half = l.halves[i];
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, l.alpha);
+      ctx.translate(half.x, half.y);
+      ctx.rotate(half.rot);
+      if (half.frame) {
+        drawFruitSprite(half.frame, 64);
+      } else {
+        ctx.fillStyle = (l.fruit && FRUIT_JUICE[l.fruit]) || '#f97316';
+        ctx.beginPath();
+        ctx.arc(0, 0, 18, Math.PI * 0.15, Math.PI * 1.15);
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+  }
+
   function drawLetters(p) {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     for (var i = 0; i < state.letters.length; i++) {
       var l = state.letters[i];
+
+      if (l.state === 'sliced') {
+        drawFruitSliced(l);
+        continue;
+      }
+
       var wob = l.state === 'fall' ? Math.sin(l.wobble) * 4 : 0;
       ctx.save();
       ctx.translate(l.x + wob, l.y);
@@ -598,17 +858,7 @@
       } else if (l.kind === 'bomb') {
         drawBomb(l);
       } else {
-        var color = categoryColor(l.ch, p);
-        ctx.fillStyle = p.dark ? 'rgba(30, 41, 59, 0.95)' : 'rgba(255, 255, 255, 0.96)';
-        ctx.strokeStyle = color;
-        ctx.lineWidth = 2;
-        G.roundRect(ctx, -24, -24, 48, 48, 10);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.fillStyle = color;
-        ctx.font = '700 28px Lexend, "Atkinson Hyperlegible", sans-serif';
-        ctx.fillText(l.ch, 0, 2);
+        drawFruitFalling(l, p);
       }
       ctx.restore();
     }
@@ -685,7 +935,7 @@
       ctx.fillText('Ninja del teclado', W / 2, H / 2 - 70);
       ctx.fillStyle = p.muted;
       ctx.font = '400 18px "Atkinson Hyperlegible", sans-serif';
-      ctx.fillText('Las letras caen. Pulsa la tecla correcta antes de que toquen el suelo.', W / 2, H / 2 - 28);
+      ctx.fillText('Corta frutas pulsando su letra antes de que toquen el suelo.', W / 2, H / 2 - 28);
       ctx.fillText('Si aparece una bomba (mecha + calavera), NO pulses su letra: -50 pts y una vida.', W / 2, H / 2 + 2);
       ctx.fillStyle = p.primary;
       ctx.font = '600 20px Lexend, sans-serif';
