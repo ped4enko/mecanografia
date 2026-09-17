@@ -145,6 +145,113 @@
     return out;
   }
 
+  // Matches Typing.com Keyboard Ninja (app.min) fruit animation.
+  var FRUIT_FRAME_ORDER = [5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2, 1, 2, 3, 4];
+  var FRUIT_FRAME_FLIP_START = 4;
+  var FRUIT_FRAME_FLIP_END = 12;
+  var FRUIT_QUARTER_HALVES = { orange: 1, lime: 1, coconut: 1 };
+
+  function mirrorFrame(frame) {
+    var out = document.createElement('canvas');
+    out.width = frame.width;
+    out.height = frame.height;
+    var ox = out.getContext('2d');
+    ox.translate(frame.width, 0);
+    ox.scale(-1, 1);
+    ox.drawImage(frame, 0, 0);
+    return out;
+  }
+
+  function flipFrame(frame) {
+    var out = document.createElement('canvas');
+    out.width = frame.width;
+    out.height = frame.height;
+    var ox = out.getContext('2d');
+    ox.translate(0, frame.height);
+    ox.scale(1, -1);
+    ox.drawImage(frame, 0, 0);
+    return out;
+  }
+
+  function frameHasFleshCut(frame) {
+    var c = frame.getContext('2d');
+    var w = frame.width;
+    var h = frame.height;
+    var data = c.getImageData(0, 0, w, h).data;
+    var band = Math.max(4, Math.floor(w / 6));
+    var pale = 0;
+    var n = 0;
+    for (var y = 0; y < h; y++) {
+      for (var x = 0; x < band; x++) {
+        var i = (y * w + x) * 4;
+        if (data[i + 3] < 20) continue;
+        n++;
+        if (data[i] > 185 && data[i + 1] > 165 && data[i + 2] > 90) pale++;
+      }
+      for (x = w - band; x < w; x++) {
+        i = (y * w + x) * 4;
+        if (data[i + 3] < 20) continue;
+        n++;
+        if (data[i] > 185 && data[i + 1] > 165 && data[i + 2] > 90) pale++;
+      }
+    }
+    return pale / Math.max(1, n) > 0.12;
+  }
+
+  function compositeVerticalMirrorWhole(half) {
+    // orange / lime / coconut: horizontal half + flipped copy = whole fruit.
+    var top = flipFrame(half);
+    var overlap = Math.max(6, Math.floor(half.height * 0.08));
+    var out = document.createElement('canvas');
+    out.width = half.width;
+    out.height = half.height * 2 - overlap;
+    var ox = out.getContext('2d');
+    ox.drawImage(top, 0, 0);
+    ox.drawImage(half, 0, half.height - overlap);
+    return out;
+  }
+
+  function coverBananaCut(cut, peel) {
+    // Keep cut on the back layer so the white flesh face stays hidden in flight.
+    var w = Math.max(cut.width, peel.width);
+    var h = Math.max(cut.height, peel.height);
+    var out = document.createElement('canvas');
+    out.width = w;
+    out.height = h;
+    var ox = out.getContext('2d');
+    ox.drawImage(cut, Math.floor((w - cut.width) / 2), Math.floor((h - cut.height) / 2) + 1);
+    ox.drawImage(peel, Math.floor((w - peel.width) / 2), Math.floor((h - peel.height) / 2));
+    return out;
+  }
+
+  function buildFrameSequence(sheetFrames, key) {
+    var peelRef = null;
+    if (key === 'banana') {
+      for (var p = 0; p < sheetFrames.length; p++) {
+        if (!frameHasFleshCut(sheetFrames[p])) {
+          peelRef = sheetFrames[p];
+          break;
+        }
+      }
+      peelRef = peelRef || sheetFrames[0];
+    }
+
+    var isQuarter = !!FRUIT_QUARTER_HALVES[key];
+    var seq = [];
+    for (var i = 0; i < FRUIT_FRAME_ORDER.length; i++) {
+      var sheetIdx = FRUIT_FRAME_ORDER[i] - 1;
+      var src = sheetFrames[Math.max(0, Math.min(sheetFrames.length - 1, sheetIdx))];
+      var frame = src;
+      if (isQuarter) {
+        frame = compositeVerticalMirrorWhole(src);
+      } else if (key === 'banana' && frameHasFleshCut(src)) {
+        frame = coverBananaCut(src, peelRef);
+      }
+      seq.push(frame);
+    }
+    return seq;
+  }
+
   function buildFruitAtlases(loaded) {
     var atlases = {};
     for (var i = 0; i < FRUIT_KEYS.length; i++) {
@@ -153,13 +260,33 @@
       if (!img) continue;
       var extracted = extractSpriteBoxes(img);
       if (!extracted.boxes.length) continue;
-      var frames = [];
+
+      var items = [];
       for (var b = 0; b < extracted.boxes.length; b++) {
-        frames.push(cropTransparentFrame(extracted.canvas, extracted.data, extracted.boxes[b]));
+        var box = extracted.boxes[b];
+        items.push({
+          box: box,
+          frame: cropTransparentFrame(extracted.canvas, extracted.data, box)
+        });
       }
+
+      // Stable sheet order: top→bottom, left→right (= frame_1 … frame_n).
+      items.sort(function (a, b) {
+        if (Math.abs(a.box.y - b.box.y) > 20) return a.box.y - b.box.y;
+        return a.box.x - b.box.x;
+      });
+
+      var sheetFrames = items.map(function (it) { return it.frame; });
+      var sequence = buildFrameSequence(sheetFrames, key);
+      var midpoint = sequence.length >> 1;
+
       atlases[key] = {
-        whole: frames[0],
-        halves: frames.slice(1, Math.min(5, frames.length)),
+        sequence: sequence,
+        midpoint: midpoint,
+        quarter: !!FRUIT_QUARTER_HALVES[key],
+        whole: sequence[0],
+        tumble: sequence,
+        halves: sheetFrames,
         juice: FRUIT_JUICE[key] || '#f97316'
       };
     }
@@ -361,8 +488,13 @@
       y: -40,
       vy: fallSpeed(state.level) * G.randomBetween(0.85, 1.15) * (isBomb ? 0.9 : 1),
       wobble: Math.random() * Math.PI * 2,
-      rot: G.randomBetween(-0.2, 0.2),
-      spin: G.randomBetween(-1.2, 1.2),
+      rot: isBomb ? G.randomBetween(-0.12, 0.12) : 0,
+      spin: isBomb ? 0 : 0,
+      // Dual-half tumble: left frame index; right = left + midpoint.
+      animT: Math.random() * FRUIT_FRAME_ORDER.length,
+      tumbleSpeed: G.randomBetween(8, 14),
+      animReverse: Math.random() < 0.5,
+      zSwap: false,
       fuse: Math.random() * Math.PI * 2,
       state: 'fall',
       halves: null,
@@ -415,32 +547,78 @@
     if (els.best) els.best.textContent = scores.best();
   }
 
+  function fruitAnimIndex(fruit, atlas) {
+    var seq = atlas && atlas.sequence;
+    if (!seq || !seq.length) return 0;
+    var idx = Math.floor(fruit.animT || 0) % seq.length;
+    if (idx < 0) idx += seq.length;
+    if (fruit.animReverse) idx = (seq.length - 1 - idx + seq.length) % seq.length;
+    return idx;
+  }
+
+  function makeHalfPiece(frame, seq, x, y, vx, vy, rot, spin, frameSpeed) {
+    return {
+      frame: frame,
+      frames: seq && seq.length ? seq : (frame ? [frame] : null),
+      frameT: 0,
+      frameSpeed: frameSpeed == null ? -G.randomBetween(10, 16) : frameSpeed,
+      mirrorX: false,
+      x: x,
+      y: y,
+      vx: vx,
+      vy: vy,
+      rot: rot,
+      spin: spin
+    };
+  }
+
   function sliceFruit(fruit) {
     fruit.state = 'sliced';
     fruit.age = 0;
     fruit.alpha = 1;
     var atlas = fruit.fruit && fruitAtlases ? fruitAtlases[fruit.fruit] : null;
-    var halves = atlas && atlas.halves && atlas.halves.length ? atlas.halves : null;
+    var seq = atlas && atlas.sequence ? atlas.sequence : null;
+    var mid = atlas && atlas.midpoint != null ? atlas.midpoint : (seq ? seq.length >> 1 : 0);
+    var leftIdx = fruitAnimIndex(fruit, atlas);
+    var rightIdx = seq ? (leftIdx + mid) % seq.length : 0;
+    var leftFrame = seq ? seq[leftIdx] : null;
+    var rightFrame = seq ? seq[rightIdx] : null;
+    var outward = G.randomBetween(160, 240);
+    var liftL = G.randomBetween(100, 170);
+    var liftR = G.randomBetween(80, 150);
+    var spinMag = G.randomBetween(4, 8);
+    // Same as original: one half keeps forward anim, the other reverses.
+    var forwardSpeed = G.randomBetween(10, 16);
+    var slashDir = Math.random() < 0.5 ? 1 : -1;
+
     fruit.halves = [
-      {
-        frame: halves ? halves[0] : null,
-        x: fruit.x - 8,
-        y: fruit.y,
-        vx: -G.randomBetween(140, 220),
-        vy: -G.randomBetween(90, 160),
-        rot: fruit.rot - 0.3,
-        spin: -G.randomBetween(3, 7)
-      },
-      {
-        frame: halves && halves[1] ? halves[1] : (halves ? halves[0] : null),
-        x: fruit.x + 8,
-        y: fruit.y,
-        vx: G.randomBetween(140, 220),
-        vy: -G.randomBetween(70, 140),
-        rot: fruit.rot + 0.3,
-        spin: G.randomBetween(3, 7)
-      }
+      makeHalfPiece(
+        leftFrame,
+        seq,
+        fruit.x - 10,
+        fruit.y,
+        -outward * slashDir,
+        -liftL,
+        -0.25 * slashDir,
+        -spinMag * slashDir,
+        forwardSpeed
+      ),
+      makeHalfPiece(
+        rightFrame,
+        seq,
+        fruit.x + 10,
+        fruit.y,
+        outward * slashDir,
+        -liftR,
+        0.25 * slashDir,
+        spinMag * slashDir,
+        -forwardSpeed
+      )
     ];
+    fruit.halves[0].frameT = leftIdx;
+    fruit.halves[1].frameT = rightIdx;
+    fruit.halves[0].mirrorX = leftIdx > FRUIT_FRAME_FLIP_START && leftIdx < FRUIT_FRAME_FLIP_END;
+    fruit.halves[1].mirrorX = rightIdx > FRUIT_FRAME_FLIP_START && rightIdx < FRUIT_FRAME_FLIP_END;
   }
 
   function explodeBomb(bomb) {
@@ -556,7 +734,16 @@
       if (l.state === 'fall') {
         l.y += l.vy * dt;
         l.wobble += dt * 2.2;
-        if (l.kind === 'fruit') l.rot += (l.spin || 0) * dt;
+        if (l.kind === 'fruit') {
+          l.animT = (l.animT || 0) + dt * (l.tumbleSpeed || 10);
+          var atlasFall = l.fruit && fruitAtlases ? fruitAtlases[l.fruit] : null;
+          if (atlasFall && atlasFall.sequence) {
+            var fiFall = fruitAnimIndex(l, atlasFall);
+            var midFall = atlasFall.midpoint != null ? atlasFall.midpoint : (atlasFall.sequence.length >> 1);
+            if (fiFall === 0) l.zSwap = false;
+            else if (fiFall === midFall) l.zSwap = true;
+          }
+        }
         if (l.kind === 'bomb') {
           // Ignoring a bomb is correct — leave the playfield with no penalty.
           if (l.y > H + 40) state.letters.splice(i, 1);
@@ -577,9 +764,17 @@
           half.x += half.vx * dt;
           half.y += half.vy * dt;
           half.rot += half.spin * dt;
+          if (half.frames && half.frames.length) {
+            half.frameT = (half.frameT || 0) + dt * (half.frameSpeed || -12);
+            var fi = Math.floor(half.frameT) % half.frames.length;
+            if (fi < 0) fi += half.frames.length;
+            half.frame = half.frames[fi];
+            half.mirrorX = fi > FRUIT_FRAME_FLIP_START && fi < FRUIT_FRAME_FLIP_END;
+          }
         }
-        l.alpha = 1 - l.age / 0.75;
-        if (l.age >= 0.75) state.letters.splice(i, 1);
+        var sliceLife = 1.0;
+        l.alpha = 1 - l.age / sliceLife;
+        if (l.age >= sliceLife) state.letters.splice(i, 1);
       } else {
         l.scale += 3 * dt;
         l.alpha -= 4 * dt;
@@ -770,13 +965,20 @@
     }
   }
 
-  function drawFruitSprite(frame, size) {
+  function drawFruitSprite(frame, size, mirrorX) {
     if (!frame) return;
     var s = size || 72;
     var scale = Math.min(s / frame.width, s / frame.height);
     var dw = frame.width * scale;
     var dh = frame.height * scale;
-    ctx.drawImage(frame, -dw / 2, -dh / 2, dw, dh);
+    if (mirrorX) {
+      ctx.save();
+      ctx.scale(-1, 1);
+      ctx.drawImage(frame, -dw / 2, -dh / 2, dw, dh);
+      ctx.restore();
+    } else {
+      ctx.drawImage(frame, -dw / 2, -dh / 2, dw, dh);
+    }
   }
 
   function drawLetterBadge(ch, yOff) {
@@ -795,12 +997,25 @@
 
   function drawFruitFalling(l, p) {
     var atlas = l.fruit && fruitAtlases ? fruitAtlases[l.fruit] : null;
-    if (atlas && atlas.whole) {
-      drawFruitSprite(atlas.whole, 78);
+    if (atlas && atlas.sequence && atlas.sequence.length) {
+      var seq = atlas.sequence;
+      var mid = atlas.midpoint != null ? atlas.midpoint : (seq.length >> 1);
+      var leftIdx = fruitAnimIndex(l, atlas);
+      var rightIdx = (leftIdx + mid) % seq.length;
+      var leftMirror = leftIdx > FRUIT_FRAME_FLIP_START && leftIdx < FRUIT_FRAME_FLIP_END;
+      var rightMirror = rightIdx > FRUIT_FRAME_FLIP_START && rightIdx < FRUIT_FRAME_FLIP_END;
+      // Z-order swap at frame 0 / midpoint — same as original fruit actor.
+      if (l.zSwap) {
+        drawFruitSprite(seq[rightIdx], 78, rightMirror);
+        drawFruitSprite(seq[leftIdx], 78, leftMirror);
+      } else {
+        drawFruitSprite(seq[leftIdx], 78, leftMirror);
+        drawFruitSprite(seq[rightIdx], 78, rightMirror);
+      }
       drawLetterBadge(l.ch, 34);
       return;
     }
-    // Fallback tile if sprites are still loading.
+    // Fallback tile if sprites are still loading — keep letter upright too.
     var color = categoryColor(l.ch, p);
     ctx.fillStyle = p.dark ? 'rgba(30, 41, 59, 0.95)' : 'rgba(255, 255, 255, 0.96)';
     ctx.strokeStyle = color;
@@ -824,7 +1039,7 @@
       ctx.translate(half.x, half.y);
       ctx.rotate(half.rot);
       if (half.frame) {
-        drawFruitSprite(half.frame, 64);
+        drawFruitSprite(half.frame, 64, half.mirrorX);
       } else {
         ctx.fillStyle = (l.fruit && FRUIT_JUICE[l.fruit]) || '#f97316';
         ctx.beginPath();
@@ -849,7 +1064,8 @@
       var wob = l.state === 'fall' ? Math.sin(l.wobble) * 4 : 0;
       ctx.save();
       ctx.translate(l.x + wob, l.y);
-      if (l.state !== 'explode') ctx.rotate(l.rot);
+      // Fruits tumble via sprite frames (2-axis). Only bombs/explosions use canvas rotate.
+      if (l.kind !== 'fruit' && l.state !== 'explode') ctx.rotate(l.rot || 0);
       ctx.scale(l.scale, l.scale);
       ctx.globalAlpha = Math.max(0, l.alpha);
 

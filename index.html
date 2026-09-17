@@ -77,6 +77,7 @@
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/assets/css/site-header.css"/>
   <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -205,17 +206,17 @@
   <header class="border-b border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="bg-primary p-1.5 rounded-lg text-white" aria-hidden="true">
-          <span class="material-symbols-outlined leading-none text-xl sm:text-2xl">keyboard</span>
-        </div>
-        <span class="text-lg sm:text-xl font-bold tracking-tight">Mecanografía</span>
+        <a href="/" class="flex items-center gap-3">
+          <img src="/favicon-96x96.png" alt="" width="32" height="32" class="h-8 w-8 sm:h-9 sm:w-9 rounded-lg" aria-hidden="true" />
+          <span class="text-lg sm:text-xl font-bold tracking-tight">Mecanografía</span>
+        </a>
       </div>
       <nav class="flex items-center gap-3 sm:gap-6" aria-label="Main">
         <a class="text-primary font-medium" href="#main">Práctica</a>
         <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#stats">Estadísticas</a>
-        <a class="hidden lg:inline text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="/juegos/">Juegos</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="/juegos/">Juegos</a>
         <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm sm:text-base" href="/sin-tildes/">Sin tildes</a>
-        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors hidden lg:inline" href="/historias/disney/">Disney</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="/historias/disney/">Disney</a>
         <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm" href="/en/">EN</a>
         <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm" href="/cat/">Català</a>
         <button type="button" id="theme-toggle" class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full" aria-label="Toggle dark mode">
@@ -234,7 +235,7 @@
       class="inline-flex items-center gap-3 sm:gap-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm px-4 py-3 sm:px-5 sm:py-3.5 shrink-0 sm:ml-auto"
       role="status"
       aria-live="polite"
-      aria-label="Tiempo total de práctica en esta sesión"
+      aria-label="Tiempo total de práctica de hoy"
     >
       <div class="shrink-0 w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center" aria-hidden="true">
         <span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400 text-2xl leading-none">emoji_events</span>
@@ -526,6 +527,7 @@
         <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#content">Contenido</a>
         <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#faq">FAQ</a>
         <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/juegos/">Juegos</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/test/">Test</a>
         <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/sin-tildes/">Sin tildes</a>
         <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/para-ninos/">Para niños</a>
         <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/literatura/">Literatura</a>
@@ -581,6 +583,36 @@
       ];
 
       const STORAGE_KEY = 'mecanografia-stats';
+      const PRACTICE_STORAGE_KEY = STORAGE_KEY + '-practice';
+
+      function practiceDayKey() {
+        const d = new Date();
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return y + '-' + m + '-' + day;
+      }
+
+      function loadPracticeMs() {
+        try {
+          const raw = localStorage.getItem(PRACTICE_STORAGE_KEY);
+          if (!raw) return 0;
+          const data = JSON.parse(raw);
+          if (data && data.date === practiceDayKey() && typeof data.ms === 'number' && isFinite(data.ms)) {
+            return Math.max(0, Math.floor(data.ms));
+          }
+        } catch (e) {}
+        return 0;
+      }
+
+      function savePracticeMs(ms) {
+        try {
+          localStorage.setItem(PRACTICE_STORAGE_KEY, JSON.stringify({
+            date: practiceDayKey(),
+            ms: Math.max(0, Math.floor(ms))
+          }));
+        } catch (e) {}
+      }
 
       let state = {
         text: '',
@@ -590,7 +622,8 @@
         startTime: null,
         timerId: null,
         lastWpm: 0,
-        sessionPracticeMs: 0,
+        sessionPracticeMs: loadPracticeMs(),
+        practiceDay: practiceDayKey(),
         bestWpm: parseInt(localStorage.getItem(STORAGE_KEY + '-best') || '0', 10)
       };
 
@@ -629,14 +662,26 @@
         return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
       }
 
+      function rolloverPracticeDayIfNeeded() {
+        const key = practiceDayKey();
+        if (key === state.practiceDay) return;
+        state.practiceDay = key;
+        state.sessionPracticeMs = 0;
+        state.startTime = null;
+        savePracticeMs(0);
+      }
+
       function getSessionPracticeMs() {
+        rolloverPracticeDayIfNeeded();
         return state.sessionPracticeMs + (state.startTime ? Date.now() - state.startTime : 0);
       }
 
       function bankPracticeTime() {
+        rolloverPracticeDayIfNeeded();
         if (!state.startTime) return;
         state.sessionPracticeMs += Date.now() - state.startTime;
         state.startTime = null;
+        savePracticeMs(state.sessionPracticeMs);
       }
 
       function formatPracticeLabel(ms) {
@@ -644,12 +689,12 @@
         const minutes = Math.floor(totalSec / 60);
         const seconds = totalSec % 60;
         if (minutes <= 0) {
-          return seconds + (seconds === 1 ? ' segundo de práctica' : ' segundos de práctica');
+          return seconds + (seconds === 1 ? ' segundo de práctica hoy' : ' segundos de práctica hoy');
         }
         if (seconds === 0) {
-          return minutes + (minutes === 1 ? ' minuto de práctica' : ' minutos de práctica');
+          return minutes + (minutes === 1 ? ' minuto de práctica hoy' : ' minutos de práctica hoy');
         }
-        return minutes + (minutes === 1 ? ' minuto' : ' minutos') + ' ' + seconds + ' s de práctica';
+        return minutes + (minutes === 1 ? ' minuto' : ' minutos') + ' ' + seconds + ' s de práctica hoy';
       }
 
       function updateSessionTimeCard() {
@@ -658,6 +703,7 @@
         const pct = Math.min(100, (ms / SESSION_GOAL_MS) * 100);
         sessionTimeBar.style.width = pct + '%';
         sessionTimeBar.parentElement.setAttribute('aria-valuenow', String(Math.round(pct)));
+        savePracticeMs(ms);
       }
 
       function updateStats() {
@@ -728,7 +774,8 @@
         return div.innerHTML;
       }
 
-      function startSession() {
+      function startSession(opts) {
+        opts = opts || {};
         bankPracticeTime();
         state.text = pickText();
         state.index = 0;
@@ -740,11 +787,19 @@
         state.timerId = setInterval(updateStats, 500);
         updateStats();
         renderTyping();
-        if (mobileInput) {
-          mobileInput.focus();
+        // Don't steal scroll on first paint when landing on /#stats (etc.).
+        var hash = (location.hash || '').toLowerCase();
+        var allowFocus = opts.focus !== false;
+        if (opts.initial && hash && hash !== '#main') allowFocus = false;
+        if (allowFocus) {
+          if (mobileInput) {
+            mobileInput.focus({ preventScroll: true });
+            mobileInput.value = '';
+          } else if (practiceBox && practiceBox.focus) {
+            practiceBox.focus({ preventScroll: true });
+          }
+        } else if (mobileInput) {
           mobileInput.value = '';
-        } else {
-          practiceBox.focus();
         }
       }
 
@@ -915,7 +970,15 @@
         window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
       });
 
-      startSession();
+      startSession({ initial: true });
+
+      function flushPracticeMs() {
+        savePracticeMs(getSessionPracticeMs());
+      }
+      window.addEventListener('pagehide', flushPracticeMs);
+      document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'hidden') flushPracticeMs();
+      });
     })();
   </script>
 
@@ -957,5 +1020,6 @@
       };
     })();
   </script>
+  <script src="/assets/js/site-header-nav.js" defer></script>
 </body>
 </html>

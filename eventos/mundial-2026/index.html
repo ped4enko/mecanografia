@@ -60,6 +60,7 @@
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/assets/css/site-header.css"/>
   <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -181,7 +182,7 @@
       <nav class="flex items-center gap-3 sm:gap-6" aria-label="Main">
         <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="/">Inicio</a>
         <a class="text-mundial font-semibold" href="#main">Mundial 2026</a>
-        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors hidden sm:inline" href="#stats">Estadísticas</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#stats">Estadísticas</a>
         <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm sm:text-base" href="/sin-tildes/">Sin tildes</a>
         <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm" href="/cat/">Català</a>
         <button type="button" id="theme-toggle" class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full" aria-label="Toggle dark mode">
@@ -718,5 +719,6 @@
       startSession();
     })();
   </script>
+  <script src="/assets/js/site-header-nav.js" defer></script>
 </body>
 </html>
