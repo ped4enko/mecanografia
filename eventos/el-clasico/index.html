@@ -3,13 +3,8 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <!-- AdSense (disabled)
-  <meta name="google-adsense-account" content="ca-pub-6168125260103356">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6168125260103356"
-     crossorigin="anonymous"></script>
-  -->
-  <title>Mecanografía - Práctica de escritura en español | mecanografia.info</title>
-  <meta name="description" content="Practica la mecanografía en español. Mecanografía para quien aprende español — mejora velocidad y precisión con ñ, acentos y puntuación."/>
+  <meta name="description" content="Practica mecanografía con textos del Clásico: FC Barcelona vs Real Madrid. Lamine Yamal, Mbappé, Vinícius, Bellingham y más. Gratis online."/>
+  <title>Mecanografía El Clásico — Barcelona vs Real Madrid | mecanografia.info</title>
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -18,20 +13,20 @@
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="alternate" hreflang="es" href="https://mecanografia.info/" />
   <link rel="alternate" hreflang="ca" href="https://mecanografia.info/cat/" />
-  <link rel="canonical" href="https://mecanografia.info/" />
+  <link rel="canonical" href="https://mecanografia.info/eventos/el-clasico/" />
   <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://mecanografia.info/"/>
-  <meta property="og:title" content="Mecanografía - Práctica de escritura en español"/>
-  <meta property="og:description" content="Practica la mecanografía en español. Mecanografía para quien aprende español — mejora velocidad y precisión con ñ, acentos y puntuación."/>
+  <meta property="og:url" content="https://mecanografia.info/eventos/el-clasico/"/>
+  <meta property="og:title" content="Mecanografía El Clásico — Barcelona vs Real Madrid"/>
+  <meta property="og:description" content="Practica mecanografía con textos del Clásico: Barcelona y Real Madrid, estrellas y ambiente de derbi."/>
   <meta property="og:image" content="https://mecanografia.info/og.jpg"/>
   <meta property="og:image:type" content="image/avif"/>
   <meta property="og:locale" content="es_ES"/>
   <!-- Twitter Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary_large_image">
 <meta property="twitter:domain" content="mecanografia.info">
-<meta property="twitter:url" content="https://mecanografia.info/">
-<meta name="twitter:title" content="Mecanografía - Práctica de escritura en español">
-<meta name="twitter:description" content="Practica la mecanografía en español. Mecanografía para quien aprende español — mejora velocidad y precisión con ñ, acentos y puntuación.">
+<meta property="twitter:url" content="https://mecanografia.info/eventos/el-clasico/">
+<meta name="twitter:title" content="Mecanografía El Clásico — Barcelona vs Real Madrid">
+<meta name="twitter:description" content="Practica mecanografía con textos del Clásico: Barcelona y Real Madrid, estrellas y ambiente de derbi.">
 <meta name="twitter:image" content="https://mecanografia.info/og.jpg">
 
   <script type="application/ld+json">
@@ -44,11 +39,7 @@
     "sameAs": [
       "https://www.crunchbase.com/organization/mecanografia",
       "https://www.facebook.com/mecanografia.info",
-      "https://www.instagram.com/mecanografia.info/",
-      "https://www.linkedin.com/company/mecanografia/",
-      "https://mecanografia.mssg.me/",
-      "https://note.com/mecanografia",
-      "https://v0-mecanografiaonline.vercel.app/"
+      "https://www.linkedin.com/company/mecanografia/"
     ]
   }
   </script>
@@ -56,22 +47,14 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Mecanografía",
-    "description": "Practice touch typing in Spanish. Mecanografía for Spanish learners — improve speed and accuracy with ñ, accents, and Spanish punctuation.",
-    "url": "https://mecanografia.info",
+    "name": "Mecanografía El Clásico",
+    "description": "Practice touch typing with El Clásico texts about FC Barcelona vs Real Madrid and star players.",
+    "url": "https://mecanografia.info/eventos/el-clasico",
     "image": "https://mecanografia.info/og.jpg",
     "applicationCategory": "EducationalApplication",
     "operatingSystem": "Any",
     "publisher": { "@id": "https://mecanografia.info/#organization" },
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
-    "video": {
-      "@type": "VideoObject",
-      "name": "Mecanografía — Cómo usar la herramienta",
-      "description": "Video about the Mecanografía touch typing tool for Spanish learners.",
-      "thumbnailUrl": "https://img.youtube.com/vi/mjEnnXYCoUM/maxresdefault.jpg",
-      "embedUrl": "https://www.youtube.com/embed/mjEnnXYCoUM",
-      "uploadDate": "2026-02-19"
-    }
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
   }
   </script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -85,6 +68,7 @@
         extend: {
           colors: {
             "primary": "#135bec",
+            "clasico": "#a50044",
             "background-light": "#f6f6f8",
             "background-dark": "#101622",
           },
@@ -106,7 +90,7 @@
       left: 0;
       width: 100%;
       height: 3px;
-      background-color: #135bec;
+      background-color: #a50044;
       animation: cursor-blink 1s step-end infinite;
     }
     @media (prefers-reduced-motion: reduce) { .cursor::after { animation: none; } }
@@ -119,7 +103,7 @@
       color: rgb(203 213 225); border-radius: 0.5rem;
       font-family: Lexend, sans-serif; transition: all 0.15s ease;
     }
-    .key-active { border-color: #135bec; background: rgba(19,91,236,0.25); color: #135bec; box-shadow: 0 0 10px rgba(19,91,236,0.3); }
+    .key-active { border-color: #a50044; background: rgba(165,0,68,0.25); color: #a50044; box-shadow: 0 0 10px rgba(165,0,68,0.3); }
     .key-pressed { transform: scale(0.95); }
 
     .kb-q-home {
@@ -173,24 +157,6 @@
       [data-kb-layout="apple"] .key-mod-side { width: 3.25rem; }
     }
     [aria-invalid="true"] { outline: 2px solid rgb(239 68 68); outline-offset: 2px; }
-    #back-to-top {
-      position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 40;
-      width: 2.75rem; height: 2.75rem; border-radius: 9999px;
-      display: flex; align-items: center; justify-content: center;
-      background: #135bec; color: #fff; border: none; cursor: pointer;
-      box-shadow: 0 8px 24px rgba(19, 91, 236, 0.35);
-      opacity: 0; visibility: hidden; pointer-events: none;
-      transform: translateY(0.5rem);
-      transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
-    }
-    #back-to-top.is-visible {
-      opacity: 1; visibility: visible; pointer-events: auto; transform: none;
-    }
-    #back-to-top:hover { background: #0f4bc4; }
-    #back-to-top:focus-visible { outline: 2px solid #135bec; outline-offset: 3px; }
-    @media (prefers-reduced-motion: reduce) {
-      #back-to-top { transition: none; }
-    }
   </style>
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -201,22 +167,23 @@
 </script>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-x-hidden">
-  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-6 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg">Skip to practice</a>
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-6 focus:z-[100] focus:px-4 focus:py-2 focus:bg-clasico focus:text-white focus:rounded-lg">Ir a practicar</a>
 
   <header class="border-b border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <a href="/" class="flex items-center gap-3">
-          <img src="/favicon-96x96.png" alt="" width="32" height="32" class="h-8 w-8 sm:h-9 sm:w-9 rounded-lg" aria-hidden="true" />
-          <span class="text-lg sm:text-xl font-bold tracking-tight">Mecanografía</span>
+          <div class="bg-clasico p-1.5 rounded-lg text-white" aria-hidden="true">
+            <span class="material-symbols-outlined leading-none text-xl sm:text-2xl">sports_soccer</span>
+          </div>
+          <h1 class="text-lg sm:text-xl font-bold tracking-tight">Mecanografía</h1>
         </a>
       </div>
       <nav class="flex items-center gap-3 sm:gap-6" aria-label="Main">
-        <a class="text-primary font-medium" href="#main">Práctica</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="/">Inicio</a>
+        <a class="text-clasico font-semibold" href="#main">El Clásico</a>
         <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#stats">Estadísticas</a>
-        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="/juegos/">Juegos</a>
         <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm sm:text-base" href="/sin-tildes/">Sin tildes</a>
-        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="/historias/disney/">Disney</a>
         <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm" href="/cat/">Català</a>
         <button type="button" id="theme-toggle" class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full" aria-label="Toggle dark mode">
           <span class="material-symbols-outlined">dark_mode</span>
@@ -225,28 +192,10 @@
     </div>
   </header>
 
-  <div class="max-w-6xl mx-auto w-full px-4 sm:px-6 pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-    <p class="font-reading text-sm sm:text-base text-slate-600 dark:text-slate-400 sm:max-w-xl lg:max-w-2xl">
-      Aprende a escribir más rápido en español — gratis, sin registro, con ñ y acentos incluidos. Más de 8.000 personas ya practican aquí.
-    </p>
-    <div
-      id="session-time-card"
-      class="inline-flex items-center gap-3 sm:gap-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm px-4 py-3 sm:px-5 sm:py-3.5 shrink-0 sm:ml-auto"
-      role="status"
-      aria-live="polite"
-      aria-label="Tiempo total de práctica de hoy"
-    >
-      <div class="shrink-0 w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center" aria-hidden="true">
-        <span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400 text-2xl leading-none">emoji_events</span>
-      </div>
-      <div class="min-w-[11rem] sm:min-w-[14rem]">
-        <p class="font-display font-bold text-sm sm:text-base text-slate-800 dark:text-slate-100 leading-tight">Tiempo de sesión</p>
-        <p id="session-time-label" class="font-reading text-sm text-slate-500 dark:text-slate-400 leading-tight mt-0.5">0 minutos de práctica</p>
-        <div class="mt-2 h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Progreso hacia 10 minutos">
-          <div id="session-time-bar" class="h-full rounded-full bg-emerald-500 transition-[width] duration-300 ease-out" style="width: 0%"></div>
-        </div>
-      </div>
-    </div>
+  <div class="max-w-6xl mx-auto w-full px-4 sm:px-6 pt-4">
+    <span class="block font-reading text-sm sm:text-base text-slate-600 dark:text-slate-400">
+      Practica mecanografía con textos del Clásico: Barcelona frente a Real Madrid. ¡Precisión a ritmo de derbi!
+    </span>
   </div>
 
   <main id="main" class="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 max-w-6xl mx-auto w-full gap-8 sm:gap-12" tabindex="-1">
@@ -271,7 +220,7 @@
         <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest">Nivel</span>
         <span id="stat-level" class="text-2xl sm:text-3xl font-bold">—</span>
         <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full mt-1.5">
-          <div id="stat-level-bar" class="bg-primary h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+          <div id="stat-level-bar" class="bg-clasico h-full rounded-full transition-all duration-300" style="width: 0%"></div>
         </div>
       </div>
     </section>
@@ -283,7 +232,7 @@
       </p>
       <div
         id="practice-box"
-        class="bg-white/5 dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 md:p-12 shadow-2xl backdrop-blur-sm min-h-[200px] sm:min-h-[240px] flex items-center"
+        class="bg-white/5 dark:bg-slate-900/30 border border-rose-500/20 dark:border-rose-500/30 rounded-2xl p-6 sm:p-8 md:p-12 shadow-2xl backdrop-blur-sm min-h-[200px] sm:min-h-[240px] flex items-center"
         role="application"
         aria-label="Typing practice"
         aria-describedby="practice-instruction"
@@ -309,7 +258,7 @@
         />
       </div>
       <div class="mt-4 sm:mt-6 flex flex-wrap justify-center gap-3">
-        <button type="button" id="btn-restart" class="flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark">
+        <button type="button" id="btn-restart" class="flex items-center gap-2 px-5 py-2.5 bg-clasico text-white font-semibold rounded-lg hover:bg-clasico/90 transition-all shadow-lg shadow-rose-500/20 focus:outline-none focus:ring-2 focus:ring-clasico focus:ring-offset-2 dark:focus:ring-offset-background-dark">
           <span class="material-symbols-outlined" aria-hidden="true">refresh</span>
           Reiniciar
         </button>
@@ -324,10 +273,10 @@
     <div class="w-full max-w-4xl opacity-90 flex flex-col items-center hidden md:flex" role="img" aria-label="Spanish keyboard layout">
       <div class="w-full flex flex-row items-center justify-center gap-4 sm:gap-6">
         <div class="keyboard-layout-switcher flex flex-col gap-2 p-2 rounded-xl bg-slate-200/50 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800 shrink-0" aria-label="Keyboard layout">
-          <button type="button" id="layout-apple" class="keyboard-layout-btn p-2.5 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark" data-layout="apple" aria-pressed="true" title="Teclado Apple">
+          <button type="button" id="layout-apple" class="keyboard-layout-btn p-2.5 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-clasico focus:ring-offset-2 dark:focus:ring-offset-background-dark" data-layout="apple" aria-pressed="true" title="Teclado Apple">
             <svg class="w-8 h-8 sm:w-9 sm:h-9 text-slate-700 dark:text-slate-200" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.7 2.31-2.66 3.74-2.66 3.74-.01 1.12 1.4 1.76 2.12 2.23z"/></svg>
           </button>
-          <button type="button" id="layout-windows" class="keyboard-layout-btn p-2.5 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark opacity-50" data-layout="windows" aria-pressed="false" title="Teclado Windows">
+          <button type="button" id="layout-windows" class="keyboard-layout-btn p-2.5 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-clasico focus:ring-offset-2 dark:focus:ring-offset-background-dark opacity-50" data-layout="windows" aria-pressed="false" title="Teclado Windows">
             <svg class="w-8 h-8 sm:w-9 sm:h-9 text-slate-700 dark:text-slate-200" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.42L20 3zM3 13l6 .09v6.81l-6-1.15V13zm7 .25l10 .15V21l-10-1.91V13.25z"/></svg>
           </button>
         </div>
@@ -413,172 +362,88 @@
 
     <!-- Content blocks -->
     <section id="content" class="w-full max-w-3xl mx-auto space-y-12 sm:space-y-16 pt-8 sm:pt-12 pb-4 font-reading text-slate-700 dark:text-slate-300">
-      <h1 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-slate-100">Mecanografía</h1>
       <div>
-        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Pruebas de mecanografía</h2>
-        <p class="leading-relaxed">¿Cuánto tiempo pierdes buscando la ñ o el acento? Practica con textos reales en español — con tildes, ¿ y ¡ incluidos — y pasa de teclear con dos dedos a escribir sin mirar el teclado. Tu velocidad en PPM sube sesión a sesión.</p>
+        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Mecanografía del Clásico</h2>
+        <p class="leading-relaxed">El Clásico enfrenta a FC Barcelona y Real Madrid, dos de los clubes más grandes del fútbol mundial. Practica mecanografía con textos sobre el derbi, el Camp Nou, el Bernabéu y la rivalidad que marca LaLiga.</p>
       </div>
       <div>
-        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Aprender a teclear en línea</h2>
-        <p class="leading-relaxed">Sin instalar nada: abre la web, elige un texto y empieza. Funciona en cualquier dispositivo con teclado. Las estadísticas en vivo (PPM, precisión, tiempo) te ayudan a seguir tu progreso sesión a sesión.</p>
+        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Estrellas del Barcelona</h2>
+        <p class="leading-relaxed">En el ataque blaugrana destacan Lamine Yamal y Raphinha, con Pedri, Fermín López, Gavi y Frenkie de Jong en el centro del campo. Nombres jóvenes y talento de cantera que definen el estilo actual del Barça.</p>
       </div>
       <div>
-        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Ejercicios de mecanografía gratis</h2>
-        <p class="leading-relaxed">Todo el contenido es gratuito. Hay frases y párrafos de distintos niveles: desde oraciones simples hasta textos con más acentos y caracteres propios del español. Usa «Reiniciar» para repetir el mismo texto o «Nuevo texto» para cambiar de ejercicio.</p>
+        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Estrellas del Real Madrid</h2>
+        <p class="leading-relaxed">El Madrid llega con Kylian Mbappé, Vinícius Júnior, Jude Bellingham, Federico Valverde y Arda Güler, con Courtois bajo palos. Un once lleno de talento internacional para el partido más esperado del calendario español.</p>
       </div>
       <div>
-        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Mecanografía para niños</h2>
-        <p class="leading-relaxed">Ideal para que los más pequeños empiecen con oraciones cortas y asequibles. La herramienta les ayuda a escribir en español con el teclado, a cuidar la precisión y a acostumbrarse desde el principio a la ñ y a las tildes.</p>
-      </div>
-
-      <div id="audience" class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/30 p-6 sm:p-8">
-        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-2">Elige tu camino</h2>
-        <p class="leading-relaxed text-slate-600 dark:text-slate-400 mb-6">Cada objetivo pide una práctica distinta. Empieza por el itinerario que mejor encaje contigo hoy.</p>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/20 p-4">
-            <div class="flex items-center gap-2 text-slate-900 dark:text-slate-100 font-display font-semibold">
-              <span class="material-symbols-outlined text-primary" aria-hidden="true">child_care</span>
-              Para niños
-            </div>
-            <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Frases cortas y amigables para ganar confianza. Prioriza la precisión y luego la velocidad, sin frustración.</p>
-            <a class="mt-3 inline-flex text-sm font-semibold text-primary hover:underline" href="/para-ninos/">Empezar con lo fácil →</a>
-          </div>
-          <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/20 p-4">
-            <div class="flex items-center gap-2 text-slate-900 dark:text-slate-100 font-display font-semibold">
-              <span class="material-symbols-outlined text-primary" aria-hidden="true">school</span>
-              Para estudiantes
-            </div>
-            <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Redacta deberes y trabajos más rápido. Entrena ¿, ¡, acentos y ñ para escribir bien incluso con prisa.</p>
-            <a class="mt-3 inline-flex text-sm font-semibold text-primary hover:underline" href="#stats">Seguir tu PPM →</a>
-          </div>
-          <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/20 p-4">
-            <div class="flex items-center gap-2 text-slate-900 dark:text-slate-100 font-display font-semibold">
-              <span class="material-symbols-outlined text-primary" aria-hidden="true">work</span>
-              Para teletrabajo
-            </div>
-            <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Responde antes en Slack, correo y tickets. Menos erratas, más ritmo y sin buscar acentos a mitad de frase.</p>
-            <a class="mt-3 inline-flex text-sm font-semibold text-primary hover:underline" href="#main">Calentar 5 minutos →</a>
-          </div>
-        </div>
+        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Practica mientras suena el silbato</h2>
+        <p class="leading-relaxed">¿Esperas el siguiente Clásico? Mejora tu velocidad y precisión con textos temáticos. Usa «Nuevo texto» para cambiar de ejercicio o «Reiniciar» para repetir. Todo gratis, sin registro.</p>
       </div>
 
       <div id="faq">
         <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-6">Preguntas frecuentes</h2>
         <dl class="space-y-6">
           <div>
-            <dt class="font-display font-semibold text-slate-900 dark:text-slate-100 mb-1">¿Qué es la mecanografía?</dt>
-            <dd class="leading-relaxed">Es la técnica de escribir con el teclado usando todos los dedos y sin mirar las teclas. Se basa en memorizar la posición de cada tecla y en mover los dedos de forma coordinada. Así se gana velocidad, se cometen menos errores y se cansa menos la mano.</dd>
+            <dt class="font-display font-semibold text-slate-900 dark:text-slate-100 mb-1">¿Qué es esta página?</dt>
+            <dd class="leading-relaxed">Una sección especial de Mecanografía con textos sobre el Clásico entre Barcelona y Real Madrid. Es temporal: practicas escritura en español mientras vives el derbi.</dd>
           </div>
           <div>
-            <dt class="font-display font-semibold text-slate-900 dark:text-slate-100 mb-1">¿Para qué sirve aprender mecanografía?</dt>
-            <dd class="leading-relaxed">Para escribir más rápido y con menos esfuerzo en el colegio, en el trabajo o en el día a día. Una buena base de mecanografía ahorra tiempo y reduce la fatiga al usar el ordenador durante horas.</dd>
+            <dt class="font-display font-semibold text-slate-900 dark:text-slate-100 mb-1">¿Es gratis?</dt>
+            <dd class="leading-relaxed">Sí. Todos los ejercicios son gratuitos. No hace falta registrarse ni instalar nada. Solo abre la página y empieza a escribir.</dd>
           </div>
           <div>
-            <dt class="font-display font-semibold text-slate-900 dark:text-slate-100 mb-1">¿Cómo practicar bien?</dt>
-            <dd class="leading-relaxed">Sesiones cortas y frecuentes funcionan mejor que maratones ocasionales. Coloca los dedos en la posición base (F y J), no mires el teclado y prioriza la precisión sobre la velocidad. Aquí puedes practicar con textos en español y ver tu evolución al instante.</dd>
-          </div>
-          <div>
-            <dt class="font-display font-semibold text-slate-900 dark:text-slate-100 mb-1">¿Cuánto se tarda en aprender?</dt>
-            <dd class="leading-relaxed">Varía según la constancia. Con 10–15 minutos al día, muchas personas notan avances en pocas semanas. Alcanzar una velocidad cómoda (por ejemplo, 40–50 PPM) suele requerir varios meses de práctica regular.</dd>
+            <dt class="font-display font-semibold text-slate-900 dark:text-slate-100 mb-1">¿Cómo empiezo?</dt>
+            <dd class="leading-relaxed">Haz clic en el recuadro del texto, coloca los dedos en el teclado y empieza a escribir. El tiempo empieza cuando pulsas la primera tecla. ¡A por el gol de precisión!</dd>
           </div>
         </dl>
       </div>
     </section>
     <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700 w-full text-sm text-slate-500 dark:text-slate-400 leading-relaxed space-y-1" vocab="https://schema.org/" typeof="SoftwareApplication">
-      <p class="m-0"><span property="name">Mecanografía</span> — REQUIRES <span property="operatingSystem">Web</span></p>
+      <p class="m-0"><span property="name">Mecanografía El Clásico</span> — REQUIRES <span property="operatingSystem">Web</span></p>
       <p class="m-0">TYPE: <span property="applicationCategory" content="EducationalApplication">Educational</span></p>
       <p class="m-0" property="aggregateRating" typeof="AggregateRating">RATING: <span property="ratingValue">4.8</span> (<span property="ratingCount">8921</span> ratings)</p>
       <p class="m-0" property="offers" typeof="Offer">Price: €<span property="price">0</span>
         <meta property="priceCurrency" content="EUR" />
       </p>
     </div>
-
-    <section id="clasico-news" class="w-full max-w-3xl mx-auto mt-8 sm:mt-12" aria-labelledby="clasico-news-title">
-      <div class="rounded-2xl border border-rose-500/30 bg-gradient-to-br from-rose-500/10 via-white/60 to-blue-600/5 dark:from-rose-500/15 dark:via-slate-900/40 dark:to-blue-900/20 p-6 sm:p-8 shadow-lg shadow-rose-500/5">
-        <div class="flex flex-wrap items-center gap-2 mb-3">
-          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-rose-500/15 text-rose-700 dark:text-rose-300 text-xs font-semibold uppercase tracking-wider">
-            <span class="material-symbols-outlined text-sm" aria-hidden="true">campaign</span>
-            Novedad
-          </span>
-          <span class="inline-flex items-center gap-1 text-rose-700 dark:text-rose-300 text-xs font-semibold uppercase tracking-wider">
-            <span class="material-symbols-outlined text-sm" aria-hidden="true">sports_soccer</span>
-            El Clásico
-          </span>
-        </div>
-        <h2 id="clasico-news-title" class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Nueva práctica por el Clásico</h2>
-        <p class="font-reading leading-relaxed text-slate-600 dark:text-slate-400 mb-5">Barcelona frente a Real Madrid: practica mecanografía con textos del derbi. Yamal, Mbappé, Vinícius, Bellingham y más estrellas, gratis y sin registro.</p>
-        <a
-          class="inline-flex items-center gap-2 px-5 py-2.5 bg-rose-700 hover:bg-rose-800 text-white font-semibold rounded-lg transition-all shadow-lg shadow-rose-500/20 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 dark:focus:ring-offset-background-dark"
-          href="/eventos/el-clasico/"
-        >
-          <span class="material-symbols-outlined" aria-hidden="true">sports_soccer</span>
-          Probar El Clásico
-        </a>
-      </div>
-    </section>
   </main>
 
-  <footer class="py-6 px-4 sm:px-6 border-t border-slate-200 dark:border-slate-800">
-    <div class="max-w-6xl mx-auto text-sm text-slate-500 flex flex-col gap-4">
-      <nav class="flex flex-col gap-2.5" aria-label="Footer">
-        <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 sm:gap-x-5">
-          <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#main">Práctica</a>
-          <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#stats">Estadísticas</a>
-          <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#content">Contenido</a>
-          <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#faq">FAQ</a>
-        </div>
-        <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 sm:gap-x-5">
-          <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/juegos/">Juegos</a>
-          <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/test/">Test</a>
-          <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/sin-tildes/">Sin tildes</a>
-          <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/para-ninos/">Para niños</a>
-          <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/literatura/">Literatura</a>
-          <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/velocidad-promedio/">Velocidad</a>
-        </div>
-        <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 sm:gap-x-5">
-          <a class="hover:text-rose-700 dark:hover:text-rose-400 transition-colors focus:outline-none focus:underline font-semibold" href="/eventos/el-clasico/">El Clásico</a>
-          <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/historias/disney/">Disney</a>
-        </div>
-        <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 sm:gap-x-5">
-          <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/en/">EN</a>
-          <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/cat/">Català</a>
-          <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/contact/">Contacto</a>
-          <a class="hover:text-primary transition-colors focus:outline-none focus:underline inline-flex items-center gap-1" href="https://youtu.be/mjEnnXYCoUM" target="_blank" rel="noopener noreferrer" title="Ver vídeo sobre la herramienta">
-            <span class="material-symbols-outlined text-lg" aria-hidden="true">play_circle</span>
-            Ver vídeo
-          </a>
-        </div>
-      </nav>
-      <p class="text-center">© <span id="year">2026</span> Mecanografía. Práctica de escritura en español.</p>
+  <footer class="py-6 px-4 sm:px-6 border-t border-slate-200 dark:border-slate-800 text-center">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 max-w-6xl mx-auto text-sm text-slate-500">
+      <div class="flex items-center gap-4 sm:gap-6">
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#main">El Clásico</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#stats">Estadísticas</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#content">Contenido</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#faq">FAQ</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/sin-tildes/">Sin tildes</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/">Inicio</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/contact/">Contacto</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/cat/">Català</a>
+      </div>
+      <p>© <span id="year">2026</span> Mecanografía. Práctica de escritura en español.</p>
     </div>
   </footer>
-
-  <button type="button" id="back-to-top" aria-label="Volver arriba" title="Volver arriba">
-    <span class="material-symbols-outlined text-2xl leading-none" aria-hidden="true">arrow_upward</span>
-  </button>
 
   <script>
     (function () {
       document.getElementById('year').textContent = new Date().getFullYear();
 
-      // Spanish practice texts (with ñ, accents, ¿¡, punctuation)
+      // El Clásico themed practice texts (Spanish, with ñ, accents, ¿¡)
       const TEXTS = [
-        "La abuela preparó sopa de verduras y pan recién hecho. El olor llenó toda la cocina. ¿Quieres repetir? ¡Está riquísima!",
-        "En primavera los campos se llenan de flores. Las abejas vuelan de una a otra. No pises el jardín recién regado.",
-        "El tren llegó con diez minutos de retraso. Los viajeros bajaron con sus maletas. ¿Sabéis a qué hora sale el próximo?",
-        "Mi vecino toca la guitarra los viernes por la noche. A veces canta canciones antiguas. La música se oye hasta el balcón.",
-        "¿Has visto la película que ganó el premio? ¡No me la pierdo por nada! La crítica dice que la actuación es sobresaliente.",
-        "El ordenador se apagó de repente. Perdí el documento sin guardar. A partir de ahora usaré la nube y copias de seguridad.",
-        "La reunión empezó a las nueve en punto. Todos debían llevar el informe impreso. El director tomó nota de cada propuesta.",
-        "En la playa hacía mucho viento pero el sol brillaba. Los niños construían castillos de arena. ¡Cuidado con las medusas!",
-        "El español de América Latina y el de España se entienden bien. Hay palabras distintas y algunos acentos diferentes. ¡Practica y mejora!",
-        "La biblioteca municipal cierra los lunes por la tarde. Puedes pedir libros en línea. El carné es gratuito para residentes.",
-        "¿Cuánto cuesta el billete de autobús hasta el centro? Tres euros con cincuenta, por favor. Gracias y buen viaje.",
-        "El huerto urbano da tomates, lechugas y hierbas aromáticas. Regamos cada dos días. La cosecha de este año fue abundante.",
-        "María estudia ingeniería en la universidad pública. Sus exámenes empiezan en junio. Necesita concentración y buen descanso.",
-        "El reloj del ayuntamiento se paró durante la tormenta. Un técnico lo reparó al día siguiente. ¡Ya marca la hora correcta!",
-        "Antiguamente se escribía con pluma y tintero. Hoy usamos teclados y pantallas. La palabra vergüenza lleva diéresis. La mecanografía sigue siendo útil.",
-        "El eclipse lunar en España es una maravilla. La luna se tiñe de rojo y el cielo se queda en silencio. ¿Lo has visto? ¡Qué acontecimiento tan asombroso!"
+        "El Clásico enfrenta a FC Barcelona y Real Madrid, dos clubes históricos del fútbol español. ¡La rivalidad más famosa del mundo!",
+        "Lamine Yamal desborda por la banda y busca el centro. Raphinha espera el remate. ¿Marcará el Barça el primer gol?",
+        "En el Real Madrid, Kylian Mbappé acelera hacia la portería. Vinícius Júnior pide el balón por la izquierda. ¡Qué velocidad!",
+        "Jude Bellingham llega desde segunda línea. Federico Valverde recupera y lanza el contraataque blanco. ¡Qué intensidad!",
+        "Pedri organiza el juego blaugrana con paciencia. Gavi y Fermín López presionan alto. El Camp Nou vibra con cada pase.",
+        "Thibaut Courtois estira una mano y desvía el disparo. El Bernabéu responde con un rugido. ¡Gran parada del belga!",
+        "Arda Güler recibe entre líneas y abre a la banda. Rodrygo busca el espacio. El partido se decide en pequeños detalles.",
+        "Frenkie de Jong sale con el balón jugado desde atrás. La posesión azulgrana busca romper el bloque madridista.",
+        "El árbitro señala un córner. Mbappé y Vinícius se colocan al borde del área. ¿Habrá gol de cabeza o remate lejano?",
+        "Barcelona y Real Madrid se citan otra vez en LaLiga. Aficiones enfrentadas, himnos y banderas. ¡Qué ambiente de derbi!",
+        "El entrenador pide concentración. Un Clásico no se gana solo con talento: hace falta precisión, ritmo y paciencia.",
+        "En el descanso el marcador está igualado. ¿Quién marcará la diferencia: Yamal, Mbappé o Bellingham?",
+        "La afición canta sin parar. Cada entrada, cada falta y cada tiro libre pueden cambiar la historia del partido.",
+        "Practica mecanografía mientras esperas el silbato final. Mejora tu PPM con textos del Clásico. ¡Gol de precisión!",
+        "Camp Nou o Bernabéu: da igual el estadio. El Clásico siempre emociona. Escribe más rápido y sin mirar el teclado."
       ];
 
       const LEVELS = [
@@ -589,37 +454,7 @@
         { name: 'Experto', minWpm: 60, pct: 100 }
       ];
 
-      const STORAGE_KEY = 'mecanografia-stats';
-      const PRACTICE_STORAGE_KEY = STORAGE_KEY + '-practice';
-
-      function practiceDayKey() {
-        const d = new Date();
-        const y = d.getFullYear();
-        const m = String(d.getMonth() + 1).padStart(2, '0');
-        const day = String(d.getDate()).padStart(2, '0');
-        return y + '-' + m + '-' + day;
-      }
-
-      function loadPracticeMs() {
-        try {
-          const raw = localStorage.getItem(PRACTICE_STORAGE_KEY);
-          if (!raw) return 0;
-          const data = JSON.parse(raw);
-          if (data && data.date === practiceDayKey() && typeof data.ms === 'number' && isFinite(data.ms)) {
-            return Math.max(0, Math.floor(data.ms));
-          }
-        } catch (e) {}
-        return 0;
-      }
-
-      function savePracticeMs(ms) {
-        try {
-          localStorage.setItem(PRACTICE_STORAGE_KEY, JSON.stringify({
-            date: practiceDayKey(),
-            ms: Math.max(0, Math.floor(ms))
-          }));
-        } catch (e) {}
-      }
+      const STORAGE_KEY = 'mecanografia-el-clasico-stats';
 
       let state = {
         text: '',
@@ -629,12 +464,9 @@
         startTime: null,
         timerId: null,
         lastWpm: 0,
-        sessionPracticeMs: loadPracticeMs(),
-        practiceDay: practiceDayKey(),
         bestWpm: parseInt(localStorage.getItem(STORAGE_KEY + '-best') || '0', 10)
       };
 
-      const SESSION_GOAL_MS = 10 * 60 * 1000;
       const typedEl = document.getElementById('typed');
       const currentEl = document.getElementById('current');
       const remainingEl = document.getElementById('remaining');
@@ -648,8 +480,6 @@
       const statTimeMeta = document.getElementById('stat-time-meta');
       const statLevel = document.getElementById('stat-level');
       const statLevelBar = document.getElementById('stat-level-bar');
-      const sessionTimeLabel = document.getElementById('session-time-label');
-      const sessionTimeBar = document.getElementById('session-time-bar');
 
       function pickText() {
         return TEXTS[Math.floor(Math.random() * TEXTS.length)];
@@ -669,56 +499,12 @@
         return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
       }
 
-      function rolloverPracticeDayIfNeeded() {
-        const key = practiceDayKey();
-        if (key === state.practiceDay) return;
-        state.practiceDay = key;
-        state.sessionPracticeMs = 0;
-        state.startTime = null;
-        savePracticeMs(0);
-      }
-
-      function getSessionPracticeMs() {
-        rolloverPracticeDayIfNeeded();
-        return state.sessionPracticeMs + (state.startTime ? Date.now() - state.startTime : 0);
-      }
-
-      function bankPracticeTime() {
-        rolloverPracticeDayIfNeeded();
-        if (!state.startTime) return;
-        state.sessionPracticeMs += Date.now() - state.startTime;
-        state.startTime = null;
-        savePracticeMs(state.sessionPracticeMs);
-      }
-
-      function formatPracticeLabel(ms) {
-        const totalSec = Math.floor(ms / 1000);
-        const minutes = Math.floor(totalSec / 60);
-        const seconds = totalSec % 60;
-        if (minutes <= 0) {
-          return seconds + (seconds === 1 ? ' segundo de práctica hoy' : ' segundos de práctica hoy');
-        }
-        if (seconds === 0) {
-          return minutes + (minutes === 1 ? ' minuto de práctica hoy' : ' minutos de práctica hoy');
-        }
-        return minutes + (minutes === 1 ? ' minuto' : ' minutos') + ' ' + seconds + ' s de práctica hoy';
-      }
-
-      function updateSessionTimeCard() {
-        const ms = getSessionPracticeMs();
-        sessionTimeLabel.textContent = formatPracticeLabel(ms);
-        const pct = Math.min(100, (ms / SESSION_GOAL_MS) * 100);
-        sessionTimeBar.style.width = pct + '%';
-        sessionTimeBar.parentElement.setAttribute('aria-valuenow', String(Math.round(pct)));
-        savePracticeMs(ms);
-      }
-
       function updateStats() {
         const total = state.index + state.errors;
         const accuracy = total === 0 ? 0 : (state.correct / total) * 100;
         const elapsed = state.startTime ? (Date.now() - state.startTime) / 1000 : 0;
         const minutes = elapsed / 60;
-        const wpm = minutes > 0 ? Math.round((state.correct / 5) / minutes) : 0; // 5 chars = 1 word
+        const wpm = minutes > 0 ? Math.round((state.correct / 5) / minutes) : 0;
 
         statPpm.textContent = wpm;
         if (state.lastWpm > 0 && wpm > state.lastWpm) {
@@ -738,7 +524,6 @@
         }
 
         statTime.textContent = formatTime(elapsed);
-        updateSessionTimeCard();
 
         const level = getLevel(wpm, accuracy / 100);
         statLevel.textContent = level.name;
@@ -753,21 +538,16 @@
       function renderTyping() {
         const t = state.text;
         const i = state.index;
-        const typed = t.slice(0, i);
-        const currentChar = t[i] || '';
-        const remaining = t.slice(i + 1);
-
-        // Build typed with correct/wrong styling (we only track current session: all typed are "correct" in display; errors are at current position)
         let typedHtml = '';
         for (let k = 0; k < i; k++) {
           typedHtml += '<span class="char-correct">' + escapeHtml(t[k]) + '</span>';
         }
         typedEl.innerHTML = typedHtml;
-        currentEl.textContent = currentChar;
-        remainingEl.textContent = remaining;
+        currentEl.textContent = t[i] || '';
+        remainingEl.textContent = t.slice(i + 1);
 
         currentEl.className = 'typing-char cursor text-slate-900 dark:text-slate-100';
-        if (state.errors > 0 && currentChar) {
+        if (state.errors > 0 && t[i]) {
           currentEl.classList.add('char-wrong');
           practiceBox.setAttribute('aria-invalid', 'true');
         } else {
@@ -781,9 +561,7 @@
         return div.innerHTML;
       }
 
-      function startSession(opts) {
-        opts = opts || {};
-        bankPracticeTime();
+      function startSession() {
         state.text = pickText();
         state.index = 0;
         state.correct = 0;
@@ -794,19 +572,11 @@
         state.timerId = setInterval(updateStats, 500);
         updateStats();
         renderTyping();
-        // Don't steal scroll on first paint when landing on /#stats (etc.).
-        var hash = (location.hash || '').toLowerCase();
-        var allowFocus = opts.focus !== false;
-        if (opts.initial && hash && hash !== '#main') allowFocus = false;
-        if (allowFocus) {
-          if (mobileInput) {
-            mobileInput.focus({ preventScroll: true });
-            mobileInput.value = '';
-          } else if (practiceBox && practiceBox.focus) {
-            practiceBox.focus({ preventScroll: true });
-          }
-        } else if (mobileInput) {
+        if (mobileInput) {
+          mobileInput.focus();
           mobileInput.value = '';
+        } else {
+          practiceBox.focus();
         }
       }
 
@@ -823,7 +593,7 @@
           state.timerId = null;
         }
         updateStats();
-        startSession(); // new text
+        startSession();
       }
 
       function highlightKey(char) {
@@ -837,8 +607,7 @@
           'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'ü': 'u'
         };
         const keyName = map[char] !== undefined ? map[char] : key;
-        const selector = '[data-key="' + keyName + '"]';
-        const el = document.querySelector(selector);
+        const el = document.querySelector('[data-key="' + keyName + '"]');
         if (el) el.classList.add('key-active');
       }
 
@@ -862,12 +631,8 @@
           state.index++;
           state.correct++;
           state.errors = 0;
-          if (state.index >= state.text.length) {
-            if (typeof window.mecanografiaShowTrustpilotInvite === 'function') {
-              window.mecanografiaShowTrustpilotInvite();
-            }
-            finishSession();
-          } else {
+          if (state.index >= state.text.length) finishSession();
+          else {
             renderTyping();
             highlightKey(state.text[state.index]);
           }
@@ -894,11 +659,8 @@
       practiceBox.addEventListener('keydown', handleKeydown);
       practiceBox.addEventListener('keyup', handleKeyup);
       practiceBox.addEventListener('click', function () {
-        if (mobileInput) {
-          mobileInput.focus();
-        } else {
-          practiceBox.focus();
-        }
+        if (mobileInput) mobileInput.focus();
+        else practiceBox.focus();
       });
       practiceBox.addEventListener('focus', function () {
         highlightKey(state.text[state.index]);
@@ -917,22 +679,14 @@
         });
       }
 
-      // Virtual key highlight on keydown (show which key was pressed)
       document.querySelectorAll('.key-cap').forEach(function (el) {
         const key = el.getAttribute('data-key');
         if (!key) return;
-        el.addEventListener('mousedown', function () {
-          el.classList.add('key-pressed');
-        });
-        el.addEventListener('mouseup', function () {
-          el.classList.remove('key-pressed');
-        });
-        el.addEventListener('mouseleave', function () {
-          el.classList.remove('key-pressed');
-        });
+        el.addEventListener('mousedown', function () { el.classList.add('key-pressed'); });
+        el.addEventListener('mouseup', function () { el.classList.remove('key-pressed'); });
+        el.addEventListener('mouseleave', function () { el.classList.remove('key-pressed'); });
       });
 
-      // Theme toggle
       function applyTheme(dark) {
         document.documentElement.classList.toggle('dark', dark);
         const icon = document.querySelector('#theme-toggle .material-symbols-outlined');
@@ -946,7 +700,6 @@
         applyTheme(!document.documentElement.classList.contains('dark'));
       });
 
-      // Keyboard layout switcher (Apple / Windows)
       const LAYOUT_STORAGE_KEY = 'mecanografia-keyboard-layout';
       function applyKeyboardLayout(layout) {
         const isApple = layout === 'apple';
@@ -967,64 +720,7 @@
       document.getElementById('layout-apple').addEventListener('click', function () { applyKeyboardLayout('apple'); });
       document.getElementById('layout-windows').addEventListener('click', function () { applyKeyboardLayout('windows'); });
 
-      const backToTop = document.getElementById('back-to-top');
-      function updateBackToTop() {
-        backToTop.classList.toggle('is-visible', window.scrollY > window.innerHeight);
-      }
-      window.addEventListener('scroll', updateBackToTop, { passive: true });
-      updateBackToTop();
-      backToTop.addEventListener('click', function () {
-        window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-      });
-
-      startSession({ initial: true });
-
-      function flushPracticeMs() {
-        savePracticeMs(getSessionPracticeMs());
-      }
-      window.addEventListener('pagehide', flushPracticeMs);
-      document.addEventListener('visibilitychange', function () {
-        if (document.visibilityState === 'hidden') flushPracticeMs();
-      });
-    })();
-  </script>
-
-  <!-- Trustpilot review invite: runs once after a finished typing test (cookie-gated) -->
-  <script>
-    (function () {
-      var TP_COOKIE = 'tp_invite_shown';
-      var TP_COOKIE_DAYS = 365;
-
-      function getCookie(name) {
-        var match = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)'));
-        return match ? decodeURIComponent(match[1]) : '';
-      }
-
-      function setCookie(name, value, days) {
-        var expires = '';
-        if (days) {
-          var date = new Date();
-          date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-          expires = '; expires=' + date.toUTCString();
-        }
-        document.cookie = name + '=' + encodeURIComponent(value) + expires + '; path=/; SameSite=Lax';
-      }
-
-      window.mecanografiaShowTrustpilotInvite = function () {
-        if (getCookie(TP_COOKIE) === '1') return;
-        setCookie(TP_COOKIE, '1', TP_COOKIE_DAYS);
-        (function (w, d, s, r, n) {
-          w.TrustpilotObject = n;
-          w[n] = w[n] || function () { (w[n].q = w[n].q || []).push(arguments); };
-          var a = d.createElement(s);
-          a.async = 1;
-          a.src = r;
-          a.type = 'text/java' + s;
-          var f = d.getElementsByTagName(s)[0];
-          f.parentNode.insertBefore(a, f);
-        })(window, document, 'script', 'https://invitejs.trustpilot.com/tp.min.js', 'tp');
-        tp('register', 'yScInFU1peY6WtgW');
-      };
+      startSession();
     })();
   </script>
   <script src="/assets/js/site-header-nav.js" defer></script>

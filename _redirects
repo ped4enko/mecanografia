@@ -5,3 +5,5 @@
 /cursos-mecanografia /cursos/ 301
 /cursos-mecanografia/ /cursos/ 301
 /cursos-mecanografia/* /cursos/:splat 301
+/en/connecting-beyond-borders-anonymous-chat /en/ 301
+/en/connecting-beyond-borders-anonymous-chat/ /en/ 301
