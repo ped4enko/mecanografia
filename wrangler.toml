@@ -1,5 +1,6 @@
 # Cloudflare Pages — mecanografia.info
-# Deploy with: npx wrangler pages deploy . --project-name=mecanografia
-name = "mecanografia"
+# Deploy with: npx wrangler pages deploy . --project-name=mecanografiapage
+# Never deploy this repo to mecanografia-cdn (social media images live elsewhere).
+name = "mecanografiapage"
 compatibility_date = "2024-01-01"
 pages_build_output_dir = "./"

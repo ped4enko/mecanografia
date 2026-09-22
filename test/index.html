@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Test de mecanografía en español gratis. Mide tu PPM y precisión con textos reales: ñ, tildes y puntuación. Ideal para practicar y evaluar tu velocidad de escritura."/>
+  <title>Test de Mecanografía en Español (Español)</title>
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Mecanografia" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="canonical" href="https://mecanografia.info/test/" />
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://mecanografia.info/test/"/>
+  <meta property="og:title" content="Test de Mecanografía en Español (Español)"/>
+  <meta property="og:description" content="Test de mecanografía en español gratis. Mide tu PPM y precisión con textos reales: ñ, tildes y puntuación. Ideal para practicar y evaluar tu velocidad de escritura."/>
+  <meta property="og:image" content="https://mecanografia.info/og.jpg"/>
+  <meta property="og:image:type" content="image/avif"/>
+  <meta property="og:locale" content="es_ES"/>
+  <!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="mecanografia.info">
+<meta property="twitter:url" content="https://mecanografia.info/test/">
+<meta name="twitter:title" content="Test de Mecanografía en Español (Español)">
+<meta name="twitter:description" content="Test de mecanografía en español gratis. Mide tu PPM y precisión con textos reales: ñ, tildes y puntuación. Ideal para practicar y evaluar tu velocidad de escritura.">
+<meta name="twitter:image" content="https://mecanografia.info/og.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://mecanografia.info/#organization",
+    "name": "Mecanografía",
+    "url": "https://mecanografia.info",
+    "sameAs": [
+      "https://www.crunchbase.com/organization/mecanografia",
+      "https://www.facebook.com/mecanografia.info",
+      "https://www.linkedin.com/company/mecanografia/"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Test de Mecanografía en Español (Español)",
+    "description": "Spanish typing test: measure WPM and accuracy with ñ, accents, and Spanish punctuation. Free online mecanografía test.",
+    "url": "https://mecanografia.info/test",
+    "image": "https://mecanografia.info/og.jpg",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "publisher": { "@id": "https://mecanografia.info/#organization" },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "video": {
+      "@type": "VideoObject",
+      "name": "Mecanografía — Cómo usar la herramienta",
+      "description": "Video about the Mecanografía touch typing tool for Spanish learners.",
+      "thumbnailUrl": "https://img.youtube.com/vi/mjEnnXYCoUM/maxresdefault.jpg",
+      "embedUrl": "https://www.youtube.com/embed/mjEnnXYCoUM",
+      "uploadDate": "2026-02-19"
+    }
+  }
+  </script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/assets/css/site-header.css"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#135bec",
+            "background-light": "#f6f6f8",
+            "background-dark": "#101622",
+          },
+          fontFamily: {
+            "display": ["Lexend", "sans-serif"],
+            "reading": ["Atkinson Hyperlegible", "sans-serif"]
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+  <style>
+    .typing-char { position: relative; }
+    .cursor::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #135bec;
+      animation: cursor-blink 1s step-end infinite;
+    }
+    @media (prefers-reduced-motion: reduce) { .cursor::after { animation: none; } }
+    @keyframes cursor-blink { 50% { opacity: 0; } }
+    .char-correct { color: rgb(34 197 94); }
+    .char-wrong { color: rgb(239 68 68); text-decoration: underline; text-decoration-style: wavy; }
+    .key-cap {
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgb(51 65 85); background: rgb(30 41 59);
+      color: rgb(203 213 225); border-radius: 0.5rem;
+      font-family: Lexend, sans-serif; transition: all 0.15s ease;
+    }
+    .key-active { border-color: #135bec; background: rgba(19,91,236,0.25); color: #135bec; box-shadow: 0 0 10px rgba(19,91,236,0.3); }
+    .key-pressed { transform: scale(0.95); }
+
+    .kb-q-home {
+      display: grid;
+      column-gap: 0.25rem;
+      row-gap: 0.375rem;
+    }
+    @media (min-width: 640px) {
+      .kb-q-home { row-gap: 0.5rem; }
+    }
+    .kb-row-q, .kb-row-a { display: flex; gap: 0.25rem; min-width: 0; }
+    .kb-row-q { grid-column: 1; grid-row: 1; }
+    .kb-row-a { grid-column: 1; grid-row: 2; }
+    .kb-row-q .key-cap, .kb-row-a .key-cap { flex-shrink: 0; }
+    .kb-enter { grid-column: 2; min-width: 0; align-self: stretch; }
+    [data-kb-layout="apple"] .kb-q-home {
+      grid-template-columns: minmax(0, 1fr) 2.75rem;
+      grid-template-rows: 2.5rem 2.5rem;
+    }
+    [data-kb-layout="apple"] .kb-enter { grid-row: 1 / span 2; }
+    [data-kb-layout="windows"] .kb-q-home {
+      grid-template-columns: minmax(0, 1fr) minmax(3.25rem, 12%);
+      grid-template-rows: 2.5rem 2.5rem;
+    }
+    [data-kb-layout="windows"] .kb-enter { grid-row: 1; }
+    [data-kb-layout="windows"] .kb-row-a { grid-column: 1 / -1; }
+    @media (min-width: 640px) {
+      [data-kb-layout="apple"] .kb-q-home {
+        grid-template-columns: minmax(0, 1fr) 3.25rem;
+        grid-template-rows: 3rem 3rem;
+      }
+      [data-kb-layout="windows"] .kb-q-home {
+        grid-template-columns: minmax(0, 1fr) minmax(4rem, 12%);
+        grid-template-rows: 3rem 3rem;
+      }
+    }
+    .key-fn { display: none; flex-shrink: 0; }
+    [data-kb-layout="apple"] .key-fn { display: flex; width: 2.5rem; }
+    [data-kb-layout="apple"] .key-ctrl-right { display: none; }
+    [data-kb-layout="apple"] .key-shift-l { order: -1; width: 3.25rem; flex-shrink: 0; }
+    [data-kb-layout="apple"] .key-caps { width: 4.25rem; flex-shrink: 0; }
+    [data-kb-layout="windows"] .key-caps { width: 5rem; flex-shrink: 0; }
+    [data-kb-layout="apple"] .key-cmd { width: 3rem; flex-shrink: 0; }
+    [data-kb-layout="apple"] .key-mod-side { width: 2.5rem; flex-shrink: 0; }
+    @media (min-width: 640px) {
+      [data-kb-layout="apple"] .key-fn { width: 3rem; }
+      [data-kb-layout="apple"] .key-shift-l { width: 4.5rem; }
+      [data-kb-layout="apple"] .key-caps { width: 5.5rem; }
+      [data-kb-layout="windows"] .key-caps { width: 7rem; }
+      [data-kb-layout="apple"] .key-cmd { width: 4.25rem; }
+      [data-kb-layout="apple"] .key-mod-side { width: 3.25rem; }
+    }
+    [aria-invalid="true"] { outline: 2px solid rgb(239 68 68); outline-offset: 2px; }
+  </style>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vkghhjthlf");
+</script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-x-hidden">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-6 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg">Skip to practice</a>
+
+  <header class="border-b border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-3">
+          <img src="/favicon-96x96.png" alt="" width="32" height="32" class="h-8 w-8 sm:h-9 sm:w-9 rounded-lg" aria-hidden="true" />
+          <span class="text-lg sm:text-xl font-bold tracking-tight">Mecanografía</span>
+        </a>
+      </div>
+      <nav class="flex items-center gap-3 sm:gap-6" aria-label="Main">
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="/">Inicio</a>
+        <a class="text-primary font-medium" href="#main">Test de mecanografía</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#stats">Estadísticas</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm sm:text-base" href="/para-ninos/">Para niños</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm sm:text-base" href="/sin-tildes/">Sin tildes</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm" href="/cat/">Català</a>
+        <button type="button" id="theme-toggle" class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full" aria-label="Toggle dark mode">
+          <span class="material-symbols-outlined">dark_mode</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="max-w-6xl mx-auto w-full px-4 sm:px-6 pt-4">
+    <h1 class="text-xl sm:text-2xl font-display font-bold tracking-tight text-slate-900 dark:text-slate-100">Test de Mecanografía en Español</h1>
+    <p class="font-reading text-sm sm:text-base text-slate-600 dark:text-slate-400 mt-1">Evalúa tu velocidad y precisión con un test de escritura en español — gratis y sin registro.</p>
+  </div>
+
+  <main id="main" class="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 max-w-6xl mx-auto w-full gap-8 sm:gap-12" tabindex="-1">
+    <!-- Stats -->
+    <section id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 w-full" aria-live="polite" aria-label="Session statistics">
+      <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-3 sm:p-4 rounded-xl flex flex-col items-center justify-center gap-0.5">
+        <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest">PPM</span>
+        <span id="stat-ppm" class="text-2xl sm:text-3xl font-bold">0</span>
+        <span id="stat-ppm-trend" class="text-xs font-medium text-slate-400" aria-hidden="true"></span>
+      </div>
+      <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-3 sm:p-4 rounded-xl flex flex-col items-center justify-center gap-0.5">
+        <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest">Precisión</span>
+        <span id="stat-accuracy" class="text-2xl sm:text-3xl font-bold">—%</span>
+        <span id="stat-accuracy-label" class="text-xs font-medium text-slate-400"></span>
+      </div>
+      <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-3 sm:p-4 rounded-xl flex flex-col items-center justify-center gap-0.5">
+        <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest">Tiempo</span>
+        <span id="stat-time" class="text-2xl sm:text-3xl font-bold">00:00</span>
+        <span id="stat-time-meta" class="text-xs font-medium text-slate-400"></span>
+      </div>
+      <div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-3 sm:p-4 rounded-xl flex flex-col items-center justify-center gap-0.5">
+        <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest">Nivel</span>
+        <span id="stat-level" class="text-2xl sm:text-3xl font-bold">—</span>
+        <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full mt-1.5">
+          <div id="stat-level-bar" class="bg-primary h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Practice area -->
+    <div class="w-full relative">
+      <p class="absolute -top-10 right-0 text-sm text-slate-500 flex items-center gap-4">
+        <span class="hidden sm:inline"><kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-xs">Tab</kbd> reiniciar</span>
+      </p>
+      <div
+        id="practice-box"
+        class="bg-white/5 dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 md:p-12 shadow-2xl backdrop-blur-sm min-h-[200px] sm:min-h-[240px] flex items-center"
+        role="application"
+        aria-label="Typing practice"
+        aria-describedby="practice-instruction"
+      >
+        <p id="practice-instruction" class="sr-only">Type the text below. Use Tab to restart, or click Reiniciar.</p>
+        <div
+          id="typing-text"
+          class="font-reading text-2xl sm:text-3xl md:text-4xl leading-relaxed tracking-wide text-left select-none break-words"
+          style="color: var(--tw-prose-body);"
+        >
+          <span id="typed" aria-hidden="true"></span><span id="current" class="typing-char cursor" aria-hidden="true"></span><span id="remaining" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="mt-4 sm:mt-6 flex flex-wrap justify-center gap-3">
+        <button type="button" id="btn-restart" class="flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark">
+          <span class="material-symbols-outlined" aria-hidden="true">refresh</span>
+          Reiniciar
+        </button>
+        <button type="button" id="btn-new" class="flex items-center gap-2 px-5 py-2.5 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 font-semibold rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-600 focus:ring-offset-2 dark:focus:ring-offset-background-dark">
+          <span class="material-symbols-outlined" aria-hidden="true">description</span>
+          Nuevo texto
+        </button>
+      </div>
+    </div>
+
+    <!-- Virtual keyboard (Spanish ISO) -->
+    <div class="w-full max-w-4xl opacity-90 flex flex-col items-center" role="img" aria-label="Spanish keyboard layout">
+      <div class="w-full flex flex-row items-center justify-center gap-4 sm:gap-6">
+        <div class="keyboard-layout-switcher flex flex-col gap-2 p-2 rounded-xl bg-slate-200/50 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800 shrink-0" aria-label="Keyboard layout">
+          <button type="button" id="layout-apple" class="keyboard-layout-btn p-2.5 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark" data-layout="apple" aria-pressed="true" title="Teclado Apple">
+            <svg class="w-8 h-8 sm:w-9 sm:h-9 text-slate-700 dark:text-slate-200" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.7 2.31-2.66 3.74-2.66 3.74-.01 1.12 1.4 1.76 2.12 2.23z"/></svg>
+          </button>
+          <button type="button" id="layout-windows" class="keyboard-layout-btn p-2.5 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark opacity-50" data-layout="windows" aria-pressed="false" title="Teclado Windows">
+            <svg class="w-8 h-8 sm:w-9 sm:h-9 text-slate-700 dark:text-slate-200" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.42L20 3zM3 13l6 .09v6.81l-6-1.15V13zm7 .25l10 .15V21l-10-1.91V13.25z"/></svg>
+          </button>
+        </div>
+        <div class="flex flex-col gap-1.5 sm:gap-2 p-3 sm:p-4 rounded-2xl bg-slate-200/50 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800 flex-1 min-w-0" data-kb-layout="apple">
+        <div class="flex gap-1 h-10 sm:h-12" data-row="0">
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="º">º</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="1">1</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="2">2</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="3">3</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="4">4</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="5">5</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="6">6</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="7">7</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="8">8</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="9">9</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="0">0</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="'">'</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="¡">¡</div>
+          <div class="key-cap flex-1 text-xs sm:text-sm" data-key="Backspace">⌫</div>
+        </div>
+        <div class="kb-q-home">
+        <div class="kb-row-q" data-row="1">
+          <div class="key-cap w-12 sm:w-16 text-xs sm:text-sm" data-key="Tab">Tab</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="q">Q</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="w">W</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="e">E</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="r">R</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="t">T</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="y">Y</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="u">U</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="i">I</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="o">O</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="p">P</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="`">`</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="+">+</div>
+        </div>
+        <div class="kb-row-a" data-row="2">
+          <div class="key-cap key-caps px-1.5 text-[10px] sm:text-xs leading-tight" data-key="CapsLock">Bloq Mayús</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="a">A</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="s">S</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="d">D</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="f">F</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="g">G</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="h">H</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="j">J</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="k">K</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="l">L</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="ñ">Ñ</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="´">´</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="ç">Ç</div>
+        </div>
+        <div class="key-cap kb-enter text-xs sm:text-sm" data-key="Enter">↵</div>
+        </div>
+        <div class="flex gap-1 h-10 sm:h-12" data-row="3">
+          <div class="key-cap w-10 sm:w-12 text-xs sm:text-sm" data-key="<"><</div>
+          <div class="key-cap key-shift-l w-10 sm:w-14 text-xs sm:text-sm" data-key="Shift">⇧</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="z">Z</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="x">X</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="c">C</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="v">V</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="b">B</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="n">N</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="m">M</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key=",">,</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key=".">.</div>
+          <div class="key-cap w-10 sm:w-12 text-sm sm:text-base" data-key="-">-</div>
+          <div class="key-cap flex-1 text-xs sm:text-sm" data-key="Shift">⇧</div>
+        </div>
+        <div class="flex gap-1 h-10 sm:h-12" data-row="4">
+          <div class="key-cap key-fn text-xs" data-key="Fn">fn</div>
+          <div class="key-cap key-mod-side w-12 sm:w-16 text-xs" data-key="Control">Ctrl</div>
+          <div class="key-cap key-label-mod key-mod-side w-10 sm:w-14 text-xs" data-key="Alt" data-layout-apple="Opt" data-layout-windows="Alt">Opt</div>
+          <div class="key-cap key-label-mod key-cmd w-10 sm:w-14 text-xs" data-key="Meta" data-layout-apple="Cmd" data-layout-windows="Win">Cmd</div>
+          <div class="key-cap flex-[3] min-w-[120px] text-xs" data-key=" ">Espacio</div>
+          <div class="key-cap key-label-mod key-cmd w-10 sm:w-14 text-xs" data-key="Meta" data-layout-apple="Cmd" data-layout-windows="Win">Cmd</div>
+          <div class="key-cap key-label-mod key-mod-side w-10 sm:w-14 text-xs" data-key="Alt" data-layout-apple="Opt" data-layout-windows="Alt">Opt</div>
+          <div class="key-cap key-ctrl-right w-12 sm:w-16 text-xs" data-key="Control">Ctrl</div>
+        </div>
+        </div>
+      </div>
+      <p class="text-center text-xs text-slate-500 mt-3 uppercase tracking-tighter w-full">Teclado: Español (ISO)</p>
+    </div>
+
+    <!-- Content blocks -->
+    <section id="content" class="w-full max-w-3xl mx-auto space-y-12 sm:space-y-16 pt-8 sm:pt-12 pb-4 font-reading text-slate-700 dark:text-slate-300">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Cómo funciona este test de mecanografía</h2>
+        <p class="leading-relaxed">Este test de mecanografía en español mide tu velocidad (PPM) y tu precisión mientras escribes. Los textos incluyen ñ, tildes y signos como ¿ y ¡, para que el resultado refleje una escritura real en español, no solo teclas básicas.</p>
+      </div>
+      <div>
+        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Test online sin instalar nada</h2>
+        <p class="leading-relaxed">Haz el test desde el navegador, sin descargas ni registro. Empieza a escribir, mira tu PPM y precisión en vivo y cambia de texto cuando quieras. Sirve igual en portátil o teclado externo.</p>
+      </div>
+      <div>
+        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">Textos gratis para evaluar tu ritmo</h2>
+        <p class="leading-relaxed">El test es gratuito y ofrece frases y párrafos de distinta dificultad. Puedes repetir el mismo texto con «Reiniciar» o pedir otro con «Nuevo texto» para comparar resultados entre intentos.</p>
+      </div>
+      <div>
+        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-3">También útil para estudiantes</h2>
+        <p class="leading-relaxed">Si estás aprendiendo a escribir a máquina o preparas un examen de mecanografía, este test te ayuda a ver tu nivel actual en español y a detectar errores con ñ y acentos antes de practicar más a fondo.</p>
+      </div>
+
+      <div id="faq">
+        <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-100 mb-6">Preguntas frecuentes</h2>
+        <dl class="space-y-6">
+          <div>
+            <dt class="font-display font-semibold text-slate-900 dark:text-slate-100 mb-1">¿Qué mide un test de mecanografía?</dt>
+            <dd class="leading-relaxed">Un test de mecanografía suele medir la velocidad (palabras por minuto) y la precisión. Aquí también entrenas caracteres propios del español, para que el resultado sea más realista que en tests solo en inglés.</dd>
+          </div>
+          <div>
+            <dt class="font-display font-semibold text-slate-900 dark:text-slate-100 mb-1">¿Cómo mejorar el resultado del test?</dt>
+            <dd class="leading-relaxed">Prioriza la precisión antes que la velocidad, mantén los dedos en la fila base y haz sesiones cortas y frecuentes. Repite el mismo texto un par de veces y luego cambia a uno nuevo para comprobar si mejoras de verdad.</dd>
+          </div>
+          <div>
+            <dt class="font-display font-semibold text-slate-900 dark:text-slate-100 mb-1">¿Por qué hacer el test en español?</dt>
+            <dd class="leading-relaxed">Porque la ñ, las tildes y la puntuación española cambian el ritmo de escritura. Un test en español refleja mejor tu velocidad real al redactar correos, trabajos o chats en este idioma.</dd>
+          </div>
+          <div>
+            <dt class="font-display font-semibold text-slate-900 dark:text-slate-100 mb-1">¿Qué PPM se considera un buen resultado?</dt>
+            <dd class="leading-relaxed">Depende del objetivo. Muchas personas se sienten cómodas alrededor de 40–50 PPM con buena precisión. Por encima de 60–70 PPM ya es un ritmo alto para uso diario; lo importante es mantener pocos errores.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+    <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700 w-full text-sm text-slate-500 dark:text-slate-400 leading-relaxed space-y-1" vocab="https://schema.org/" typeof="SoftwareApplication">
+      <p class="m-0"><span property="name">Test de Mecanografía en Español (Español)</span> — REQUIRES <span property="operatingSystem">Web</span></p>
+      <p class="m-0">TYPE: <span property="applicationCategory" content="EducationalApplication">Educational</span></p>
+      <p class="m-0" property="aggregateRating" typeof="AggregateRating">RATING: <span property="ratingValue">4.8</span> (<span property="ratingCount">8921</span> ratings)</p>
+      <p class="m-0" property="offers" typeof="Offer">Price: €<span property="price">0</span>
+        <meta property="priceCurrency" content="EUR" />
+      </p>
+    </div>
+  </main>
+
+  <footer class="py-6 px-4 sm:px-6 border-t border-slate-200 dark:border-slate-800 text-center">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 max-w-6xl mx-auto text-sm text-slate-500">
+      <div class="flex items-center gap-4 sm:gap-6">
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#main">Práctica</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#stats">Estadísticas</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#content">Contenido</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="#faq">FAQ</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/para-ninos/">Para niños</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/sin-tildes/">Sin tildes</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/contact/">Contacto</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline" href="/cat/">Català</a>
+        <a class="hover:text-primary transition-colors focus:outline-none focus:underline inline-flex items-center gap-1" href="https://youtu.be/mjEnnXYCoUM" target="_blank" rel="noopener noreferrer" title="Ver vídeo sobre la herramienta">
+          <span class="material-symbols-outlined text-lg" aria-hidden="true">play_circle</span>
+          Ver vídeo
+        </a>
+      </div>
+      <p class="flex flex-wrap items-center justify-center gap-4 gap-y-2">
+        <a href="https://www.producthunt.com/products/mecanografia-app?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-mecanografia-app" target="_blank" rel="noopener noreferrer"><img alt="Mecanografia App - free typing training in Spanish/Catalan for kids &amp; adults | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1082401&amp;theme=neutral&amp;t=1771537515551"></a>
+      </p>
+      <p>© <span id="year">2026</span> Mecanografía. Práctica de escritura en español.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Spanish typing-test texts (ñ, accents, ¿¡; min 125 words each)
+      const TEXTS = [
+        "El test de mecanografía mide la velocidad y la precisión con la que escribes en español. Antes de empezar, coloca bien los dedos sobre el teclado: las teclas guía suelen ser F y J. Respira con calma, mira la pantalla y evita mirar las teclas mientras escribes. Cuando el texto aparece, escribe cada letra con cuidado; si cometes un error, corrígelo sin perder del todo el ritmo. La ñ, las tildes y los signos de interrogación y de exclamación forman parte del idioma y deben practicarse cada día. Un buen resultado no es solo muchas palabras por minuto: también importa la exactitud sostenida durante todo el ejercicio. Practica unos minutos diarios. Con constancia mejorarás tu PPM y ganarás confianza. ¿Listo para medirte ahora mismo? ¡Empieza cuando quieras y anota tu progreso después de cada sesión completa de escritura en español!",
+        "En España se celebra el día del libro cada veintitrés de abril. Las librerías llenan las calles de mesas con novedades y clásicos. La gente compra novelas, ensayos y poesía mientras pasea por plazas soleadas. En Barcelona y Madrid hay firmas de autores y lecturas en voz alta. Los niños descubren cuentos ilustrados y los adolescentes buscan historias de aventura. Leer mejora el vocabulario y ayuda a escribir mejor en cualquier contexto académico o laboral. Si practicas mecanografía con textos literarios, aprenderás a teclear palabras con tilde y puntuación compleja. La cigüeña del cuento popular y el pingüino del libro infantil también enseñan la ü. ¿Cuál es tu libro favorito este año? ¡Elige uno y convierte un párrafo en ejercicio de teclado mañana mismo sin mirar las manos! Comparte la experiencia lectora con amigos y escribe reseñas breves en el teclado.",
+        "La cocina española combina ingredientes sencillos con técnicas tradicionales. El aceite de oliva, el ajo y la cebolla aparecen en casi todas las recetas familiares. En Valencia se prepara la paella con arroz, azafrán y mariscos o pollo. En el norte hay sidra y pescado fresco del Atlántico. En Andalucía el gazpacho refresca en verano con tomate y pepino. Aprender a escribir nombres de platos refuerza la ortografía: ñame no es lo mismo que ñandú, y el piñón lleva tilde en otro contexto. Cuando describes una receta en el ordenador, usas comas, puntos y signos de interrogación. ¿Cuántos minutos necesita el sofrito hoy? ¡Depende del fuego y de la paciencia del cocinero experto! Practica tecleando menús imaginarios y listas de la compra con acentos correctos cada semana. Anota cantidades, tiempos de cocción y tipografía correcta de cada ingrediente especial.",
+        "El transporte público en las grandes ciudades ahorra tiempo y reduce el tráfico. El metro, el autobús y el tren de cercanías conectan barrios lejanos. Antes de viajar, consulta horarios y compras el billete en la máquina o en la aplicación móvil. En el andén espera detrás de la línea amarilla. Si alguien necesita asiento, ofrécelo con cortesía. Anunciar la próxima estación ayuda a los turistas. Escribir rutas y direcciones exige precisión: números, guiones y mayúsculas. ¿Dónde cambiaremos de línea esta tarde? ¡En la estación central bajo la plaza mayor! La mecanografía útil también sirve para rellenar formularios de viaje, reclamaciones y correos al servicio de atención al cliente. Practica con textos sobre itinerarios y ganarás velocidad en la vida diaria. Guarda capturas de los horarios y escribe recordatorios claros para no perder el enlace.",
+        "La universidad exige organización y hábitos de estudio. Cada asignatura tiene lecturas, trabajos y exámenes parciales. Escribir apuntes a máquina permite buscar después una palabra clave. Los ensayos académicos usan citas, notas al pie y bibliografía. La precisión ortográfica cuenta en la nota final. En español aparecen términos con ñ, como acompañamiento o añejo, y palabras con diéresis como cigüeña o pingüino. ¿Has revisado la rúbrica del profesor esta semana? ¡No entregues el documento sin corregir las tildes! Un test de mecanografía te prepara para teclear bajo presión. Dedica quince minutos diarios a copiar párrafos de ciencia o historia. Con el tiempo, tus dedos encontrarán las teclas solas y podrás concentrarte en las ideas principales del texto. Organiza un calendario semanal y teclea tus objetivos de estudio con fechas concretas.",
+        "El clima mediterráneo ofrece inviernos suaves y veranos cálidos. En primavera florecen los almendros y los campos se tiñen de verde. El verano invita a la playa, pero también a la siesta cuando el sol es intenso. El otoño trae vendimia y lluvias ocasionales. El invierno puede sorprender con nieve en la sierra. Hablar del tiempo es conversación cotidiana: ¿lloverá mañana en tu ciudad? ¡Lleva el paraguas por si acaso! Escribir pronósticos refuerza el uso de futuros y condicionales. La meteorología usa palabras técnicas y nombres de regiones. Practica con boletines imaginarios: temperaturas, rachas de viento y avisos amarillos o naranjas. Así mejorarás velocidad y precisión mientras aprendes vocabulario útil para el día a día en España y América Latina. Observa el cielo al amanecer y describe en pocas líneas el cambio de temperatura.",
+        "El deporte une aficiones y enseña disciplina. El fútbol llena estadios los fines de semana. El baloncesto y el tenis también atraen público. Correr por el parque mejora la resistencia. Antes de entrenar, calienta músculos y bebe agua. Anotar tiempos y distancias en una hoja de cálculo requiere teclear números y unidades con exactitud. Los comentarios deportivos usan exclamaciones: ¡Gol! ¡Qué jugada! Las preguntas abiertas animan el debate: ¿quién merece el trofeo este año? La mecanografía deportiva puede incluir nombres propios con tilde, como Muñoz o García. Escribe crónicas cortas después de cada partido. Con práctica diaria, tu velocidad subirá y cometerás menos errores al publicar en redes o enviar mensajes al equipo completo. Registra también la frecuencia cardíaca y el estado de ánimo después del entrenamiento. Registra también la frecuencia cardíaca y el estado de ánimo después del entrenamiento.",
+        "La música española abarca flamenco, pop, rock y música clásica. La guitarra española vibra en patios andaluces. En los conciertos la gente canta y aplaude. Escuchar letras ayuda a memorizar ortografía: corazón, canción, ilusión. Escribir la letra de una canción es un excelente ejercicio de teclado. Incluye signos de interrogación cuando la canción pregunta y diéresis cuando aparece pingüino o cigüeña en un verso infantil. ¿Cuál es tu artista favorito del momento? ¡Pon auriculares y copia la letra sin mirar el teclado! La precisión importa tanto como el ritmo. Si fallas una tilde, corrige y sigue sin detenerte demasiado. Al cabo de varias canciones notarás dedos más ágiles y mejor memoria muscular en cada sesión. Cambia de género musical cada semana para ampliar el vocabulario y la memoria muscular. Cambia de género musical cada semana para ampliar el vocabulario y la memoria muscular.",
+        "El turismo responsable respeta el patrimonio y a los vecinos. Antes de visitar un monumento, lee las normas: no tocar frescos, no usar flash, guardar silencio. En museos compra la entrada anticipada para evitar colas. En pueblos pequeños camina por calles estrechas y saluda. Escribir diarios de viaje consolida el vocabulario: plaza, ayuntamiento, alcázar, peñón. Describe olores, sabores y sonidos con adjetivos precisos. ¿Qué ciudad te gustaría conocer primero este verano? ¡Empaca ligero y lleva cargador! Un test de mecanografía con relatos de viaje entrena mayúsculas, comas y puntos suspensivos. Comparte tus textos con amigos y pide que señalen errores. Así combinas aprendizaje cultural y mejora real de velocidad de escritura. Pregunta a guías locales y escribe recomendaciones útiles para futuros viajeros curiosos. Pregunta a guías locales y escribe recomendaciones útiles para futuros viajeros curiosos.",
+        "La salud digital incluye posturas correctas frente a la pantalla. Siéntate con la espalda recta y los pies apoyados. La pantalla debe quedar a la altura de los ojos. Descansa la vista cada veinte minutos mirando lejos. Bebe agua y estira muñecas. Escribir mucho sin técnica provoca tensión. La mecanografía ergonómica reduce molestias. Usa atajos de teclado para copiar, pegar y guardar. ¿Has ajustado el brillo esta noche? ¡Tus ojos lo agradecerán! Practica textos sobre hábitos saludables: sueño, alimentación y ejercicio. Incluye palabras con ñ como bañera o riñón cuando cuadre el tema. La constancia vale más que una sesión interminable. Quince minutos diarios bastan para notar progreso real, duradero y medible. Alterna trabajo y descanso para proteger muñecas, cuello y concentración a largo plazo. Alterna trabajo y descanso para proteger muñecas, cuello y concentración a largo plazo.",
+        "El comercio electrónico cambió la forma de comprar. Buscas un producto, lees reseñas y comparas precios. Luego rellenas dirección, teléfono y método de pago. Un solo error tipográfico puede retrasar el envío. Por eso la precisión importa. Escribir correos al servicio de atención exige cortesía y claridad. Incluye el número de pedido y describe el problema con detalle. ¿Cuándo llegará el paquete a casa? ¡Gracias de antemano por su ayuda! Practica formularios inventados con códigos postales, provincias y apellidos con tilde. La ñ aparece en España y en muchos nombres. Dominar el teclado español acelera el trabajo remoto y los estudios en línea. Mide tu PPM después de cada compra simulada y compara resultados semanales. Verifica dos veces el correo electrónico y el número de teléfono antes de confirmar. Verifica dos veces el correo electrónico y el número de teléfono antes de confirmar.",
+        "La historia de la lengua española atraviesa siglos y continentes. Desde el latín vulgar hasta el español moderno hay préstamos árabes, indígenas y de otras lenguas europeas. La Real Academia publica normas, pero el uso vivo evoluciona. En América Latina hay variantes léxicas y de pronunciación. Entenderse sigue siendo fácil. Escribir bien exige conocer tildes diacríticas: tú y tu, él y el, sí y si. ¿Por qué importa la ortografía en un correo laboral? ¡Porque transmite profesionalidad! Un test de mecanografía con textos culturales refuerza hábitos correctos. Copia párrafos de ensayos cortos, corrige y vuelve a intentarlo. Con el tiempo, tus dedos aprenderán patrones frecuentes del español escrito contemporáneo. Lee en voz alta un párrafo antiguo y luego cópialo sin mirar las teclas del teclado. Lee en voz alta un párrafo antiguo y luego cópialo sin mirar las teclas del teclado.",
+        "El medio ambiente necesita acciones cotidianas. Reduce plásticos de un solo uso, separa residuos y ahorra energía. Camina o usa bicicleta cuando puedas. Planta un árbol si tienes jardín o balcón amplio. Leer noticias científicas mejora el vocabulario técnico: atmósfera, contaminación, biodiversidad. Escribir cartas a autoridades locales practica el registro formal. ¿Qué medida adoptarías esta semana en casa? ¡Empieza por apagar luces innecesarias! Incluye en tus ejercicios de teclado listas de verbos en imperativo y descripciones de paisajes. La ñ aparece en año, montaña y mañana. Las tildes marcan sílabas tónicas. Un buen mecanógrafo escribe textos largos sin fatiga y mantiene la precisión alta hasta el final del ejercicio. Comparte ideas ecológicas con vecinos y redacta un plan sencillo para tu comunidad. Comparte ideas ecológicas con vecinos y redacta un plan sencillo para tu comunidad.",
+        "La amistad se cultiva con tiempo y atención. Un mensaje breve puede alegrar el día. Quedar para un café fortalece lazos. Escuchar sin interrumpir demuestra respeto. Escribir felicitaciones de cumpleaños exige nombres correctos y signos de exclamación. Evita faltas en apellidos difíciles. ¿Vendrás al cine el sábado por la tarde? ¡Avísame temprano! Practica diálogos cortos en el teclado: saludos, despedidas y planes. Incluye preguntas con signos de apertura y respuestas enfáticas. La velocidad importa menos que la claridad cuando escribes a alguien querido. Aun así, un test de mecanografía te prepara para redactar rápido sin errores. Al terminar, revisa tildes y la letra ñ antes de enviar el mensaje final. Agradece con un mensaje cálido y revisa siempre la ortografía antes de pulsar enviar. Agradece con un mensaje cálido y revisa siempre la ortografía antes de pulsar enviar.",
+        "La tecnología educativa ofrece plataformas, vídeos y ejercicios interactivos. Los estudiantes reciben feedback inmediato. Los profesores publican materiales y corrigen tareas en línea. Escribir en el aula digital exige concentración. Silencia notificaciones y cierra pestañas innecesarias. La mecanografía es una habilidad básica del siglo veintiuno. Quien teclea con fluidez ahorra horas a lo largo del año. ¿Prefieres teclado físico o pantalla táctil? ¡Entrena en ambos si puedes! Usa textos sobre innovación, ciencia y cultura española. Menciona ciudades como Zaragoza, Córdoba o A Coruña. Incluye palabras con ü y ñ. Al cabo de quince sesiones notarás mejoras en PPM, precisión y confianza general al escribir en español todos los días. Combina teoría y práctica: lee un artículo breve y luego resume las ideas tecleando. Combina teoría y práctica: lee un artículo breve y luego resume las ideas tecleando."
+      ];
+
+      const LEVELS = [
+        { name: 'Principiante', minWpm: 0, pct: 0 },
+        { name: 'Básico', minWpm: 15, pct: 25 },
+        { name: 'Intermedio', minWpm: 30, pct: 50 },
+        { name: 'Avanzado', minWpm: 45, pct: 75 },
+        { name: 'Experto', minWpm: 60, pct: 100 }
+      ];
+
+      const STORAGE_KEY = 'mecanografia-stats';
+
+      let state = {
+        text: '',
+        index: 0,
+        correct: 0,
+        errors: 0,
+        startTime: null,
+        timerId: null,
+        lastWpm: 0,
+        bestWpm: parseInt(localStorage.getItem(STORAGE_KEY + '-best') || '0', 10)
+      };
+
+      const typedEl = document.getElementById('typed');
+      const currentEl = document.getElementById('current');
+      const remainingEl = document.getElementById('remaining');
+      const practiceBox = document.getElementById('practice-box');
+      const statPpm = document.getElementById('stat-ppm');
+      const statPpmTrend = document.getElementById('stat-ppm-trend');
+      const statAccuracy = document.getElementById('stat-accuracy');
+      const statAccuracyLabel = document.getElementById('stat-accuracy-label');
+      const statTime = document.getElementById('stat-time');
+      const statTimeMeta = document.getElementById('stat-time-meta');
+      const statLevel = document.getElementById('stat-level');
+      const statLevelBar = document.getElementById('stat-level-bar');
+
+      function pickText() {
+        return TEXTS[Math.floor(Math.random() * TEXTS.length)];
+      }
+
+      function getLevel(wpm, accuracy) {
+        if (accuracy < 0.9) return LEVELS[0];
+        for (let i = LEVELS.length - 1; i >= 0; i--) {
+          if (wpm >= LEVELS[i].minWpm) return LEVELS[i];
+        }
+        return LEVELS[0];
+      }
+
+      function formatTime(sec) {
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60);
+        return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+      }
+
+      function updateStats() {
+        const total = state.index + state.errors;
+        const accuracy = total === 0 ? 0 : (state.correct / total) * 100;
+        const elapsed = state.startTime ? (Date.now() - state.startTime) / 1000 : 0;
+        const minutes = elapsed / 60;
+        const wpm = minutes > 0 ? Math.round((state.correct / 5) / minutes) : 0; // 5 chars = 1 word
+
+        statPpm.textContent = wpm;
+        if (state.lastWpm > 0 && wpm > state.lastWpm) {
+          statPpmTrend.textContent = '↑';
+          statPpmTrend.className = 'text-emerald-500 text-xs font-medium';
+        } else {
+          statPpmTrend.textContent = '';
+        }
+
+        if (total === 0) {
+          statAccuracy.textContent = '—%';
+          statAccuracyLabel.textContent = '';
+        } else {
+          statAccuracy.textContent = accuracy.toFixed(1) + '%';
+          statAccuracyLabel.textContent = accuracy >= 97 ? 'Excelente' : accuracy >= 90 ? 'Bien' : 'Sigue practicando';
+          statAccuracyLabel.className = accuracy >= 97 ? 'text-emerald-500 text-xs font-medium' : accuracy >= 90 ? 'text-slate-500 text-xs font-medium' : 'text-amber-500 text-xs font-medium';
+        }
+
+        statTime.textContent = formatTime(elapsed);
+
+        const level = getLevel(wpm, accuracy / 100);
+        statLevel.textContent = level.name;
+        statLevelBar.style.width = level.pct + '%';
+
+        if (wpm > state.bestWpm && state.index > 10) {
+          state.bestWpm = wpm;
+          try { localStorage.setItem(STORAGE_KEY + '-best', String(wpm)); } catch (e) {}
+        }
+      }
+
+      function renderTyping() {
+        const t = state.text;
+        const i = state.index;
+        const typed = t.slice(0, i);
+        const currentChar = t[i] || '';
+        const remaining = t.slice(i + 1);
+
+        // Build typed with correct/wrong styling (we only track current session: all typed are "correct" in display; errors are at current position)
+        let typedHtml = '';
+        for (let k = 0; k < i; k++) {
+          typedHtml += '<span class="char-correct">' + escapeHtml(t[k]) + '</span>';
+        }
+        typedEl.innerHTML = typedHtml;
+        currentEl.textContent = currentChar;
+        remainingEl.textContent = remaining;
+
+        currentEl.className = 'typing-char cursor text-slate-900 dark:text-slate-100';
+        if (state.errors > 0 && currentChar) {
+          currentEl.classList.add('char-wrong');
+          practiceBox.setAttribute('aria-invalid', 'true');
+        } else {
+          practiceBox.removeAttribute('aria-invalid');
+        }
+      }
+
+      function escapeHtml(s) {
+        const div = document.createElement('div');
+        div.textContent = s;
+        return div.innerHTML;
+      }
+
+      function startSession() {
+        state.text = pickText();
+        state.index = 0;
+        state.correct = 0;
+        state.errors = 0;
+        state.startTime = null;
+        state.lastWpm = 0;
+        if (state.timerId) clearInterval(state.timerId);
+        state.timerId = setInterval(updateStats, 500);
+        updateStats();
+        renderTyping();
+        practiceBox.focus();
+      }
+
+      function restartSession() {
+        state.lastWpm = state.startTime && state.index > 0
+          ? Math.round((state.correct / 5) / ((Date.now() - state.startTime) / 1000 / 60))
+          : 0;
+        startSession();
+      }
+
+      function finishSession() {
+        if (state.timerId) {
+          clearInterval(state.timerId);
+          state.timerId = null;
+        }
+        updateStats();
+        startSession(); // new text
+      }
+
+      function highlightKey(char) {
+        document.querySelectorAll('.key-cap').forEach(function (el) {
+          el.classList.remove('key-active', 'key-pressed');
+        });
+        if (!char) return;
+        const key = char.toLowerCase();
+        const map = {
+          ' ': ' ', '\n': 'Enter', '´': '´', '`': '`', 'º': 'º', '¡': '¡', 'ñ': 'ñ', 'ç': 'ç',
+          'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'ü': 'u'
+        };
+        const keyName = map[char] !== undefined ? map[char] : key;
+        const selector = '[data-key="' + keyName + '"]';
+        const el = document.querySelector(selector);
+        if (el) el.classList.add('key-active');
+      }
+
+      function handleKeydown(e) {
+        if (e.ctrlKey || e.metaKey || e.altKey) {
+          if (e.key === 'r' || e.key === 'Tab') e.preventDefault();
+          return;
+        }
+        if (e.key === 'Tab') {
+          e.preventDefault();
+          restartSession();
+          return;
+        }
+        if (!state.text || state.index >= state.text.length) return;
+
+        if (state.startTime === null) state.startTime = Date.now();
+
+        const expected = state.text[state.index];
+        if (e.key === expected) {
+          e.preventDefault();
+          state.index++;
+          state.correct++;
+          state.errors = 0;
+          if (state.index >= state.text.length) finishSession();
+          else {
+            renderTyping();
+            highlightKey(state.text[state.index]);
+          }
+          updateStats();
+        } else if (e.key.length === 1 && !e.repeat) {
+          e.preventDefault();
+          state.errors++;
+          renderTyping();
+          highlightKey(expected);
+          updateStats();
+        }
+      }
+
+      function handleKeyup() {
+        document.querySelectorAll('.key-cap').forEach(function (el) {
+          el.classList.remove('key-pressed');
+        });
+      }
+
+      document.getElementById('btn-restart').addEventListener('click', restartSession);
+      document.getElementById('btn-new').addEventListener('click', finishSession);
+
+      practiceBox.setAttribute('tabindex', '0');
+      practiceBox.addEventListener('keydown', handleKeydown);
+      practiceBox.addEventListener('keyup', handleKeyup);
+      practiceBox.addEventListener('focus', function () {
+        highlightKey(state.text[state.index]);
+      });
+      practiceBox.addEventListener('blur', function () {
+        document.querySelectorAll('.key-cap').forEach(function (el) {
+          el.classList.remove('key-active', 'key-pressed');
+        });
+      });
+
+      // Virtual key highlight on keydown (show which key was pressed)
+      document.querySelectorAll('.key-cap').forEach(function (el) {
+        const key = el.getAttribute('data-key');
+        if (!key) return;
+        el.addEventListener('mousedown', function () {
+          el.classList.add('key-pressed');
+        });
+        el.addEventListener('mouseup', function () {
+          el.classList.remove('key-pressed');
+        });
+        el.addEventListener('mouseleave', function () {
+          el.classList.remove('key-pressed');
+        });
+      });
+
+      // Theme toggle
+      function applyTheme(dark) {
+        document.documentElement.classList.toggle('dark', dark);
+        const icon = document.querySelector('#theme-toggle .material-symbols-outlined');
+        if (icon) icon.textContent = dark ? 'light_mode' : 'dark_mode';
+        try { localStorage.setItem('mecanografia-theme', dark ? 'dark' : 'light'); } catch (e) {}
+      }
+      const saved = localStorage.getItem('mecanografia-theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(saved === 'dark' || (saved !== 'light' && prefersDark));
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        applyTheme(!document.documentElement.classList.contains('dark'));
+      });
+
+      // Keyboard layout switcher (Apple / Windows)
+      const LAYOUT_STORAGE_KEY = 'mecanografia-keyboard-layout';
+      function applyKeyboardLayout(layout) {
+        const isApple = layout === 'apple';
+        document.getElementById('layout-apple').classList.toggle('opacity-50', !isApple);
+        document.getElementById('layout-apple').setAttribute('aria-pressed', isApple ? 'true' : 'false');
+        document.getElementById('layout-windows').classList.toggle('opacity-50', isApple);
+        document.getElementById('layout-windows').setAttribute('aria-pressed', isApple ? 'false' : 'true');
+        document.querySelectorAll('[data-kb-layout]').forEach(function (el) {
+          el.setAttribute('data-kb-layout', layout);
+        });
+        document.querySelectorAll('.key-label-mod').forEach(function (el) {
+          el.textContent = el.getAttribute('data-layout-' + layout) || el.textContent;
+        });
+        try { localStorage.setItem(LAYOUT_STORAGE_KEY, layout); } catch (e) {}
+      }
+      const savedLayout = localStorage.getItem(LAYOUT_STORAGE_KEY) || 'apple';
+      applyKeyboardLayout(savedLayout);
+      document.getElementById('layout-apple').addEventListener('click', function () { applyKeyboardLayout('apple'); });
+      document.getElementById('layout-windows').addEventListener('click', function () { applyKeyboardLayout('windows'); });
+
+      startSession();
+    })();
+  </script>
+  <script src="/assets/js/site-header-nav.js" defer></script>
+</body>
+</html>

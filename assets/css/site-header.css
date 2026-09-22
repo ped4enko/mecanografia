@@ -1,0 +1,140 @@
+/* Progressive header nav — overflow links move into the burger panel from the right. */
+
+.site-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
+
+.site-nav-links {
+  display: flex;
+  align-items: center;
+  gap: inherit;
+  min-width: 0;
+}
+
+.site-nav-links > a {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.site-nav-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  flex-shrink: 0;
+}
+
+.site-nav-burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  color: rgb(100 116 139);
+  border-radius: 9999px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.site-nav-burger:hover,
+.site-nav-burger[aria-expanded="true"] {
+  background: rgb(241 245 249);
+  color: #135bec;
+}
+
+:is(html.dark, .dark) .site-nav-burger:hover,
+:is(html.dark, .dark) .site-nav-burger[aria-expanded="true"] {
+  background: rgb(30 41 59);
+  color: #135bec;
+}
+
+.site-nav-burger .material-symbols-outlined {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.site-nav.is-overflowing .site-nav-burger {
+  display: inline-flex;
+}
+
+.site-nav-panel {
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.55rem);
+  right: 0;
+  min-width: 11.5rem;
+  max-width: min(18rem, calc(100vw - 1.5rem));
+  padding: 0.4rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(226 232 240);
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+  z-index: 60;
+}
+
+:is(html.dark, .dark) .site-nav-panel {
+  border-color: rgb(30 41 59);
+  background: rgba(16, 22, 34, 0.97);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.site-nav.is-open .site-nav-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.site-nav-panel a {
+  display: block;
+  padding: 0.65rem 0.8rem;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.site-nav-panel a:hover {
+  background: rgb(241 245 249);
+  color: #135bec;
+}
+
+:is(html.dark, .dark) .site-nav-panel a:hover {
+  background: rgb(30 41 59);
+}
+
+/* Sticky header: keep in-page anchors visible below the bar */
+#main,
+#stats,
+#faq,
+#contenido,
+#content,
+[id]:target {
+  scroll-margin-top: 5.5rem;
+}
+
+@media (min-width: 640px) {
+  #main,
+  #stats,
+  #faq,
+  #contenido,
+  #content,
+  [id]:target {
+    scroll-margin-top: 6rem;
+  }
+}
+
+/* Keep brand + burger usable on narrow viewports */
+header .site-header-inner {
+  min-width: 0;
+  gap: 0.75rem;
+}
+
+header .site-brand {
+  flex-shrink: 0;
+  min-width: 0;
+}

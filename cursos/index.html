@@ -3,14 +3,15 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Dónde aprender mecanografía en Sudamérica: guía por países. Cursos presenciales y online en español."/>
-  <title>Cursos de mecanografía en Sudamérica | Mecanografía</title>
+  <meta name="description" content="Guía de cursos de mecanografía por región: Europa, Norteamérica y Sudamérica. Academias presenciales y cursos online en español."/>
+  <title>Cursos de mecanografía | Mecanografía</title>
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="canonical" href="https://mecanografia.info/cursos-mecanografia/sudamerica/" />
+  <link rel="canonical" href="https://mecanografia.info/cursos/" />
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/assets/css/site-header.css"/>
   <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -44,24 +45,20 @@
     <nav class="text-sm text-slate-500 dark:text-slate-400 mb-6" aria-label="Breadcrumb">
       <a href="/contact/" class="hover:text-primary">Contacto</a>
       <span class="mx-1">/</span>
-      <span class="text-slate-700 dark:text-slate-300">Sudamérica</span>
+      <span class="text-slate-700 dark:text-slate-300">Cursos</span>
     </nav>
 
-    <h1 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-slate-100 mb-6">Cursos de mecanografía en Sudamérica</h1>
-    <p class="leading-relaxed mb-8">Guía de opciones para aprender mecanografía en países de habla hispana en Sudamérica. Próximamente más países y enlaces a academias y cursos online.</p>
+    <h1 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-slate-100 mb-6">Cursos de mecanografía</h1>
+    <p class="leading-relaxed mb-8">Guías por región: academias presenciales y cursos online en español. Elige tu zona para ver opciones locales.</p>
 
-    <h2 class="text-lg font-display font-bold text-slate-900 dark:text-slate-100 mb-4">Por país</h2>
-    <p class="text-slate-500 dark:text-slate-400">En preparación. Mientras tanto puedes practicar gratis en <a href="/" class="text-primary hover:underline">mecanografia.info</a>.</p>
+    <h2 class="text-lg font-display font-bold text-slate-900 dark:text-slate-100 mb-4">Por región</h2>
+    <ul class="space-y-3">
+      <li><a href="/cursos/europa/" class="text-primary hover:underline font-medium">Europa</a> — España y países de habla hispana en Europa.</li>
+      <li><a href="/cursos/norteamerica/" class="text-primary hover:underline font-medium">Norteamérica</a> — México, EE. UU. y Canadá.</li>
+      <li><a href="/cursos/sudamerica/" class="text-primary hover:underline font-medium">Sudamérica</a> — Argentina, Colombia, Chile y más.</li>
+    </ul>
 
     <p class="mt-8 text-sm text-slate-500"><a href="/contact/" class="hover:text-primary">← Volver a Contacto</a></p>
-    <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700 w-full text-sm text-slate-500 dark:text-slate-400 leading-relaxed space-y-1" vocab="https://schema.org/" typeof="SoftwareApplication">
-      <p class="m-0"><span property="name">Mecanografía</span> — REQUIRES <span property="operatingSystem">Web</span></p>
-      <p class="m-0">TYPE: <span property="applicationCategory" content="EducationalApplication">Educational</span></p>
-      <p class="m-0" property="aggregateRating" typeof="AggregateRating">RATING: <span property="ratingValue">4.8</span> (<span property="ratingCount">8921</span> ratings)</p>
-      <p class="m-0" property="offers" typeof="Offer">Price: €<span property="price">0</span>
-        <meta property="priceCurrency" content="EUR" />
-      </p>
-    </div>
   </main>
 
   <footer class="py-6 px-4 border-t border-slate-200 dark:border-slate-800 text-center text-sm text-slate-500">
@@ -84,5 +81,6 @@
       document.getElementById('theme-toggle').addEventListener('click', function () { applyTheme(!document.documentElement.classList.contains('dark')); });
     })();
   </script>
+  <script src="/assets/js/site-header-nav.js" defer></script>
 </body>
 </html>
